@@ -10,6 +10,10 @@ public class User {
 	String email;
 	int userID;
 	boolean isAdmin;
+	boolean isBanned;
+	boolean isMuted;
 	
 	HashSet<Integer> createdThreads;
+	HashSet<Post> createdPost;
+	HashSet<Post> repliedPost;
 }
