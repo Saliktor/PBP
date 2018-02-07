@@ -8,7 +8,7 @@ public class User {
 	String username;
 	String password;
 	String email;
-	int userID;
+	int id;
 	boolean isAdmin;
 	boolean isBanned;
 	boolean isMuted;

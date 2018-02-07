@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Thread {
 	String title;
 	String body;
-	int threadID;
+	int id;
 	
 	//Set of users who have voted on this post
 	HashSet<Post> votedUsers;
