@@ -1,0 +1,6 @@
+Thread bean: new variable -> Timestamp timecreated;
+
+On creation of thread, create post for first post in thread?
+
+Post bean: new variable -> int threadId;
+	HashSet -> Set
