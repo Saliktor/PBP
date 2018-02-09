@@ -1,16 +1,30 @@
-create table game {
+connect pbp_db/p4ssw0rd
+
+drop table  game cascade constraints;
+drop table  move cascade constraints;
+drop table  useraccount cascade constraints;
+drop table  forumthread cascade constraints;
+drop table  post cascade constraints;
+drop table  user_thread_vote cascade constraints;
+drop table  user_post_vote cascade constraints;
+drop table  post_edit cascade constraints;
+drop table  thread_edit cascade constraints;
+drop table  player cascade constraints;
+
+create table game (
     id              number(3) primary key,
     gametype        varchar2(100) not null
     -- number of teams?
     -- This might be a super abstract table because of so many different rule sets.
-)
+);
 
-create table move (
-    id              number(10) primary key
+create table  move (
+    id              number(10) primary key,
+    temp            varchar2(1)
     -- other info here.
-)
+);
 
-create table user (
+create table  useraccount (
     id              number(10) primary key,
     firstname       varchar2(30),
     lastname        varchar2(30),
@@ -20,20 +34,20 @@ create table user (
     isAdmin         number(1) not null,
     isbanned        number(1) not null,
     ismuted         number(1) not null
-)
+);
 
-create table thread (
+create table  forumthread (
     id              number(10) primary key,
     body            varchar2(1000),
     title           varchar2(1000) not null,
     threadcreator   number(10) not null,       -- user
     gametype        number(3) not null,
-    timecreated     timstamp not null,
+    timecreated     timestamp not null,
     constraint fk_gametype foreign key (gametype) references game(id),
-    constraint fk_threadcreator foreign key (threadcreator) references user(id)
-)
+    constraint fk_threadcreator foreign key (threadcreator) references useraccount(id)
+);
 
-create table post (
+create table  post (
     id              number(10) primary key,
     body            varchar2(1000) not null,
     repliedto       number(10),             -- post
@@ -45,54 +59,54 @@ create table post (
     threadId        number(10),
     constraint fk_repliedto foreign key (repliedto) references post(id),
     constraint fk_repliedfrom foreign key (repliedfrom) references post(id),
-    constraint fk_postcreator foreign key (postcreator) references user(id),
+    constraint fk_postcreator foreign key (postcreator) references useraccount(id),
     constraint fk_move foreign key (move) references move(id),
-    constraint fk_threadid foreign key (threadid) references thread(id)
-)
+    constraint fk_threadid foreign key (threadid) references forumthread(id)
+);
 
-create table user_thread_vote (
+create table  user_thread_vote (
     user_id         number(10) not null,
     thread_id       number(10) not null,
     vote            number(1) not null, -- -1 or +1
-    constraint pk_user_thread_vote primary key (user_id,thread_id)
-    constraint fk_user_id foreign key (user_id) references user(id),
-    constraint fk_thread_id foreign key (thread_id) references thread(id)
-)
+    constraint pk_user_thread_vote primary key (user_id,thread_id),
+    constraint fk_user_id_thread foreign key (user_id) references useraccount(id),
+    constraint fk_thread_id_user foreign key (thread_id) references forumthread(id)
+);
 
-create table user_post_vote (
+create table  user_post_vote (
     user_id         number(10) not null,
     post_id         number(10) not null,
     vote            number(1) not null, -- -1 or +1
-    constraint pk_user_thread_vote primary key (user_id,post_id),
-    constraint fk_user_id foreign key (user_id) references user(id),
-    constraint fk_post_id foreign key (post_id) references post(id)
-)
+    constraint pk_user_post_vote primary key (user_id,post_id),
+    constraint fk_user_id_post foreign key (user_id) references useraccount(id),
+    constraint fk_post_id_user foreign key (post_id) references post(id)
+);
 
-create table post_edit (
+create table  post_edit (
     id              number(10) primary key,
     whoedited       number(10) not null,
     postid          number(10) not null,
     content         varchar2(1000) not null,
     timeedited      timestamp not null,
-    constraint fk_whoedited foreign key (whoedited) references user(id),
+    constraint fk_whoedited_post foreign key (whoedited) references useraccount(id),
     constraint fk_postid foreign key (postid) references post(id)
-)
+);
 
-create table thread_edit (
+create table  thread_edit (
     id              number(10) primary key,
     whoedited       number(10) not null,
     threadid        number(10) not null,
     content         varchar2(1000) not null,
     timeedited      timestamp not null,
-    constraint fk_whoedited foreign key (whoedited) references user(id),
-    constraint fk_threadid foreign key (threadid) references thread(id)
-)
+    constraint fk_whoedited_thread foreign key (whoedited) references useraccount(id),
+    constraint fk_thread_id foreign key (threadid) references forumthread(id)
+);
 
-create table player (
+create table  player (
     threadid        number(10) not null,
     userid          number(10) not null,
     team            varchar2(10) not null,
     constraint pk_player primary key (threadid,userid),
-    constraint fk_threadid foreign key (threadid) references thread(id),
-    constraint fk_userid foreign key (userid) references user(id)
-)
+    constraint fk_player_thread_id foreign key (threadid) references forumthread(id),
+    constraint fk_player_userid foreign key (userid) references useraccount(id)
+);
