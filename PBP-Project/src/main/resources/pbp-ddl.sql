@@ -50,16 +50,13 @@ create table  forumthread (
 create table  post (
     id              number(10) primary key,
     body            varchar2(1000) not null,
-    repliedto       number(10),             -- post
+    repliedto       number(10),             -- if thread is not a child of post, this is null. Otherwise, this should be not null
     repliedfrom     number(10),             -- post
     postcreation    timestamp not null,
-    postcreator     number(10),             -- user
-    team            varchar2(100),
-    move            number(10),
-    threadId        number(10),
+    move            number(10) not null,
+    threadId        number(10) not null,
     constraint fk_repliedto foreign key (repliedto) references post(id),
     constraint fk_repliedfrom foreign key (repliedfrom) references post(id),
-    constraint fk_postcreator foreign key (postcreator) references useraccount(id),
     constraint fk_move foreign key (move) references move(id),
     constraint fk_threadid foreign key (threadid) references forumthread(id)
 );
@@ -92,6 +89,7 @@ create table  post_edit (
     constraint fk_postid foreign key (postid) references post(id)
 );
 
+-- this might not be needed if the thread is a child of post and they use the sequence
 create table  thread_edit (
     id              number(10) primary key,
     whoedited       number(10) not null,
@@ -105,8 +103,22 @@ create table  thread_edit (
 create table  player (
     threadid        number(10) not null,
     userid          number(10) not null,
-    team            varchar2(10) not null,
+    team            number(2) not null,   -- 0=no teams , 1=white , 2=black
     constraint pk_player primary key (threadid,userid),
     constraint fk_player_thread_id foreign key (threadid) references forumthread(id),
     constraint fk_player_userid foreign key (userid) references useraccount(id)
 );
+
+drop sequence useraccount_seq;
+drop sequence thread_edit_seq;
+drop sequence post_edit_seq;
+drop sequence thread_seq;
+drop sequence post_seq;
+drop sequence move_seq;
+
+create sequence useraccount_seq;
+create sequence thread_edit_seq;
+create sequence post_edit_seq;
+create sequence thread_seq;
+create sequence post_seq;
+create sequence move_seq;
