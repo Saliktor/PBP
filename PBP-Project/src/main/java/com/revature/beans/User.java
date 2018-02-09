@@ -12,9 +12,11 @@ public class User {
 	boolean isMuted;
 	
 	
-	
 	public User() {
 		super();
+		this.isAdmin = false;
+		this.isBanned = false;
+		this.isMuted = false;
 	}
 	
 	

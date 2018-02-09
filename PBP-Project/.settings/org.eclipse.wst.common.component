@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="java-output-path" value="/PBP/target/classes"/>
-        <property name="context-root" value="PBP-Project"/>
+        <property name="java-output-path" value="/PBP-Project/target/classes"/>
+        <property name="context-root" value="PBP"/>
     </wb-module>
 </project-modules>
