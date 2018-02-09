@@ -17,8 +17,71 @@ create table useraccount (
 );
 
 create table game (
-    id              number(10) primary key
-    -- 64 columns
+    id              number(10) primary key,
+    aa              number(1), -- the following represent the game state
+    ab              number(1), -- null = unused yet in the game
+    ac              number(1), -- 1 if white
+    ad              number(1), -- 2 if black
+    ae              number(1),
+    af              number(1),
+    ag              number(1),
+    ah              number(1),
+    ba              number(1),
+    bb              number(1),
+    bc              number(1),
+    bd              number(1),
+    be              number(1),
+    bf              number(1),
+    bg              number(1),
+    bh              number(1),
+    ca              number(1),
+    cb              number(1),
+    cc              number(1),
+    cd              number(1),
+    ce              number(1),
+    cf              number(1),
+    cg              number(1),
+    ch              number(1),
+    da              number(1),
+    db              number(1),
+    dc              number(1),
+    dd              number(1),
+    de              number(1),
+    df              number(1),
+    dg              number(1),
+    dh              number(1),
+    ea              number(1),
+    eb              number(1),
+    ec              number(1),
+    ed              number(1),
+    ee              number(1),
+    ef              number(1),
+    eg              number(1),
+    eh              number(1),
+    fa              number(1),
+    fb              number(1),
+    fc              number(1),
+    fd              number(1),
+    fe              number(1),
+    ff              number(1),
+    fg              number(1),
+    fh              number(1),
+    ga              number(1),
+    gb              number(1),
+    gc              number(1),
+    gd              number(1),
+    ge              number(1),
+    gf              number(1),
+    gg              number(1),
+    gh              number(1),
+    ha              number(1),
+    hb              number(1),
+    hc              number(1),
+    hd              number(1),
+    he              number(1),
+    hf              number(1),
+    hg              number(1),
+    hh              number(1)
 );
 
 create table configuration (
