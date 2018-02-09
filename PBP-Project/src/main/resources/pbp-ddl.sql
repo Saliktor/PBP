@@ -108,17 +108,3 @@ create table  player (
     constraint fk_player_thread_id foreign key (threadid) references forumthread(id),
     constraint fk_player_userid foreign key (userid) references useraccount(id)
 );
-
-drop sequence useraccount_seq;
-drop sequence thread_edit_seq;
-drop sequence post_edit_seq;
-drop sequence thread_seq;
-drop sequence post_seq;
-drop sequence move_seq;
-
-create sequence useraccount_seq;
-create sequence thread_edit_seq;
-create sequence post_edit_seq;
-create sequence thread_seq;
-create sequence post_seq;
-create sequence move_seq;

@@ -10,14 +10,14 @@ create table useraccount (
     id              number(10) primary key,
     username        varchar2(30) unique not null,
     password        varchar2(50) not null,
-    email           varchar2(50) not null,
+    email           varchar2(50) unique not null,
     isAdmin         number(1) not null,
     isbanned        number(1) not null,
     ismuted         number(1) not null
 );
 
 create table game (
-    id              number(10) primary key,
+    id              number(10) primary key
     -- 64 columns
 );
 
@@ -46,8 +46,8 @@ create table message (
     userid          number(10) not null,
     timeposted      timestamp not null,
     messagecontent  varchar2(1000) not null,
-    constraint fk_game foreign key (gameid) references game(id),
-    constraint fk_user foreign key (userid) references user(id)
+    constraint fk_message_game foreign key (gameid) references game(id),
+    constraint fk_message_user foreign key (userid) references useraccount(id)
 );
 
 create table move (
@@ -56,6 +56,16 @@ create table move (
     playerid        number(10) not null,
     timemade        timestamp not null,
     play            varchar2(2) not null,
-    constraint fk_game foreign key (gameid) references game(id),
-    constraint fk_player foreign key (playerid) references player(id)
+    constraint fk_move_game foreign key (gameid) references game(id),
+    constraint fk_move_player foreign key (playerid) references player(id)
 );
+
+drop sequence useraccount_seq;
+drop sequence game_seq;
+drop sequence move_seq;
+drop sequence message_seq;
+
+create sequence useraccount_seq;
+create sequence game_seq;
+create sequence move_seq;
+create sequence message_seq;
