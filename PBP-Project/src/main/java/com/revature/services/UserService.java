@@ -12,10 +12,8 @@ public class UserService {
 	 * Returns newly created user object if successful
 	 * Returns null otherwhys
 	 */
-	public User createUser(String firstname, String lastname, String username, String password, String email) {
+	public User createUser(String username, String password, String email) {
 		User user = new User();
-		user.setFirstname(firstname);
-		user.setLastname(lastname);
 		
 		if(isUserNameTaken(username))
 			return null;
@@ -69,8 +67,8 @@ public class UserService {
 	}
 	
 	
-	public User createAdmin(String firstname, String lastname, String username, String password, String email) {
-		User user = createUser(firstname, lastname, username, password, email);
+	public User createAdmin(String username, String password, String email) {
+		User user = createUser(username, password, email);
 		user.setAdmin(true);
 		return user;
 	}
