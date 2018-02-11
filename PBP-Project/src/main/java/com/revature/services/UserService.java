@@ -2,18 +2,21 @@ package com.revature.services;
 
 import org.apache.log4j.Logger;
 
-import com.revature.beans.User;
+import com.revature.beans.UserAccount;
+import com.revature.dao.UserDAOImp;
 
 public class UserService {
 	final static Logger log = Logger.getLogger(UserService.class);
+	
+	private UserDAOImp userDAO = new UserDAOImp();
 	
 	/*
 	 * Creates a user object based on passed parameters
 	 * Returns newly created user object if successful
 	 * Returns null otherwhys
 	 */
-	public User createUser(String username, String password, String email) {
-		User user = new User();
+	public UserAccount createUser(String username, String password, String email) {
+		UserAccount user = new UserAccount();
 		
 		if(isUserNameTaken(username))
 			return null;
@@ -28,9 +31,10 @@ public class UserService {
 		user.setPassword(password);
 		user.setEmail(email);
 		
-		//UserDao.createUser(User user);
+		userDAO.createUser(user);
 		log.info("Successfully created new user");
 		return user;
+
 	}
 	
 	
@@ -67,9 +71,9 @@ public class UserService {
 	}
 	
 	
-	public User createAdmin(String username, String password, String email) {
-		User user = createUser(username, password, email);
-		user.setAdmin(true);
+	public UserAccount createAdmin(String username, String password, String email) {
+		UserAccount user = createUser(username, password, email);
+		user.setIsAdmin(1);
 		return user;
 	}
 }

@@ -6,22 +6,24 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.revature.TestingStuff.Test;
 import com.revature.beans.UserAccount;
 import com.revature.util.HibernateUtil;
 
 public class UserDAOImp implements UserDAO {
 
 	private static HibernateUtil hu = HibernateUtil.getInstance();
-	private static Logger log = Logger.getLogger(Test.class);
+	private static Logger log = Logger.getLogger(UserDAOImp.class);
 	
 	
 	@Override
 	public boolean createUser(UserAccount user) {
+		log.trace("Entered createUser");
 		Session session = hu.getSession();
+		log.trace("Recieved session");
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
+			log.trace("Begun transaction");
 			log.trace(session.save(user));
 			tx.commit();
 			return true;
