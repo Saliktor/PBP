@@ -438,3 +438,20 @@
 
 2018-02-10 14:06:13 TRACE Test:54 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
 2018-02-10 14:06:13 TRACE Test:27 - false
+2018-02-10 21:49:57 TRACE UserDAOImp:20 - Entered createUser
+2018-02-10 21:49:57 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-10 21:49:57 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-10 21:49:57 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-10 21:49:57 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-10 21:49:57 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-10 21:49:57 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@mydbinstance.cgyqgnxoxng0.us-east-1.rds.amazonaws.com:1521:ORCL]
+2018-02-10 21:49:57 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-10 21:49:57 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-10 21:49:57 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-10 21:49:58 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-10 21:49:59 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-10 21:49:59 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-10 21:49:59 TRACE UserDAOImp:22 - Recieved session
+2018-02-10 21:49:59 TRACE UserDAOImp:26 - Begun transaction
+2018-02-10 21:50:00 TRACE UserDAOImp:27 - 2
+2018-02-10 21:50:00 INFO  UserService:35 - Successfully created new user
