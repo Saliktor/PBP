@@ -38,32 +38,38 @@ public class UserDAOImp implements UserDAO {
 	}
 
 	@Override
-	public boolean login(String username, String password) {
-		
-		Session session = hu.getSession();
-
-		try {
-			Criteria criteria = session.createCriteria(UserAccount.class);
-			criteria.add(Restrictions.eq("username", username));
-			UserAccount user = (UserAccount) criteria.uniqueResult();
-			
-			if(password.equals(user.getPassword()))
-				return true;
-			
-		} catch (Exception e) {
-			log.trace(e);
-			return false;
-		} finally {
-			session.close();
-		}
+	public boolean deleteUser(int UserId) {
 		
 		return false;
 	}
 
 	@Override
-	public boolean deleteUser(int UserId) {
+	public UserAccount getUser(UserAccount user) {
+		Session session = hu.getSession();
+		UserAccount newUser = null;
+		try {
+			Criteria criteria = session.createCriteria(UserAccount.class);
+			criteria.add(Restrictions.eq("username", user.getUsername()))
+			.add(Restrictions.eq("password", user.getPassword()));
+			
+			newUser = (UserAccount) criteria.uniqueResult();
+			
+			
+		} catch (Exception e) {
+			log.trace(e);
+		} finally {
+			session.close();
+		}
 		
-		return false;
+		return newUser;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

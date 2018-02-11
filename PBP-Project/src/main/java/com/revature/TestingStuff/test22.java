@@ -9,8 +9,8 @@ import com.revature.services.UserService;
 import com.revature.services.UserServiceImp;
 import com.revature.util.HibernateUtil;
 
-public class Test {
-
+public class test22 {
+	
 	private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(Test.class);
 	private static UserDAO uDAO = new UserDAOImp();
@@ -26,4 +26,5 @@ public class Test {
 		log.trace(newUser.toString());
 		
 	}
+
 }
