@@ -30,8 +30,7 @@ public class UserDAOImp implements UserDAO {
 		} catch(Exception e) {
 			if(tx!=null) {
 				tx.rollback();
-				e.printStackTrace();
-				log.error("Creating a user caused an exception to occur");
+				log.error("Exception occured while creating user", e);
 				return false;
 			}
 		} finally {
@@ -85,7 +84,7 @@ public class UserDAOImp implements UserDAO {
 }
 
 	@Override
-	public boolean deleteUser(int UserId) {
+	public boolean deleteUser(int userId) {
 		
 		return false;
 	}

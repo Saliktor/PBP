@@ -18,7 +18,7 @@ public class HibernateUtil
 		super();
 	}
 	
-	public synchronized static HibernateUtil getInstance()
+	public static synchronized HibernateUtil getInstance()
 	{
 		if(hu==null)
 		{

@@ -6,7 +6,7 @@ import com.revature.beans.UserAccount;
 import com.revature.dao.UserDAOImp;
 
 public class UserServiceImp {
-	final static Logger log = Logger.getLogger(UserServiceImp.class);
+	static final Logger log = Logger.getLogger(UserServiceImp.class);
 	
 	private UserDAOImp userDAO = new UserDAOImp();
 	

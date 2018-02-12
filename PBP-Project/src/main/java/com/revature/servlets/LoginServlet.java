@@ -11,15 +11,12 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImp;
-import com.revature.services.UserServiceImp;
 import com.revature.services.UserServiceImp;
 
 public class LoginServlet extends HttpServlet{
 
+	private static final long serialVersionUID = 1L;
 	private static final Logger log = Logger.getLogger(LoginServlet.class);
-	private static final UserDAO uDAO = new UserDAOImp();
 	private static final UserServiceImp uService = new UserServiceImp();
 	private ObjectMapper om = new ObjectMapper();
 
