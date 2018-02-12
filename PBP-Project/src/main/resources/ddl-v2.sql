@@ -128,7 +128,7 @@ drop sequence game_seq;
 drop sequence move_seq;
 drop sequence message_seq;
 
-create sequence useraccount_seq;
-create sequence game_seq;
-create sequence move_seq;
-create sequence message_seq;
+create sequence useraccount_seq start with 1;
+create sequence game_seq start with 1;
+create sequence move_seq start with 1;
+create sequence message_seq start with 1;
