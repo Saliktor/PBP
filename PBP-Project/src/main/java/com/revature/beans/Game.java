@@ -21,4 +21,36 @@ public class Game {
 	String move;
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	
+	public Game() {
+		
+	}
+	
+	Square[][] boardstate = new Square[8][8]; 
+	
+/*	Game() {
+		super();
+		for (int i=0 ; i<8 ; i++) {
+			for (int j=0 ; j<8 ;j++) {
+				this.boardstate[i][j] = new Square(i,j,0);
+			}
+		}
+		this.boardstate[3][3].value = 1;
+		this.boardstate[4][4].value = 1;
+		this.boardstate[3][4].value = 2;
+		this.boardstate[4][3].value = 2;
+	}
+	
+	public void printBoard() {
+		for (int i=0 ; i<8 ; i++){
+			for (int j=0 ; j<8 ; j++) {
+				String val = boardstate[i][j].value == 0 ? " " : ""+boardstate[i][j].value;
+				System.out.print("["+val+"]");
+			}
+			System.out.print("\n");
+		}
+		return;
+	}*/
+	
+	
 }

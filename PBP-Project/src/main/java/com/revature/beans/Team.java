@@ -16,4 +16,34 @@ public class Team {
 	String teamName;
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="team")
 	Set<Player> players = new HashSet<Player>();
+	
+	public Team() {
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
+	public Set<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
+	}
+	
+	
 }

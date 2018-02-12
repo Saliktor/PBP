@@ -15,11 +15,33 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="ID")
 public class Player extends UserAccount{
 	
-/*	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "TEAM")
-	Team team;*/
+	Team team;
+	
+	public Player() {
+		super();
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+	
+	
 }
