@@ -18,7 +18,8 @@ public class Game {
 	@SequenceGenerator(name="game_pk",sequenceName="game_seq", allocationSize=1)
 	@GeneratedValue(generator="game_pk", strategy=GenerationType.SEQUENCE)
 	int id;
-	String move;
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+	Set<Move> moves = new HashSet<Move>();
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
 	
@@ -26,7 +27,7 @@ public class Game {
 		
 	}
 	
-	Square[][] boardstate = new Square[8][8]; 
+	//Square[][] boardstate = new Square[8][8]; 
 	
 /*	Game() {
 		super();

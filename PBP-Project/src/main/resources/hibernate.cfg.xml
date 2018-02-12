@@ -22,12 +22,12 @@
 		
 		<!-- Annotation -->
 		<mapping class="com.revature.beans.UserAccount"/>
-<!-- 		<mapping class="com.revature.beans.Message"/>
+		<mapping class="com.revature.beans.Message"/>
 		<mapping class="com.revature.beans.Configuration"/>
 		<mapping class="com.revature.beans.Move"/> 
 		<mapping class="com.revature.beans.Player"/>
 		<mapping class="com.revature.beans.Game"/>
-		<mapping class="com.revature.beans.Team"/>  -->
+		<mapping class="com.revature.beans.Team"/> 
 
 	</session-factory>
 </hibernate-configuration>
