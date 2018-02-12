@@ -31,6 +31,7 @@ public class UserDAOImp implements UserDAO {
 			if(tx!=null) {
 				tx.rollback();
 				e.printStackTrace();
+				log.error("Creating a user caused an exception to occur");
 				return false;
 			}
 		} finally {

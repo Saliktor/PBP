@@ -20,5 +20,5 @@ public class Game {
 	int id;
 	String move;
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-	Set<Player> players = new HashSet<Player>();
+	Set<Player> players = new HashSet<>();
 }
