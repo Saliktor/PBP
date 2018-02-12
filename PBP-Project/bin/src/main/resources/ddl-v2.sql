@@ -127,13 +127,6 @@ drop sequence useraccount_seq;
 drop sequence game_seq;
 drop sequence move_seq;
 drop sequence message_seq;
-<<<<<<< HEAD
-
-create sequence useraccount_seq start with 1;
-create sequence game_seq start with 1;
-create sequence move_seq start with 1;
-create sequence message_seq start with 1;
-=======
 drop sequence player_seq;
 drop sequence team_seq;
 
@@ -143,4 +136,3 @@ create sequence move_seq;
 create sequence message_seq;
 create sequence player_seq;
 create sequence team_seq;
->>>>>>> 45303157123ea2db963ad48a535e8f5ecabd8e01
