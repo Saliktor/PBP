@@ -18,9 +18,9 @@ import com.revature.services.UserServiceImp;
 
 public class LoginServlet extends HttpServlet{
 
-	public static Logger log = Logger.getLogger(LoginServlet.class);
-	public static UserDAO uDAO = new UserDAOImp();
-	public static UserServiceImp uService = new UserServiceImp();
+	private static final Logger log = Logger.getLogger(LoginServlet.class);
+	private static final UserDAO uDAO = new UserDAOImp();
+	private static final UserServiceImp uService = new UserServiceImp();
 	private ObjectMapper om = new ObjectMapper();
 
 	
