@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature.beans.Game;
 import com.revature.beans.Message;
@@ -17,6 +20,7 @@ import com.revature.util.HibernateUtil;
 public class MessageDAOImp implements MessageDAO {
 	private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(MessageDAOImp.class);
+	
 	@Override
 	public boolean saveMessage(Message message) {
 		Session session = hu.getSession();
@@ -63,17 +67,43 @@ public class MessageDAOImp implements MessageDAO {
 		return message;
 	}
 
+	
+	
+	
+	
 	@Override
-	public Set<Message> getGameMessages(Game game) {
+	public List<Message> getGameMessages(Game game) {
 		Session session = hu.getSession();
-		Set<Message> gameMessages = null;
+		List<Message> messages = null;
 		try {
 			
+			messages = session.createCriteria( Message.class )
+					.add(Restrictions.ge("game", game)).list();
+			return messages;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return messages;
+		} finally {
+			session.close();
 		}
-		return null;
+	}
+
+	@Override
+	public List<Message> getNewMessages(Game game, Timestamp timestamp) {
+		Session session = hu.getSession();
+		List<Message> messages = null;
+		try {
+			
+			messages = session.createCriteria( Message.class )
+					.add(Restrictions.eq("game", timestamp)).list();
+			return messages;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return messages;
+		} finally {
+			session.close();
+		}
+		
 	}
 
 

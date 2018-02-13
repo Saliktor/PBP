@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 import com.revature.beans.Game;
@@ -10,6 +12,7 @@ public interface MessageDAO {
 	boolean saveMessage(Message message);
 	Message getMessageByMessageId(Message message);
 	Message getLatestMessage();
-	Set<Message> getGameMessages(Game game);
+	List<Message> getGameMessages(Game game);
+	List<Message> getNewMessages(Game game, Timestamp timestamp);
 
 }
