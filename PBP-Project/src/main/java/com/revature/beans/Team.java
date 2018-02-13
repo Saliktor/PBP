@@ -15,6 +15,7 @@ public class Team {
 	int id;
 	String teamName;
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="team")
+
 	Set<Player> players = new HashSet<Player>();
 	
 	public Team() {
@@ -44,6 +45,5 @@ public class Team {
 	public void setPlayers(Set<Player> players) {
 		this.players = players;
 	}
-	
-	
+
 }

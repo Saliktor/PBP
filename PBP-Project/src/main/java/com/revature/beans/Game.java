@@ -21,6 +21,7 @@ public class Game {
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Move> moves = new HashSet<Move>();
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+
 	Set<Player> players = new HashSet<Player>();
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
@@ -86,6 +87,5 @@ public class Game {
 		}
 		return;
 	}*/
-	
 	
 }

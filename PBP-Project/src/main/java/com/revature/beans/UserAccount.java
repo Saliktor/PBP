@@ -28,7 +28,24 @@ public class UserAccount {
 	
 	public UserAccount() {
 		super();
+		this.isAdmin = 0;
+		this.isBanned = 0;
+		this.isMuted = 0;
 	}
+
+	
+	public UserAccount(int id, String username, String password, String email, int isAdmin, int isBanned, int isMuted) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.isAdmin = isAdmin;
+		this.isBanned = isBanned;
+		this.isMuted = isMuted;
+	}
+
+
 
 	public int getId() {
 		return id;

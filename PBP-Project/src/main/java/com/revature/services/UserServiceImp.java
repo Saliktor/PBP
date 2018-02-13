@@ -1,6 +1,5 @@
 package com.revature.services;
 
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -39,9 +38,8 @@ public class UserServiceImp implements UserService {
 		userDAO.createUser(user);
 		log.info("Successfully created new user");
 		return user;
-
 	}
-	
+		
 	public UserAccount createAdmin(String username, String password, String email) {
 		UserAccount user = createUser(username, password, email);
 		user.setIsAdmin(1);
@@ -54,5 +52,5 @@ public class UserServiceImp implements UserService {
 		user.setPassword(password);
 		user = userDAO.getUser(user);
 		return user;
-}
+	}
 }
