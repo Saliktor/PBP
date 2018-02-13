@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-  private appUrl = 'http://localhost:8080/PBP/login';
+  private loginUrl = 'http://localhost:8080/PBP/login';
+  private registerUrl = 'http://localhost:8080/PBP/register';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
   private user: User;
 
@@ -19,7 +20,7 @@ export class UserService {
   login(username: string, password: string) {
     if (username && password) {
       const body = `username=${username}&password=${password}`;
-      return this.http.post(this.appUrl, body, { headers: this.headers, withCredentials: true })
+      return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true })
         .map(
         resp => {
           console.log(resp);
@@ -29,7 +30,31 @@ export class UserService {
         }
         );
     } else {
-      return this.http.get(this.appUrl, {headers: this.headers, withCredentials: true })
+      return this.http.get(this.loginUrl, {headers: this.headers, withCredentials: true })
+      .map(
+        resp => {
+          const user: CurrentUser = resp.json() as CurrentUser;
+          this.user = user.user;
+          return user;
+        }
+      );
+    }
+  }
+
+  register(username: string, password: string, email: string) {
+    if (username && password) {
+      const body = `username=${username}&password=${password}&email=${email}`;
+      return this.http.post(this.registerUrl, body, { headers: this.headers, withCredentials: true })
+        .map(
+        resp => {
+          console.log(resp);
+          const user: CurrentUser = resp.json() as CurrentUser;
+          this.user = user.user;
+          return user;
+        }
+        );
+    } else {
+      return this.http.get(this.registerUrl, {headers: this.headers, withCredentials: true })
       .map(
         resp => {
           const user: CurrentUser = resp.json() as CurrentUser;
