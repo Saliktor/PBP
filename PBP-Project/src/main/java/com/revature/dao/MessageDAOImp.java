@@ -51,11 +51,11 @@ public class MessageDAOImp implements MessageDAO {
 		Session session = hu.getSession();
 		Message message  = null;
 		try {
-			DetachedCriteria maxQuery = DetachedCriteria.forClass( Message.class );
-			maxQuery.setProjection(Projections.max("timePosted"));
+			DetachedCriteria maxTime = DetachedCriteria.forClass( Message.class );
+			maxTime.setProjection(Projections.max("timePosted"));
 			
 			Criteria query = session.createCriteria( Message.class );
-			query.add( Property.forName("timePosted").eq( maxQuery ) );
+			query.add( Property.forName("timePosted").eq( maxTime ) );
 			message = (Message) query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
