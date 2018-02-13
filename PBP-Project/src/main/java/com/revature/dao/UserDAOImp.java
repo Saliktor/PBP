@@ -14,8 +14,7 @@ public class UserDAOImp implements UserDAO {
 	private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(UserDAOImp.class);
 	
-	
-	@Override
+
 	public boolean createUser(UserAccount user) {
 		log.trace("Entered createUser");
 		Session session = hu.getSession();
@@ -39,8 +38,7 @@ public class UserDAOImp implements UserDAO {
 		return false;
 	}
 
-	
-	@Override
+
 	public UserAccount getUser(UserAccount user) {
 		Session session = hu.getSession();
 		UserAccount newUser = null;
@@ -62,7 +60,6 @@ public class UserDAOImp implements UserDAO {
 	}
 	
 
-	@Override
 	public boolean isEmailAvailable(String email) {
 		Session session = hu.getSession();
 		UserAccount newUser = null;
@@ -84,7 +81,6 @@ public class UserDAOImp implements UserDAO {
 	}
 
 
-	@Override
 	public boolean isUsernameAvailable(String username) {
 		Session session = hu.getSession();
 		UserAccount newUser = null;
@@ -105,7 +101,7 @@ public class UserDAOImp implements UserDAO {
 		return false;
 	}
 
-	@Override
+
 	public boolean deleteUser(int userId) {
 		
 		return false;
