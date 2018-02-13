@@ -63,6 +63,19 @@ public class MessageDAOImp implements MessageDAO {
 		return message;
 	}
 
+	@Override
+	public Set<Message> getGameMessages(Game game) {
+		Session session = hu.getSession();
+		Set<Message> gameMessages = null;
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
+
 
 
 }
