@@ -18,7 +18,7 @@ import com.revature.services.UserService;
 
 @Controller
 @RequestMapping(value="/login")
-@CrossOrigin(origins= "*")
+@CrossOrigin
 public class LoginController {
 	private ObjectMapper om = new ObjectMapper();
 	
