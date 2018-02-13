@@ -4,8 +4,12 @@ import com.revature.beans.UserAccount;
 
 public interface UserDAO {
 	boolean createUser(UserAccount user);
-	boolean login(String username, String password);
+
+	
 	UserAccount getUser(UserAccount user);
+	boolean isEmailAvailable(String email);
+	boolean isUsernameAvailable(String email);
+
 	boolean deleteUser(int userId);
 
 }

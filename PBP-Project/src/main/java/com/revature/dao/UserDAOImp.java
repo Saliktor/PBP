@@ -39,28 +39,6 @@ public class UserDAOImp implements UserDAO {
 		return false;
 	}
 
-	@Override
-	public boolean login(String username, String password) {
-		
-		Session session = hu.getSession();
-
-		try {
-			Criteria criteria = session.createCriteria(UserAccount.class);
-			criteria.add(Restrictions.eq("username", username));
-			UserAccount user = (UserAccount) criteria.uniqueResult();
-			
-			if(password.equals(user.getPassword()))
-				return true;
-			
-		} catch (Exception e) {
-			log.trace(e);
-			return false;
-		} finally {
-			session.close();
-		}
-		
-		return false;
-	}
 	
 	@Override
 	public UserAccount getUser(UserAccount user) {
@@ -80,13 +58,59 @@ public class UserDAOImp implements UserDAO {
 			session.close();
 		}
 		
-		return newUser;
-}
+		return newUser;		
+	}
+	
+
+	@Override
+	public boolean isEmailAvailable(String email) {
+		Session session = hu.getSession();
+		UserAccount newUser = null;
+		try {
+			Criteria criteria = session.createCriteria(UserAccount.class);
+			criteria.add(Restrictions.eq("email", email));
+			
+			newUser = (UserAccount) criteria.uniqueResult();
+			if(newUser == null)
+				return true;
+
+		} catch (Exception e) {
+			log.trace(e);
+			return false;
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+
+	@Override
+	public boolean isUsernameAvailable(String username) {
+		Session session = hu.getSession();
+		UserAccount newUser = null;
+		try {
+			Criteria criteria = session.createCriteria(UserAccount.class);
+			criteria.add(Restrictions.eq("username", username));
+			
+			newUser = (UserAccount) criteria.uniqueResult();
+			if(newUser == null)
+				return true;
+
+		} catch (Exception e) {
+			log.trace(e);
+			return false;
+		} finally {
+			session.close();
+		}
+		return false;
+	}
 
 	@Override
 	public boolean deleteUser(int userId) {
 		
 		return false;
 	}
+
+
 
 }
