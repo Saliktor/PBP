@@ -36,14 +36,15 @@ public class Test {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 		//Message test
-		Message message = new Message();
-		message.setMessageContent("Hey There!");
-		message.setTimeMade(timestamp);
-		message.setUser(newUser);
-		message.setGame(game);
+//		Message message = new Message();
+//		message.setMessageContent("Hey There!");
+//		message.setTimeMade(timestamp);
+//		message.setUser(newUser);
+//		message.setGame(game);
 		
-		log.trace(mDAO.saveMessage(message));
-		
+		//log.trace(mDAO.saveMessage(message));
+		 Message message2 = mDAO.getLatestMessage();
+		 log.trace(message2.toString());
 		//log.trace(newUser.toString());
 		
 	}

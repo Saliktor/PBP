@@ -1,9 +1,16 @@
 package com.revature.dao;
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 
+import com.revature.beans.Game;
 import com.revature.beans.Message;
 import com.revature.util.HibernateUtil;
 
@@ -37,8 +44,25 @@ public class MessageDAOImp implements MessageDAO {
 
 	@Override
 	public Message getLatestMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = hu.getSession();
+		Message message  = null;
+		try {
+			DetachedCriteria maxQuery = DetachedCriteria.forClass( Message.class );
+			maxQuery.setProjection( Projections.max( "timePosted" ) );
+			
+			Criteria query = session.createCriteria( Message.class );
+			query.add( Property.forName( "timePosted" ).eq( maxQuery ) );
+			message = (Message) query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
+
+		return message;
 	}
+
+
 
 }
