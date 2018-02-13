@@ -5,9 +5,12 @@ import java.sql.Timestamp;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,8 @@ import javax.persistence.Table;
 public class Message {
 
 	@Id
+	@SequenceGenerator(name="message_pk",sequenceName="message_seq", allocationSize=1)
+	@GeneratedValue(generator="message_pk", strategy=GenerationType.SEQUENCE)
 	int id;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")

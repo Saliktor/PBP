@@ -30,14 +30,14 @@ public class Test {
 		u.setPassword("password");
 		
 		
-		UserAccount newUser = us.getUser("user1", "password");
+		UserAccount newUser = us.getUser("anaser91", "password");
 		Game game  = new Game();
 		game.setId(1);
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 		//Message test
 		Message message = new Message();
-		message.setMessageContent("Hello!");
+		message.setMessageContent("Hey There!");
 		message.setTimeMade(timestamp);
 		message.setUser(newUser);
 		message.setGame(game);
