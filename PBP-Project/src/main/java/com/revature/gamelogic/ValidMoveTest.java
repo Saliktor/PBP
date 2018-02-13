@@ -24,9 +24,9 @@ public class ValidMoveTest {
 		
 		Game availableMoves = new Game(startingBoard.boardstate);
 		
-		System.out.println("*************** *********** ************\nstartingBoard");
-		startingBoard.printBoard();
-		System.out.println(availableMoves == startingBoard);
+//		System.out.println("*************** *********** ************\nstartingBoard");
+//		startingBoard.printBoard();
+//		System.out.println(availableMoves == startingBoard);
 		
 		int myTeam = 1; // 1 for white, 2 for black
 		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
@@ -35,26 +35,29 @@ public class ValidMoveTest {
 		System.out.println("Available Moves - Start");
 		availableMoves.printBoard();
 		System.out.println("========================");
+		
+		// this is stupid that I need to do this
+		
 
-		System.out.println("*************** *********** ************\nstartingBoard");
-		startingBoard.printBoard();
-		System.out.println(availableMoves == startingBoard);
-		
-		
-		System.out.println("************************************\navailableMoves");
-		availableMoves.printBoard();
-		
-		System.out.println("*************** *********** ************\nstartingBoard");
-		startingBoard.printBoard();
-		System.out.println(availableMoves == startingBoard);
+//		System.out.println("*************** *********** ************\nstartingBoard");
+//		startingBoard.printBoard();
+//		System.out.println(availableMoves == startingBoard);
+//		
+//		
+//		System.out.println("************************************\navailableMoves");
+//		availableMoves.printBoard();
+//		
+//		System.out.println("*************** *********** ************\nstartingBoard");
+//		startingBoard.printBoard();
+//		System.out.println(availableMoves == startingBoard);
 		
 		
 		
 		Square move = new Square(4,2,myTeam);
-		Game afterMove = new Game (vmt.makeMove(startingBoard,move,myTeam).boardstate);
+		startingBoard = new Game (vmt.makeMove(startingBoard,move,myTeam).boardstate);
 //		startingBoard = vmt.makeMove(startingBoard,move,myTeam);
 		System.out.println("Made a move");
-		afterMove.printBoard();
+		startingBoard.printBoard();
 //		startingBoard.printBoard();
 		System.out.println("========================");
 		
@@ -225,8 +228,17 @@ public class ValidMoveTest {
 
 	// Assumes it receives a valid move.
 	public Game makeMove(Game game, Square move, int myTeam) {
+		
+		for (int i = 0; i < 8 ; i++) {
+			for (int j=0 ; j < 8 ; j++) {
+				if (game.boardstate[i][j].value == 8) {
+					game.boardstate[i][j].value = 0;
+				}
+			}
+		}
+		
 		Set<Square> toFlip = new HashSet<Square>();
-		//log.trace("In method");
+		log.trace("In method");
 		int i =0;
 		toFlip.add(move);
 		
@@ -272,19 +284,25 @@ public class ValidMoveTest {
 //		for (Square s: toFlip)
 //			System.out.println(s.toString());
 		
+		System.out.println("===========================");
+		System.out.println("Before switch");
+		game.printBoard();
+		System.out.println("===========================");
+
 		
-		
-//		System.out.println("Printing toFlip");
+		System.out.println("Printing toFlip");
 		for (Square s : toFlip) {
-//			System.out.println(s.toString());
+			System.out.println(s.toString());
 			game.boardstate[s.idx][s.idy].value = s.value;
 		}
 		return game; 
 	}
 	
 	public Set<Square> toFlip(Game game, Square move, int xplus, int yplus, int myTeam) {
+//		game.printBoard();
 		Set<Square> flipped = new HashSet<Square>();
-		Square temp = game.boardstate[xplus+move.idx][yplus+move.idy];
+//		Square temp = game.boardstate[xplus+move.idx][yplus+move.idy];
+		Square temp = new Square(xplus+move.idx,yplus+move.idy,game.boardstate[xplus+move.idx][yplus+move.idy].value);
 		int otherTeam = (myTeam == 1 ? 2 : 1);
 		try {
 			if (temp.value == myTeam) {
@@ -296,6 +314,7 @@ public class ValidMoveTest {
 // See current output.
 			
 			while (true) {
+				
 				if (temp.value == myTeam) {
 					break;
 				}
@@ -310,7 +329,8 @@ public class ValidMoveTest {
 //						System.out.println(s.toString());
 					return flipped;
 				}	
-				temp = game.boardstate[xplus+temp.idx][yplus+temp.idy];
+//				temp = game.boardstate[xplus+temp.idx][yplus+temp.idy];
+				temp = new Square(xplus+temp.idx,yplus+temp.idy,game.boardstate[xplus+temp.idx][yplus+temp.idy].value);
 			}
 			return flipped;
 		}
