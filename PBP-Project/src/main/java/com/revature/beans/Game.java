@@ -22,9 +22,43 @@ public class Game {
 	Set<Move> moves = new HashSet<Move>();
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+	Set<Message> messages = new HashSet<Message>();
 	
 	public Game() {
 		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Set<Move> getMoves() {
+		return moves;
+	}
+
+	public void setMoves(Set<Move> moves) {
+		this.moves = moves;
+	}
+
+	public Set<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
+	}
+
+	public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
 	}
 	
 	//Square[][] boardstate = new Square[8][8]; 

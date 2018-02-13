@@ -639,3 +639,80 @@
 2018-02-12 18:30:57 INFO  pooling:140 - HHH10001003: Autocommit mode: false
 2018-02-12 18:30:57 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
 2018-02-12 18:30:57 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 18:31:45 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-12 18:31:46 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-12 18:31:46 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-12 18:31:46 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-12 18:31:46 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-12 18:31:46 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521:xe]
+2018-02-12 18:31:46 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-12 18:31:46 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-12 18:31:46 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-12 18:31:46 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 18:31:47 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:31:47 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:31:47 WARN  deprecation:1813 - HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+2018-02-12 18:31:47 TRACE Test:26 - UserAccount [id=2, username=anaser91, password=password, email=user@mail.com, isAdmin=0, isBanned=0, isMuted=0]
+2018-02-12 18:46:44 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-12 18:46:44 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-12 18:46:44 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-12 18:46:45 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-12 18:46:45 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-12 18:46:45 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521:xe]
+2018-02-12 18:46:45 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-12 18:46:45 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-12 18:46:45 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-12 18:46:45 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 18:46:45 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:46:45 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:46:46 WARN  deprecation:1813 - HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+2018-02-12 18:46:46 TRACE Test:26 - UserAccount [id=2, username=anaser91, password=password, email=user@mail.com, isAdmin=0, isBanned=0, isMuted=0]
+2018-02-12 18:51:03 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-12 18:51:03 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-12 18:51:03 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-12 18:51:04 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-12 18:51:04 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-12 18:51:04 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521:xe]
+2018-02-12 18:51:04 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-12 18:51:04 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-12 18:51:04 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-12 18:51:04 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 18:51:04 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:51:04 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 18:51:05 WARN  deprecation:1813 - HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+2018-02-12 18:51:05 TRACE Test:26 - UserAccount [id=2, username=anaser91, password=password, email=user@mail.com, isAdmin=0, isBanned=0, isMuted=0]
+2018-02-12 19:57:28 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-12 19:57:28 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-12 19:57:28 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-12 19:57:28 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-12 19:57:28 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-12 19:57:28 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521:xe]
+2018-02-12 19:57:28 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-12 19:57:28 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-12 19:57:28 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-12 19:57:29 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 19:57:29 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 19:57:29 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 19:57:30 WARN  deprecation:1813 - HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+2018-02-12 19:57:30 TRACE MessageDAOImp:20 - 0
+2018-02-12 19:57:30 WARN  SqlExceptionHelper:129 - SQL Error: 904, SQLState: 42000
+2018-02-12 19:57:30 ERROR SqlExceptionHelper:131 - ORA-00904: "TIMEMADE": invalid identifier
+
+2018-02-12 19:57:30 INFO  AbstractBatchImpl:193 - HHH000010: On release of batch it still contained JDBC statements
+2018-02-12 19:57:30 ERROR ExceptionMapperStandardImpl:39 - HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
+2018-02-12 19:57:30 TRACE Test:44 - false
+2018-02-12 19:58:22 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-02-12 19:58:22 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2018-02-12 19:58:22 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-02-12 19:58:23 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-02-12 19:58:23 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-02-12 19:58:23 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521:xe]
+2018-02-12 19:58:23 INFO  pooling:135 - HHH10001001: Connection properties: {user=pbp_db, password=****}
+2018-02-12 19:58:23 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2018-02-12 19:58:23 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 35 (min=1)
+2018-02-12 19:58:23 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2018-02-12 19:58:23 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 19:58:23 WARN  deprecation:87 - HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-02-12 19:58:24 WARN  deprecation:1813 - HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+2018-02-12 19:58:24 TRACE MessageDAOImp:20 - 0
+2018-02-12 19:58:24 TRACE Test:44 - true

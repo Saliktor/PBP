@@ -1,9 +1,12 @@
 package com.revature.services;
 
+import org.springframework.stereotype.Component;
+
 import com.revature.beans.UserAccount;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImp;
 
+@Component
 public class UserServiceImp implements UserService {
 	
 	private static UserDAO uDAO = new UserDAOImp();

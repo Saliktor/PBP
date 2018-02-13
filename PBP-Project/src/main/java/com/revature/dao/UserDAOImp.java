@@ -13,7 +13,7 @@ import com.revature.util.HibernateUtil;
 public class UserDAOImp implements UserDAO {
 
 	private static HibernateUtil hu = HibernateUtil.getInstance();
-	private static Logger log = Logger.getLogger(Test.class);
+	private static Logger log = Logger.getLogger(UserDAOImp.class);
 	
 	
 	@Override
