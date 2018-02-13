@@ -48,10 +48,10 @@ public class MessageDAOImp implements MessageDAO {
 		Message message  = null;
 		try {
 			DetachedCriteria maxQuery = DetachedCriteria.forClass( Message.class );
-			maxQuery.setProjection( Projections.max( "timePosted" ) );
+			maxQuery.setProjection(Projections.max("timePosted"));
 			
 			Criteria query = session.createCriteria( Message.class );
-			query.add( Property.forName( "timePosted" ).eq( maxQuery ) );
+			query.add( Property.forName("timePosted").eq( maxQuery ) );
 			message = (Message) query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
