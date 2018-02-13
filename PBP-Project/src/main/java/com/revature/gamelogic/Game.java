@@ -34,7 +34,9 @@ public class Game implements Cloneable {
 		}
 		
 		public void printBoard() {
+			System.out.println("    0  1  2  3  4  5  6  7");
 			for (int i=0 ; i<8 ; i++){
+				System.out.print(" "+i+" ");
 				for (int j=0 ; j<8 ; j++) {
 					String val = this.boardstate[i][j].value == 0 ? " " : ""+this.boardstate[i][j].value;
 					System.out.print("["+val+"]");

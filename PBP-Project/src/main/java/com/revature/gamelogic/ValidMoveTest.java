@@ -1,8 +1,7 @@
 package com.revature.gamelogic;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -10,77 +9,138 @@ import org.apache.log4j.Logger;
 public class ValidMoveTest {
 	
 	static Logger log = Logger.getLogger(ValidMoveTest.class);
+	
+	static boolean noMoreMoves = false;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ValidMoveTest vmt = new ValidMoveTest();
 		
-		Game startingBoard = new Game();		
+		Game startingBoard = new Game();	
+		vmt.takeATurn(startingBoard);
 		
-		System.out.println("First Board");
-		startingBoard.printBoard();
-		System.out.println("========================");
-
-		
-		Game availableMoves = new Game(startingBoard.boardstate);
-		
-//		System.out.println("*************** *********** ************\nstartingBoard");
+//		System.out.println("First Board");
 //		startingBoard.printBoard();
-//		System.out.println(availableMoves == startingBoard);
-		
-		int myTeam = 1; // 1 for white, 2 for black
-		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
-			availableMoves.boardstate[s.idx][s.idy].value = 8;
-		}
-		System.out.println("Available Moves - Start");
-		availableMoves.printBoard();
-		System.out.println("========================");
-		
-		// this is stupid that I need to do this
-		
-
-//		System.out.println("*************** *********** ************\nstartingBoard");
-//		startingBoard.printBoard();
-//		System.out.println(availableMoves == startingBoard);
+//		System.out.println("========================");
+//
 //		
+//		Game availableMoves = new Game(startingBoard.boardstate);
 //		
-//		System.out.println("************************************\navailableMoves");
+////		System.out.println("*************** *********** ************\nstartingBoard");
+////		startingBoard.printBoard();
+////		System.out.println(availableMoves == startingBoard);
+//		
+//		int myTeam = 1; // 1 for white, 2 for black
+//		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
+//			availableMoves.boardstate[s.idx][s.idy].value = 8;
+//		}
+//		System.out.println("Available Moves - Start");
 //		availableMoves.printBoard();
+//		System.out.println("========================");
 //		
-//		System.out.println("*************** *********** ************\nstartingBoard");
+//		// this is stupid that I need to do this
+//		
+//
+////		System.out.println("*************** *********** ************\nstartingBoard");
+////		startingBoard.printBoard();
+////		System.out.println(availableMoves == startingBoard);
+////		
+////		
+////		System.out.println("************************************\navailableMoves");
+////		availableMoves.printBoard();
+////		
+////		System.out.println("*************** *********** ************\nstartingBoard");
+////		startingBoard.printBoard();
+////		System.out.println(availableMoves == startingBoard);
+//		
+//		
+//		
+//		Square move = new Square(4,2,myTeam);
+//		startingBoard = new Game (vmt.makeMove(startingBoard,move,myTeam).boardstate);
+////		startingBoard = vmt.makeMove(startingBoard,move,myTeam);
+//		System.out.println("Made a move");
 //		startingBoard.printBoard();
-//		System.out.println(availableMoves == startingBoard);
-		
-		
-		
-		Square move = new Square(4,2,myTeam);
-		startingBoard = new Game (vmt.makeMove(startingBoard,move,myTeam).boardstate);
+////		startingBoard.printBoard();
+//		System.out.println("========================");
+//		
+////		availableMoves = new Game(afterMove.boardstate);
+//		availableMoves = new Game(startingBoard.boardstate);
+//		
+//		myTeam = 2; // 1 for white, 2 for black
+//		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
+//			availableMoves.boardstate[s.idx][s.idy].value = 8;
+//		}
+//		System.out.println("Available Moves - After Move 1");
+//		availableMoves.printBoard();
+//		System.out.println("========================");
+//		
+//		myTeam = 2;
+//		move = new Square(3,2,myTeam);
+////		afterMove = vmt.makeMove(startingBoard,move,myTeam);
 //		startingBoard = vmt.makeMove(startingBoard,move,myTeam);
-		System.out.println("Made a move");
-		startingBoard.printBoard();
+//		System.out.println("After move 2");
+////		afterMove.printBoard();
 //		startingBoard.printBoard();
-		System.out.println("========================");
-		
-//		availableMoves = new Game(afterMove.boardstate);
-		availableMoves = new Game(startingBoard.boardstate);
-		
-		myTeam = 2; // 1 for white, 2 for black
-		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
-			availableMoves.boardstate[s.idx][s.idy].value = 8;
-		}
-		System.out.println("Available Moves - After Move 1");
-		availableMoves.printBoard();
-		System.out.println("========================");
-		
-		myTeam = 2;
-		move = new Square(5,2,myTeam);
-//		afterMove = vmt.makeMove(startingBoard,move,myTeam);
-		startingBoard = vmt.makeMove(startingBoard,move,myTeam);
-		System.out.println("Checking available moves");
-//		afterMove.printBoard();
-		startingBoard.printBoard();
-		System.out.println("========================");
+//		System.out.println("========================");
+//		
+//		myTeam = 1; // 1 for white, 2 for black
+//		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
+//			availableMoves.boardstate[s.idx][s.idy].value = 8;
+//		}
+//		System.out.println("Available Moves - After Move 2");
+//		availableMoves.printBoard();
+//		System.out.println("========================");
+//		
+//		myTeam = 1;
+//		move = new Square(2,2,myTeam);
+////		afterMove = vmt.makeMove(startingBoard,move,myTeam);
+//		startingBoard = vmt.makeMove(startingBoard,move,myTeam);
+//		System.out.println("After move 2");
+////		afterMove.printBoard();
+//		startingBoard.printBoard();
+//		System.out.println("========================");
+//		
+//		myTeam = 2; // 1 for white, 2 for black
+//		for (Square s : vmt.findValidMoves(availableMoves, myTeam)) {
+//			availableMoves.boardstate[s.idx][s.idy].value = 8;
+//		}
+//		System.out.println("Available Moves - After Move 2");
+//		availableMoves.printBoard();
+//		System.out.println("========================");
 	}
+	
+	public void takeATurn(Game game) {
+		int i = 1;
+		int myTeam = 1;
+		Scanner sc = new Scanner(System.in);
+		String moveInput;
+		boolean mostlyTrue = true;
+		String[] moveV2 = new String[2];
+		int[] xy =  new int[2];
+		
+		while (mostlyTrue) {
+			System.out.println("Turn "+ i++ +" : (8 indicates available moves for Team "+myTeam+")");
+			
+			for (Square s : findValidMoves(game, myTeam)) {
+				game.boardstate[s.idx][s.idy].value = 8;
+			}
+			game.printBoard();
+			System.out.println("===========================");
+			System.out.print("Team "+myTeam+" move ('y,x') > ");
+			moveInput = sc.nextLine();
+			moveV2 = moveInput.split(",");
+			xy[0]=Integer.parseInt(moveV2[0]);
+			xy[1]=Integer.parseInt(moveV2[1]);
+			game = makeMove(game, new Square(xy[0],xy[1],myTeam), myTeam);
+			
+			System.out.println("===========================");
+			System.out.println();
+			
+			myTeam = (myTeam == 1 ? 2 : 1);
+		}
+		sc.close();
+	}
+	
 	
 	public Set<Square> findValidMoves(Game game, int myTeam) {
 		Set<Square> validMoves = new HashSet<Square>();
@@ -102,7 +162,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx+1;
 					y = current.idy+1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");
 				}
 				try {
 					if (isValidMove(game,current,1,0,myTeam)) {
@@ -113,7 +172,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx+1;
 					y = current.idy+0;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");
 				}
 				try {
 					if (isValidMove(game,current,1,-1,myTeam)) {
@@ -124,7 +182,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx+1;
 					y = current.idy-1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");
 				}
 				try {
 					if (isValidMove(game,current,0,1,myTeam)) {
@@ -135,7 +192,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx+0;
 					y = current.idy+1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");
 				}
 				try {
 					if (isValidMove(game,current,-1,1,myTeam)) {
@@ -146,7 +202,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx-1;
 					y = current.idy+1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");				
 				}
 				try {
 					if (isValidMove(game,current,0,-1,myTeam)) {
@@ -157,7 +212,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx+0;
 					y = current.idy-1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");			
 				}
 				try {
 					if (isValidMove(game,current,-1,0,myTeam)) {
@@ -168,7 +222,6 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx-1;
 					y = current.idy+0;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");				
 				}
 				try {
 					if (isValidMove(game,current,-1,-1,myTeam)) {
@@ -179,9 +232,23 @@ public class ValidMoveTest {
 				catch (ArrayIndexOutOfBoundsException e) {
 					x = current.idx-1;
 					y = current.idy-1;
-//					System.out.println("findValidMoves: "+e+": ["+x+"]["+y+"]");				
 				}
-//				System.out.println(" : Not valid move\n");
+			}
+		}
+		if (validMoves.isEmpty()) {
+			if (noMoreMoves) {
+				noMoreMoves = false;
+				game.printBoard();
+				endOfGame(game);
+				
+			}
+			else {
+				noMoreMoves = true;
+				int otherTeam = (myTeam == 1 ? 2 : 1);
+				validMoves = findValidMoves(game, otherTeam);
+				
+				// needs to send these moves to the server 
+				// WITH a note that the moves are for the other team
 			}
 		}
 		return validMoves;
@@ -284,15 +351,15 @@ public class ValidMoveTest {
 //		for (Square s: toFlip)
 //			System.out.println(s.toString());
 		
-		System.out.println("===========================");
-		System.out.println("Before switch");
-		game.printBoard();
-		System.out.println("===========================");
+//		System.out.println("===========================");
+//		System.out.println("Before switch");
+//		game.printBoard();
+//		System.out.println("===========================");
 
 		
-		System.out.println("Printing toFlip");
+//		System.out.println("Printing toFlip");
 		for (Square s : toFlip) {
-			System.out.println(s.toString());
+//			System.out.println(s.toString());
 			game.boardstate[s.idx][s.idy].value = s.value;
 		}
 		return game; 
@@ -302,9 +369,10 @@ public class ValidMoveTest {
 //		game.printBoard();
 		Set<Square> flipped = new HashSet<Square>();
 //		Square temp = game.boardstate[xplus+move.idx][yplus+move.idy];
-		Square temp = new Square(xplus+move.idx,yplus+move.idy,game.boardstate[xplus+move.idx][yplus+move.idy].value);
 		int otherTeam = (myTeam == 1 ? 2 : 1);
 		try {
+			Square temp = new Square(xplus+move.idx,yplus+move.idy,game.boardstate[xplus+move.idx][yplus+move.idy].value);
+
 			if (temp.value == myTeam) {
 				return flipped;
 			}
@@ -335,10 +403,29 @@ public class ValidMoveTest {
 			return flipped;
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Went out of bounds.");
+//			System.out.println("Went out of bounds.");
 			flipped.clear();
 			return flipped;
 		}
+	}
+
+	public void endOfGame(Game game) {
+		int teamOneScore = 0;
+		int teamTwoScore = 0;
+		for (int i=0 ; i < 8 ; i++) {
+			for (int j = 0 ; j < 8 ; j++) {
+				if (game.boardstate[i][j].value == 1) {
+					teamOneScore++;
+				}
+				else if (game.boardstate[i][j].value == 2) {
+					teamTwoScore++;
+				}
+			}
+		}
+		System.out.println("Team 1 Score: " + teamOneScore);
+		System.out.println("Team 2 Score: " + teamTwoScore);
+		System.exit(0);
+		// somehow return the data
 	}
 }
 
