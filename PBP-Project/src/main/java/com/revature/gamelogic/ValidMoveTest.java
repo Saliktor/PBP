@@ -16,7 +16,7 @@ public class ValidMoveTest {
 		// TODO Auto-generated method stub
 		ValidMoveTest vmt = new ValidMoveTest();
 		
-		Game startingBoard = new Game();	
+		WorkingGame startingBoard = new WorkingGame();	
 		vmt.takeATurn(startingBoard);
 		
 //		System.out.println("First Board");
@@ -109,7 +109,7 @@ public class ValidMoveTest {
 //		System.out.println("========================");
 	}
 	
-	public void takeATurn(Game game) {
+	public void takeATurn(WorkingGame game) {
 		int i = 1;
 		int myTeam = 1;
 		Scanner sc = new Scanner(System.in);
@@ -254,7 +254,7 @@ public class ValidMoveTest {
 		return validMoves;
 	}
 
-	public boolean isValidMove(Game game, Square current, int xplus, int yplus, int myTeam) {
+	public boolean isValidMove(WorkingGame game, Square current, int xplus, int yplus, int myTeam) {
 		try {
 			Square adjacent = game.boardstate[current.idx+xplus][current.idy+yplus];
 			int x = current.idx+xplus;
@@ -294,7 +294,7 @@ public class ValidMoveTest {
 	}
 
 	// Assumes it receives a valid move.
-	public Game makeMove(Game game, Square move, int myTeam) {
+	public WorkingGame makeMove(WorkingGame game, Square move, int myTeam) {
 		
 		for (int i = 0; i < 8 ; i++) {
 			for (int j=0 ; j < 8 ; j++) {
@@ -365,7 +365,7 @@ public class ValidMoveTest {
 		return game; 
 	}
 	
-	public Set<Square> toFlip(Game game, Square move, int xplus, int yplus, int myTeam) {
+	public Set<Square> toFlip(WorkingGame game, Square move, int xplus, int yplus, int myTeam) {
 //		game.printBoard();
 		Set<Square> flipped = new HashSet<Square>();
 //		Square temp = game.boardstate[xplus+move.idx][yplus+move.idy];
@@ -377,9 +377,6 @@ public class ValidMoveTest {
 				return flipped;
 			}
 			
-// there is something wrong with the logic in the loop. Come back to this.
-			
-// See current output.
 			
 			while (true) {
 				
@@ -409,7 +406,7 @@ public class ValidMoveTest {
 		}
 	}
 
-	public void endOfGame(Game game) {
+	public void endOfGame(WorkingGame game) {
 		int teamOneScore = 0;
 		int teamTwoScore = 0;
 		for (int i=0 ; i < 8 ; i++) {

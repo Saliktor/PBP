@@ -2,11 +2,11 @@ package com.revature.gamelogic;
 
 import java.util.Arrays;
 
-public class Game implements Cloneable {
+public class WorkingGame implements Cloneable {
 	int id;
 	Square[][] boardstate = new Square[8][8]; 
 	
-	Game() {
+	WorkingGame() {
 		super();
 		for (int i=0 ; i<8 ; i++) {
 			for (int j=0 ; j<8 ;j++) {
@@ -19,7 +19,7 @@ public class Game implements Cloneable {
 		this.boardstate[4][3].value = 2;
 	}
 	
-	Game(GameDate g) {
+	WorkingGame(GameDate g) {
 		this.id = g.getGameId();
 		
 		this.boardstate[0][0] = new Square(0,0,g.getAa());
@@ -93,21 +93,6 @@ public class Game implements Cloneable {
 		this.boardstate[7][5] = new Square(7,5,g.getHf());
 		this.boardstate[7][6] = new Square(7,6,g.getHg());
 		this.boardstate[7][7] = new Square(7,7,g.getHh());
-	}
-	
-	Game(Square[][] b) {
-//		for (int i=0 ; i<8 ; i++) {
-//			for (int j=0 ; j<8 ;j++) {
-//				this.boardstate[i][j] = b[i][j];
-//				System.out.print(b[i][j].value);
-//			}
-//			System.out.println();
-//		}
-//		int[] arr = new int[8];
-//		System.arraycopy(System.arraycopy(b, 0, arr, 0, 4), 0, this.boardstate,0,8);
-//		System.arraycopy(array, 0, newArr, 0, 4);
-//		this.boardstate = Arrays.copyOf(b, 8);
-		this.boardstate = b.clone();
 	}
 	
 	public void printBoard() {
