@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   private username: string = null;
   private password: string = null;
   private alert = true;
+  private alertMessage = 'Invalid Login';
 
 
   constructor(
@@ -27,9 +28,10 @@ export class LoginComponent implements OnInit {
 
 
   login(): void {
+    console.log('login');
     if (!this.username || !this.password){
       this.alert = false;
-      return;
+      this.alertMessage = 'Error: Fields cannot be empty';
     } else {
       this.userService.login(this.username, this.password)
       .subscribe( user => {
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
         if (user != null) {
           this.router.navigate(['./home']);
         } else {
+          this.alertMessage = 'Not a valid Username/Password';
           this.username = null;
           this.password = null;
           this.alert = false;

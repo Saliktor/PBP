@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

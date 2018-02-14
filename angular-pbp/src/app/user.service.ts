@@ -13,12 +13,12 @@ export class UserService {
   private loginUrl = 'http://localhost:8080/PBP/login';
   private registerUrl = 'http://localhost:8080/PBP/register';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
-  public currentUser: CurrentUser = null;
+  public currentUser: CurrentUser = new CurrentUser();
 
   constructor(private http: Http) { }
 
   loggedIn(): boolean{
-    if (this.currentUser == null) {
+    if (this.currentUser.user == null) {
       return false;
     } else {
       return true;
@@ -35,7 +35,7 @@ export class UserService {
       return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true })
         .map(resp => {
           const user = resp.json();
-          if (user == null){
+          if (user == null) {
             return null;
           } else {
             this.currentUser.user = this.createUser(resp.json());
