@@ -27,9 +27,9 @@ public class Game {
 	Set<Player> players = new HashSet<Player>();
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name = "gameId")
-	GameData gameData;
+	//@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	//@JoinColumn(name = "gameId")
+	//GameData gameData;
 	
 	public Game() {
 		
@@ -66,8 +66,8 @@ public class Game {
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
-	
-	Game (WorkingGame g) {
+}
+	/*Game (WorkingGame g) {
 		this.id = g.id;
 
 		this.aa = g.boardstate[0][0].value;
@@ -613,3 +613,4 @@ public class Game {
 	
 	
 }
+*/

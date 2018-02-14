@@ -95,7 +95,8 @@ public class MessageDAOImp implements MessageDAO {
 		try {
 			
 			messages = session.createCriteria( Message.class )
-					.add(Restrictions.eq("game", timestamp)).list();
+					.add(Restrictions.eq("game", game))
+					.add(Restrictions.ge("timePosted", timestamp)).list();
 			return messages;
 		} catch (Exception e) {
 			e.printStackTrace();

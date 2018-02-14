@@ -16,6 +16,8 @@ import com.revature.dao.MessageDAO;
 import com.revature.dao.MessageDAOImp;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImp;
+import com.revature.services.GameService;
+import com.revature.services.GameServiceImp;
 import com.revature.services.UserService;
 import com.revature.services.UserServiceImp;
 import com.revature.util.HibernateUtil;
@@ -27,6 +29,7 @@ public class Test {
 	private static UserDAO uDAO = new UserDAOImp();
 	private static UserService us = new UserServiceImp();
 	private static MessageDAO mDAO = new MessageDAOImp();
+	private static GameService gService = new GameServiceImp();
 	
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
@@ -42,16 +45,17 @@ public class Test {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-		Date date = dateFormat.parse("23/09/2007");
+		Date date = dateFormat.parse("30/1/2007");
 		long d = date.getDate();
-		Timestamp t = new Timestamp(System.currentTimeMillis());
+		Timestamp t = new Timestamp(d);
 		//Message test
 		Message message = new Message();
 		message.setMessageContent("what's up");
 		message.setTimeMade(timestamp);
 		message.setUser(newUser);
 		message.setGame(game);
-		List<Message> messages = mDAO.getGameMessages(game);
+		log.trace(t);
+		List<Message> messages = gService.getNewMessages(game, t);
 		//log.trace(mDAO.saveMessage(message));
 		log.trace(messages.toString());
 		// Message message2 = mDAO.getLatestMessage();

@@ -32,6 +32,7 @@ public class LoginController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String goLogin(HttpSession session) {
+		System.out.println("login");
 		if(session.getAttribute("user")!=null)
 			return "home";
 		return "login";
