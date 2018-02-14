@@ -3,19 +3,23 @@ body {
     font-family: 'Courier New', Courier, monospace;
     }
 
-    #login {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        margin-left: -150px;
-        width: 300px;
-        background: #dadada;
-        opacity: 0.9;
-    }
+#login {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    background: #dadada;
+    opacity: 0.9;
+}
 
-    #main-title {
-        margin: auto;
-    }
+#main-title {
+    margin: auto;
+}
+
+.center{
+    text-align: center;
+}

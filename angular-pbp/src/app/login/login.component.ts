@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {CurrentUser} from '../current-user';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,34 +11,42 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loggedUser: CurrentUser;
-  private username: string;
-  private password: string;
-  private failed: string;
+  public loggedUser: CurrentUser = new CurrentUser();
+  private username: string = null;
+  private password: string = null;
+  private alert = true;
 
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.userService.login(null, null).subscribe( user => {
-      this.loggedUser = user;});
   }
 
 
   login(): void {
-    console.log(this.username);
     if (!this.username || !this.password){
-      this.failed = 'Invalid Login';
+      this.alert = false;
       return;
-    } else{
-      this.failed = '';
+    } else {
       this.userService.login(this.username, this.password)
       .subscribe( user => {
-        this.loggedUser = user;
+        this.loggedUser.user = user;
+        if (user != null) {
+          this.router.navigate(['./home']);
+        } else {
+          this.username = null;
+          this.password = null;
+          this.alert = false;
+        }
       });
     }
+  }
+
+  goToRegister(): void{
+    this.router.navigate(['./register']);
   }
 
 }
