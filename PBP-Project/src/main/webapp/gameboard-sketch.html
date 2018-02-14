@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Play</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="gameboard-sketch.css">
+ 
+</head>
+<body>
+    <div style="margin: 30px">
+        <h1 style="text-align:center">Reversi (Game #3516)</h1>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-top: 30px; margin-right:5px; margin-bottom:5px">
+            <div class="col">
+                <div class="game-board">
+                <table>
+                    <tr>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                    </tr>
+                    <tr>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                    </tr>
+                    <tr>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"><div class="blackpiece"></div></td>
+                        <td class="two"><div class="whitepiece"></div></td>
+                        <td class="one"><div class="blackpiece"></div></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                    </tr>
+                    <tr>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"><div class="blackpiece"></div></td>
+                        <td class="one"><div class="whitepiece"></div></td>
+                        <td class="two"><div class="whitepiece"></div></td>
+                        <td class="one"><div class="whitepiece"></div></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                    </tr>
+                    <tr>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"><div class="blackpiece"></div></td>
+                        <td class="two"><div class="whitepiece"></div></td>
+                        <td class="one"><div class="blackpiece"></div></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                    </tr>
+                    <tr>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"><div class="whitepiece"></div></td>
+                        <td class="two"><div class="blackpiece"></div></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                    </tr>
+                    <tr>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                    </tr>
+                    <tr>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                        <td class="two"></td>
+                        <td class="one"></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+            <div class="col">
+                <div style="background-color: #eaeaea; height:560px; width:400px">
+                    <h2 style="text-align: center">Messages (Game #3516)</h2>
+                    <div class="message" style="width: 400px; background: linear-gradient(#d9d9d9, #e6e6e6); padding:5px; border-top: 1px solid black;">
+                        <span style="font-weight: bold">Batman: </span><span style="font-style: italic">Then why do you want to kill me?</span>
+                    </div>
+                    <div class="message" style="width: 400px; background: linear-gradient(#d9d9d9, #e6e6e6); padding:5px">
+                        <span style="font-weight: bold">Joker: </span>*giggles*<span style="font-style: italic"> I don't, I don't want to kill you! What would I do without you? Go back to ripping off mob dealers? No, no, NO! No. You... you... complete me. </span>
+                    </div>
+                    <div class="message" style="width: 400px; background: linear-gradient(#d9d9d9, #e6e6e6); padding:5px">
+                        <span style="font-weight: bold">Joker: </span><span style="font-style: italic"> You're garbage who kills for money.  </span>
+                    </div>
+                    <div class="message" style="width: 400px; background: linear-gradient(#d9d9d9, #e6e6e6); padding:5px">
+                        <span style="font-weight: bold">Joker: </span><span style="font-style: italic"> Don't talk like one of them. You're not! Even if you'd like to be. To them, you're just a freak, like me! They need you right now, but when they don't, they'll cast you out, like a leper! You see, their morals, their code, it's a bad joke. Dropped at the first sign of trouble. They're only as good as the world allows them to be. I'll show you. When the chips are down, these... these civilized people, they'll eat each other. See, I'm not a monster. I'm just ahead of the curve.  </span>
+                    </div>
+                    <div style="position: absolute; bottom: 0">
+                        <form action="#" method="POST">
+                            <textarea rows="3" placeholder="Your message here" style="width: 400px"></textarea> 
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

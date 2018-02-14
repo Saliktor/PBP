@@ -305,7 +305,7 @@ public class ValidMoveTest {
 		}
 		
 		Set<Square> toFlip = new HashSet<Square>();
-		log.trace("In method");
+	//	log.trace("In method");
 		int i =0;
 		toFlip.add(move);
 		
