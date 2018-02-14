@@ -13,9 +13,21 @@ export class UserService {
   private loginUrl = 'http://localhost:8080/PBP/login';
   private registerUrl = 'http://localhost:8080/PBP/register';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
-  private user: User;
+  public currentUser: CurrentUser = null;
 
   constructor(private http: Http) { }
+
+  loggedIn(): boolean{
+    if (this.currentUser == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getCurrentUser(): CurrentUser{
+    return this.currentUser;
+  }
 
   login(username: string, password: string) {
     if (username && password) {
@@ -26,7 +38,8 @@ export class UserService {
           if (user == null){
             return null;
           } else {
-            return this.createUser(resp.json());
+            this.currentUser.user = this.createUser(resp.json());
+            return this.currentUser.user;
           }
         });
     }
@@ -53,7 +66,8 @@ export class UserService {
           if (user == null){
             return null;
           } else {
-            return this.createUser(resp.json());
+            this.currentUser.user = this.createUser(resp.json());
+            return this.currentUser.user;
           }
         });
     } else {console.log('User Serivce register recieved an empty parameter');}

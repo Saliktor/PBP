@@ -1,4 +1,6 @@
-<p>
-  Welcome Home 
-</p>
-<a routerLink="../login">Back</a>
+<div *ngIf="loggedIn()">
+  <p>
+    Welcome Home 
+  </p>
+  <a routerLink="../login">Back</a>
+</div>
