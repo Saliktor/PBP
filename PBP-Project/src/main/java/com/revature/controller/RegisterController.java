@@ -44,7 +44,7 @@ public class RegisterController {
 		System.out.println(uService);
 		UserAccount user = uService.createUser(username, password, email);
 		if(user == null) {
-			return "redirect:login";
+			return "redirect:home";
 		} else {
 			session.setAttribute("user", user);
 			return om.writeValueAsString(user);

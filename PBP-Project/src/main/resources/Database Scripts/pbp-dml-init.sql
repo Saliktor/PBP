@@ -31,3 +31,4 @@ INSERT INTO player(ID, USERID, GAMEID) VALUES(PLAYER_SEQ.NEXTVAL, 2, 1);
 
 --Init Moves--
 
+commit();

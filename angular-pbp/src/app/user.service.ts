@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class UserService {
   private loginUrl = 'http://localhost:8080/PBP/login';
   private registerUrl = 'http://localhost:8080/PBP/register';
-  private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
+  private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   private user: User;
 
   constructor(private http: Http) { }
@@ -29,15 +29,6 @@ export class UserService {
           return user;
         }
         );
-    } else {
-      return this.http.get(this.loginUrl, {headers: this.headers, withCredentials: true })
-      .map(
-        resp => {
-          const user: CurrentUser = resp.json() as CurrentUser;
-          this.user = user.user;
-          return user;
-        }
-      );
     }
   }
 
@@ -45,14 +36,12 @@ export class UserService {
     if (username && password) {
       const body = `username=${username}&password=${password}&email=${email}`;
       return this.http.post(this.registerUrl, body, { headers: this.headers, withCredentials: true })
-        .map(
-        resp => {
+        .map( resp => {
           console.log(resp);
           const user: CurrentUser = resp.json() as CurrentUser;
           this.user = user.user;
           return user;
-        }
-        );
+        });
     } else {
       return this.http.get(this.registerUrl, {headers: this.headers, withCredentials: true })
       .map(
@@ -63,6 +52,5 @@ export class UserService {
         }
       );
     }
-
   }
 }

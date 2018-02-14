@@ -13,11 +13,11 @@ export class LoginComponent implements OnInit {
   public loggedUser: CurrentUser;
   private username: string;
   private password: string;
+  private failed: string;
 
 
   constructor(
-    private userService: UserService      
-    
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -26,14 +26,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-
-
   login(): void {
     console.log(this.username);
-    this.userService.login(this.username, this.password)
-    .subscribe( user => {
-      this.loggedUser = user;
-    });
+    if (!this.username || !this.password){
+      this.failed = 'Invalid Login';
+      return;
+    } else{
+      this.failed = '';
+      this.userService.login(this.username, this.password)
+      .subscribe( user => {
+        this.loggedUser = user;
+      });
+    }
   }
 
 }
