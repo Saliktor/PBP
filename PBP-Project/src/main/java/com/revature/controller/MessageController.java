@@ -67,14 +67,11 @@ public class MessageController {
 	@ResponseBody
 	public String getNewMessages(String timeStamp, 
 			HttpSession session, HttpServletRequest request) throws JsonProcessingException {
-		System.out.println(timeStamp + " ===================================================================");
 		Timestamp timestamp = toTimestamp(timeStamp);
-		Timestamp t3 = new Timestamp(Long.parseLong(timeStamp));
-		Timestamp t2 = new Timestamp(System.currentTimeMillis());
 		//Game currentGame = (Game) session.getAttribute("currentGame");
 		Game currentGame = new Game();
 		currentGame.setId(1);
-		List<Message> newMessages = gService.getNewMessages(currentGame, t3);
+		List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
 		
 		return om.writeValueAsString(newMessages);
 	}

@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Game {
 	
@@ -21,10 +23,13 @@ public class Game {
 	@SequenceGenerator(name="game_pk",sequenceName="game_seq", allocationSize=1)
 	@GeneratedValue(generator="game_pk", strategy=GenerationType.SEQUENCE)
 	int id;
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Move> moves = new HashSet<Move>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
 	//@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
