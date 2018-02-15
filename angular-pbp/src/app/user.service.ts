@@ -78,6 +78,6 @@ export class UserService {
   logout(){
     console.log('User Service logout');
     localStorage.setItem('currentUser', null);
-    //Do a call to the server to logout and invalidate the session
+    //If session on server is keeping information about session, do a call to invalidate the session
   }
 }

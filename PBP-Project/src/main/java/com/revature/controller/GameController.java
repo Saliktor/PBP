@@ -16,7 +16,6 @@ import com.revature.gamelogic.WorkingGame;
 import com.revature.services.GameService;
 
 @Controller
-@RequestMapping(value="/game")
 @CrossOrigin(origins= "*")
 public class GameController {
 	private ObjectMapper om = new ObjectMapper();
@@ -28,7 +27,16 @@ public class GameController {
 		this.gameService = gameService;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	
+	@RequestMapping(value="/game-boardstate", method=RequestMethod.GET)
+	@ResponseBody
+	public String getBoardState(HttpSession session) throws JsonProcessingException {
+		Player player = (Player)session.getAttribute("player");
+		return om.writeValueAsString(gameService.getBoardState(player));
+	}
+	
+	
+	@RequestMapping(value="/game", method=RequestMethod.GET)
 	@ResponseBody
 	public String sendValidMoves(HttpSession session) throws JsonProcessingException {
 		Player player = (Player)session.getAttribute("player");
@@ -36,7 +44,7 @@ public class GameController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/game", method=RequestMethod.POST)
 	@ResponseBody
 	public String recieveMove(int xid, int yid, int team, HttpSession session) throws JsonProcessingException {
 		//Need to add player to session upon user first joining the game

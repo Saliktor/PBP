@@ -315,4 +315,11 @@ public class GameServiceImp implements GameService {
 			}
 		}
 
+		public int[][] getBoardState(Player player) {
+			int[][] dummyarray = {{1,2},{3,4}};
+			return dummyarray;
+			//Should return the int[][] representing the boardstate
+			//return gameDao.getGame(Player.getGameId);
+		}
+
 }
