@@ -18,7 +18,7 @@ import com.revature.services.UserServiceImp;
 
 @Controller
 @RequestMapping(value="/login")
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "*")
 public class LoginController {
 	public static void main(String[] args) {
 		UserService us = new UserServiceImp();

@@ -4,12 +4,15 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import com.revature.beans.Game;
 import com.revature.beans.Move;
 import com.revature.beans.Player;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
+@Component
 public class GameServiceImp implements GameService {
 	private static boolean noMoreMoves = false;
 
