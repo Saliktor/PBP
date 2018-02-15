@@ -16,9 +16,7 @@ public class UserDAOImp implements UserDAO {
 	
 
 	public boolean createUser(UserAccount user) {
-		log.trace("Entered createUser");
 		Session session = hu.getSession();
-		log.trace("Recieved session");
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
