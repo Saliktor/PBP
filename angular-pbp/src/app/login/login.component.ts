@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {CurrentUser} from '../current-user';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +11,45 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loggedUser: CurrentUser;
-  private username: string;
-  private password: string;
+  public loggedUser: CurrentUser = new CurrentUser();
+  private username: string = null;
+  private password: string = null;
+  private alert = true;
+  private alertMessage = 'Invalid Login';
 
 
   constructor(
-    private userService: UserService      
-    
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.userService.login(null, null).subscribe( user => {
-      this.loggedUser = user;});
   }
 
 
-
-
   login(): void {
-    console.log(this.username);
-    this.userService.login(this.username, this.password)
-    .subscribe( user => {
-      this.loggedUser = user;
-    });
+    console.log('login');
+    if (!this.username || !this.password){
+      this.alert = false;
+      this.alertMessage = 'Error: Fields cannot be empty';
+    } else {
+      this.userService.login(this.username, this.password)
+      .subscribe( user => {
+        this.loggedUser.user = user;
+        if (user != null) {
+          this.router.navigate(['./home']);
+        } else {
+          this.alertMessage = 'Not a valid Username/Password';
+          this.username = null;
+          this.password = null;
+          this.alert = false;
+        }
+      });
+    }
+  }
+
+  goToRegister(): void{
+    this.router.navigate(['./register']);
   }
 
 }
