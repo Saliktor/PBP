@@ -56,7 +56,7 @@ public class LoginController {
 		if(user == null) {
 			return om.writeValueAsString(null);
 		} else {
-			session.setAttribute("user", user);
+			session.setAttribute("currentUser", user);
 			return om.writeValueAsString(user);
 		}
 			

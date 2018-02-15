@@ -7,5 +7,6 @@ public interface UserService {
 	public UserAccount createAdmin(String username, String password, String email);
 	
 	public UserAccount getUser(String username, String password);
+	public UserAccount editUser(UserAccount user);
 
 }
