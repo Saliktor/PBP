@@ -6,10 +6,10 @@ html {
     box-sizing: border-box;
 }
 
-
 body {
     background-color: #27ae60;
     min-height: 100vh;
+    margin: 0px;
 }
 
 h1 {
@@ -37,7 +37,7 @@ h1 {
     display: inline-flex;
     flex-direction: column;
     margin-left: 15px;
-    width: 30vh;
+    width: 40vh;
     background-color: white;
     min-width: 200px;
     position: relative;
@@ -100,7 +100,6 @@ h1 {
     flex-wrap: nowrap;
     flex-basis: 12.5%;
     flex-grow: 1;
-
 }
 
 .square {
@@ -154,4 +153,38 @@ h1 {
     left: 0;
     right: 0; */
     margin: auto;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.reversi {
+    text-align: center;
+    margin: 10px;
+}
+
+#logout {
+    float:right;
 }

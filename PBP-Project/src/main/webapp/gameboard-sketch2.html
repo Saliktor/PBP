@@ -7,8 +7,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="gameboard-sketch2.css"></head>
 <body>
+
+    <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#joingame">Join Game</a></li>
+        <li id="logout"><a href="#logout">Logout</a></li>
+    </ul>
+
+    <h1 class="reversi">Reversi (Game #64523)</h1>
+
     <div class="container">
         <div class="gameboard">
+
+<!-- The pieces are hidden/unhidden when the boardstate is received. Should be able to getElementById(X).nthChild(Y).nthChild(team).hidden = false -->
+<!-- To be clear, nthChild is not a thing in Angular. -->
+
             <div class="row-a" id="0">
                 <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
                 <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
