@@ -11,6 +11,7 @@ import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
 public class GameServiceImp implements GameService {
+	private static boolean noMoreMoves = false;
 
 	public WorkingGame makeMove(int xid, int yid, Player player) {
 		Move newMove = new Move();
@@ -160,7 +161,6 @@ public class GameServiceImp implements GameService {
 		public Set<Square> findValidMoves(WorkingGame game, int myTeam) {
 			Set<Square> validMoves = new HashSet<Square>();
 			Square current = new Square();
-			boolean noMoreMoves = false;
 			
 			int x,y;
 			for (int i=0 ; i<8 ; i++){
@@ -252,22 +252,24 @@ public class GameServiceImp implements GameService {
 					}
 				}
 			}
-			if (validMoves.isEmpty()) {
-				if (noMoreMoves) {
-					noMoreMoves = false;
-					game.printBoard();
-					endOfGame(game);
-					
-				}
-				else {
-					noMoreMoves = true;
-					int otherTeam = (myTeam == 1 ? 2 : 1);
-					validMoves = findValidMoves(game, otherTeam);
-					
-					// needs to send these moves to the server 
-					// WITH a note that the moves are for the other team
-				}
-			}
+			
+			//This functionality should be moved to angular
+//			if (validMoves.isEmpty()) {
+//				if (noMoreMoves) {
+//					noMoreMoves = false;
+//					game.printBoard();
+//					endOfGame(game);
+//					
+//				}
+//				else {
+//					noMoreMoves = true;
+//					int otherTeam = (myTeam == 1 ? 2 : 1);
+//					validMoves = findValidMoves(game, otherTeam);
+//					
+//					// needs to send these moves to the server 
+//					// WITH a note that the moves are for the other team
+//				}
+//			}
 			return validMoves;
 		}
 
