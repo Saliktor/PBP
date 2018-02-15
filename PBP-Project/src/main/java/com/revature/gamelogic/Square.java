@@ -1,15 +1,15 @@
 package com.revature.gamelogic;
 
 public class Square {
-	int idx;
-	int idy;
-	int value;
+	public int idx;
+	public int idy;
+	public int value;
 	
-	Square() {
+	public Square() {
 		super();
 	}
 
-	Square(int idx, int idy, int value) {
+	public Square(int idx, int idy, int value) {
 		super();
 		this.idx = idx;
 		this.idy = idy;

@@ -18,7 +18,7 @@ import com.revature.services.UserService;
 
 @Controller
 @RequestMapping(value="/register")
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "*")
 public class RegisterController {
 	private ObjectMapper om = new ObjectMapper();
 	

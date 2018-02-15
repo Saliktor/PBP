@@ -1,12 +1,12 @@
 package com.revature.gamelogic;
 
-import java.util.Arrays;
+import com.revature.beans.Game;
 
 public class WorkingGame implements Cloneable {
-	int id;
-	Square[][] boardstate = new Square[8][8]; 
+	public int id;
+	public Square[][] boardstate = new Square[8][8]; 
 	
-	WorkingGame() {
+	public WorkingGame() {
 		super();
 		for (int i=0 ; i<8 ; i++) {
 			for (int j=0 ; j<8 ;j++) {
@@ -19,8 +19,8 @@ public class WorkingGame implements Cloneable {
 		this.boardstate[4][3].value = 2;
 	}
 	
-	WorkingGame(GameDate g) {
-		this.id = g.getGameId();
+	public WorkingGame(Game g) {
+		this.id = g.getId();
 		
 		this.boardstate[0][0] = new Square(0,0,g.getAa());
 		this.boardstate[0][1] = new Square(0,1,g.getAb());
