@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { CurrentUser } from './current-user';
 import { Headers, Http } from '@angular/http';
 
 import { Observable } from 'rxjs/observable';
@@ -78,6 +77,5 @@ export class UserService {
   logout(){
     console.log('User Service logout');
     localStorage.setItem('currentUser', null);
-    //If session on server is keeping information about session, do a call to invalidate the session
   }
 }

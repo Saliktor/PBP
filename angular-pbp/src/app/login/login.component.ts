@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import {CurrentUser} from '../current-user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public loggedUser: CurrentUser = new CurrentUser();
   private username: string = null;
   private password: string = null;
   private alert = true;
@@ -35,7 +33,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.userService.login(this.username, this.password)
       .subscribe( user => {
-        this.loggedUser.user = user;
         if (user != null) {
           this.router.navigate(['./home']);
         } else {

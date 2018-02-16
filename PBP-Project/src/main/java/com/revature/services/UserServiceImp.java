@@ -19,7 +19,6 @@ public class UserServiceImp implements UserService {
 	 * Returns null otherwhys
 	 */
 	public UserAccount createUser(String username, String password, String email) {
-		System.out.println("createUser entered");
 		UserAccount user = new UserAccount();
 		user.setUsername(username);
 		user.setPassword(password);
