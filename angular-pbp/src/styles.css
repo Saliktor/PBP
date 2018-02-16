@@ -3,11 +3,22 @@
 
 body{
     background: #27ae60;
+    padding-bottom: 30px;
+}
+
+#play-reversi {
+    color: white;
+    font-weight: bold;
+}
+
+#reversi {
+    text-align: center;
+    margin: 10px;
 }
 
 /* body{
     background:#27ae60;
-    /* padding: 3em; 
+    /* padding: 3em;
     font-family: 'Raleway', 'Arial';
     color: #fff;
 }

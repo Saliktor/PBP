@@ -31,8 +31,8 @@ h1 {
 .chatbox {
     display: inline-flex;
     flex-direction: column;
-    margin-left: 15px;
-    width: 40vh;
+    margin-left: 5vh;
+    width: 50vh;
     background-color: white;
     min-width: 200px;
     position: relative;
@@ -152,10 +152,7 @@ li a {
 li a:hover {
     background-color: #111;
 }
-.reversi {
-    text-align: center;
-    margin: 10px;
-}
+
 #logout {
     float:right;
 }
