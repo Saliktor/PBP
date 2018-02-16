@@ -55,4 +55,8 @@ public class UserServiceImp implements UserService {
 		user = userDAO.getUser(user);
 		return user;
 }
+
+	public UserAccount editUser(UserAccount user) {
+		return userDAO.updateUser(user);
+	}
 }
