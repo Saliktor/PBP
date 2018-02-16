@@ -47,5 +47,17 @@ public class GameDAOImp implements GameDAO {
 		}
 		return currentPlayer.getGame();
 	}
+	
+	public Game getGame(int gameID) {
+		Game currentGame = null;
+		Session session = hu.getSession();
+		try {
+			currentGame = (Game) session.get(Game.class, gameID);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return currentGame;
+	}
 
 }

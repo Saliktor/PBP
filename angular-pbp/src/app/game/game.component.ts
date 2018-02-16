@@ -14,6 +14,10 @@ export class GameComponent implements OnInit {
     this.gameService.getGameBoard().subscribe( boardstate => {
       console.log(boardstate);
     });
+
+    this.gameService.playerSignIn(null, null).subscribe( player => {
+      console.log(player);
+    });
   }
 
   sendMessage(){

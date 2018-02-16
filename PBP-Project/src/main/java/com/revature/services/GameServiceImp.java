@@ -9,14 +9,17 @@ import org.springframework.stereotype.Component;
 import com.revature.beans.Game;
 import com.revature.beans.Move;
 import com.revature.beans.Player;
+import com.revature.dao.GameDAOImp;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
 @Component
 public class GameServiceImp implements GameService {
 	private static boolean noMoreMoves = false;
+	private static GameDAOImp gameDAO = new GameDAOImp();
 
 	public WorkingGame makeMove(int xid, int yid, Player player) {
+		//TODO
 		Move newMove = new Move();
 		int team = player.getTeam().getId();
 		
@@ -37,6 +40,7 @@ public class GameServiceImp implements GameService {
 	}
 	
 	public Set<Square> findValidMoves(Player player){
+		//TODO
 		int team = player.getTeam().getId();
 		//Call dao to retrieve game
 		//game = GameDao.getGame(player.gameid);
@@ -316,10 +320,28 @@ public class GameServiceImp implements GameService {
 		}
 
 		public int[][] getBoardState(Player player) {
+			//TODO
+			Game game = new Game();
+			
 			int[][] dummyarray = {{1,2},{3,4}};
 			return dummyarray;
 			//Should return the int[][] representing the boardstate
 			//return gameDao.getGame(Player.getGameId);
+		}
+
+		public boolean updateGame(Game game) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean createNewGame(Game game, Player player) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public Game getGame(Player player) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 }

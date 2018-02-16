@@ -1,3 +1,4 @@
 export class Game {
-    boardState: Number[][]
+    id: Number;
+    boardState: Number[][];
 }

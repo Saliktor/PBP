@@ -15,8 +15,6 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="ID")
 public class Player extends UserAccount{
 	
-	//NEED TO HAVE USER ID
-	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
@@ -44,6 +42,12 @@ public class Player extends UserAccount{
 	public void setTeam(Team team) {
 		this.team = team;
 	}
+
+	@Override
+	public String toString() {
+		return "Player [game=" + game + ", team=" + team + "]";
+	}
+	
 	
 	
 }
