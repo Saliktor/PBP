@@ -1,8 +1,10 @@
-  <h1 class="reversi" id="reversi">Game #64523</h1>
+  <h1 class="reversi" id="reversi">Game #{{game.id}}</h1>
   <div class="container">
       <div class="gameboard">
 
-<!-- The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
+<!--
+    The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
+
 for (square in boardState) {
   if (square.value === 0) {
       getElementById(square.idX).childNodes[square.idy].childNodes[0].setAttribute("hidden", true);
@@ -13,6 +15,7 @@ for (square in boardState) {
       getElementById(square.idx).childNodes[square.idy].childNodes[2-square.value].setAttribute("hidden", true);
   }
 }
+
 might not be super accurate
 -->
 
