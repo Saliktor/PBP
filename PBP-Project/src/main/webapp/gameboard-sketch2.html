@@ -23,19 +23,17 @@
 <!-- The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
 for (square in boardState) {
     if (square.value === 0) {
-        continue;
+        getElementById(square.idX).childNodes[square.idy].childNodes[0].setAttribute("hidden", true);
+        getElementById(square.idx).childNodes[square.idy].childNodes[1].setAttribute("hidden", true);
     }
     else {
-        getElementById(X).childNodes[y].childNodes[team-1].setAttribute("hidden", false);
-        getElementById(X).childNodes[y].childNodes[2-team].setAttribute("hidden", true);
+        getElementById(square.idX).childNodes[square.idy].childNodes[square.value-1].setAttribute("hidden", false);
+        getElementById(square.idx).childNodes[square.idy].childNodes[2-square.value].setAttribute("hidden", true);
     }
 
 }
-
-not done ey. come back to this.
-
+might not be super accurate
 -->
-<!-- To be clear, nthChild is not a thing in Angular. -->
 
             <div class="row-a" id="0">
                 <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
@@ -132,7 +130,7 @@ var scrollDiv = document.getElementById("scrollDiv");
 scrollDiv.scrollTop = scrollDiv.scrollHeight;
 
 -->
-                <div class="messages-or-something">
+                <div id="scrollDiv" class="messages-or-something">
                     <div class="message">
                         <b>Batman: </b><em>Then why do you want to kill me?</em>
                     </div>

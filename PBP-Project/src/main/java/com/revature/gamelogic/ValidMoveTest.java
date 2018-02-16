@@ -142,7 +142,7 @@ public class ValidMoveTest {
 	}
 	
 	
-	public Set<Square> findValidMoves(Game game, int myTeam) {
+	public Set<Square> findValidMoves(WorkingGame game, int myTeam) {
 		Set<Square> validMoves = new HashSet<Square>();
 		Square current = new Square();
 		int x,y;
