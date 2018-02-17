@@ -345,7 +345,10 @@ public class GameServiceImp implements GameService {
 			game.addPlayer(player);
 			
 			//This throws a Hibernate.MappingException
-			game = gameDAO.createNewGame(game);
+			//Does this also save the team and player to the data base as well?
+			//game = gameDAO.createNewGame(game);
+			
+			gameDAO.createNewGame(new Game());
 			
 			System.out.println(team);
 			System.out.println(player);

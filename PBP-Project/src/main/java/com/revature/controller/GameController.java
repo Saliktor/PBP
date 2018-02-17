@@ -36,6 +36,8 @@ public class GameController {
 	public String createNewGame(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
 		gameService.createNewGame(player);
+		
+		//Dummy return in mean time until service can appropriately handle creation of new game/player etc.
 		return "null";
 	}
 	
