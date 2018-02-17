@@ -348,7 +348,7 @@ public class GameServiceImp implements GameService {
 			//Does this also save the team and player to the data base as well?
 			//game = gameDAO.createNewGame(game);
 			
-			gameDAO.createNewGame(new Game());
+			gameDAO.createNewGame(game);
 			
 			System.out.println(team);
 			System.out.println(player);
