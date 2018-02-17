@@ -1,24 +1,28 @@
-  <h1 class="reversi" id="reversi">Game #{{game.id}}</h1>
+<!-- Need to add interpolation for gameID -->
+<h1 class="reversi" id="reversi">Game #{{gameID}}</h1>
   <div class="container">
       <div class="gameboard">
-
 <!--
-    The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
 
-for (square in boardState) {
-  if (square.value === 0) {
-      getElementById(square.idX).childNodes[square.idy].childNodes[0].setAttribute("hidden", true);
-      getElementById(square.idx).childNodes[square.idy].childNodes[1].setAttribute("hidden", true);
-  }
-  else {
-      getElementById(square.idX).childNodes[square.idy].childNodes[square.value-1].setAttribute("hidden", false);
-      getElementById(square.idx).childNodes[square.idy].childNodes[2-square.value].setAttribute("hidden", true);
-  }
-}
+The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
 
-might not be super accurate
+
+Once classes are known, the variables can be updated and this implemented. Remove the 72 lines beneath it.
+
+
+<div *ngFor="let row of WTF IS THIS VARIABLE">
+    <div *ngFor="let col of WTF IS THIS VARIABLE" class="square">
+        <div [class.hidden]="VARIABLE !== 1" class="whitepiece"></div>
+        <div [class.hidden]="VARIABLE !== 2" class="blackpiece"></div>
+        <div [class.hidden]="VARIABLE !== 8" class="valid-move" (click)="sendMove()"></div>
+    </div>
+</div>
+
+The sendMove() function needs to get the value of the element.
+
+Thus, the value of the element needs to be assigned. This needs to be figured out.
+
 -->
-
           <div class="row-a" id="0">
               <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
               <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
