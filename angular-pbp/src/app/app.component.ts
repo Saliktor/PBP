@@ -16,4 +16,8 @@ export class AppComponent {
     return this.userService.loggedIn()
   }
 
+  logout(){
+    this.userService.logout();
+  }
+
 }

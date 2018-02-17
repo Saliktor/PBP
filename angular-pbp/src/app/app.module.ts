@@ -11,6 +11,8 @@ import { UserService } from './user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GameComponent } from './game/game.component';
+import { GameService } from './game.service';
 
 
 
@@ -20,7 +22,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

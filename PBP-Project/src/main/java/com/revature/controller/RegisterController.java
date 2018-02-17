@@ -18,11 +18,8 @@ import com.revature.services.UserService;
 
 @Controller
 @RequestMapping(value="/register")
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "*")
 public class RegisterController {
-	private ObjectMapper om = new ObjectMapper();
-	
-	
 	@Autowired
 	private UserService uService;
 	
@@ -37,14 +34,10 @@ public class RegisterController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public String register(String username, String password, String email, HttpSession session) throws JsonProcessingException {
-		System.out.println(username);
-		System.out.println(password);
-		System.out.println(email);
-		System.out.println(uService);
+	public String register(String username, String password, String email, ObjectMapper om, HttpSession session) throws JsonProcessingException {
 		UserAccount user = uService.createUser(username, password, email);
 		if(user == null) {
-			return om.writeValueAsString(null);
+			return om.writeValueAsString("null");
 		} else {
 			session.setAttribute("user", user);
 			return om.writeValueAsString(user);

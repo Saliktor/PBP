@@ -1,9 +1,12 @@
+import { Player } from './player';
+
 export class User {
-    id: number;
+    id: Number;
     username: string;
     password: string;
     email: string;
-    isAdmin: boolean;
-    isBanned: boolean;
-    isMuted: boolean;
+    isAdmin: Number;
+    isBanned: Number;
+    isMuted: Number;
+    players: Player[];
 }

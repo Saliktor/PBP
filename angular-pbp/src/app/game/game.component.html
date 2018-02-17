@@ -1,0 +1,128 @@
+  <h1 class="reversi">Reversi (Game #64523)</h1>
+  <div class="container">
+      <div class="gameboard">
+<!-- The pieces are hidden/unhidden when the boardstate is received. Should be able to call the following for each element in boardstate
+for (square in boardState) {
+  if (square.value === 0) {
+      getElementById(square.idX).childNodes[square.idy].childNodes[0].setAttribute("hidden", true);
+      getElementById(square.idx).childNodes[square.idy].childNodes[1].setAttribute("hidden", true);
+  }
+  else {
+      getElementById(square.idX).childNodes[square.idy].childNodes[square.value-1].setAttribute("hidden", false);
+      getElementById(square.idx).childNodes[square.idy].childNodes[2-square.value].setAttribute("hidden", true);
+  }
+}
+might not be super accurate
+-->
+          <div class="row-a" id="0">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-b" id="1">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-a" id="2">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-b" id="3">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-a" id="4">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-b" id="5">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-a" id="6">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+          <div class="row-b" id="7">
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+              <div class="square"><div class="whitepiece" hidden></div><div class="blackpiece" hidden></div></div>
+          </div>
+      </div>
+      <div class="chatbox">
+          <div class="chatheader">
+              <h1 style="text-align: center;">Messages</h1>
+          </div>
+          <div class="message-window">
+<!--
+IMPLEMENT IN ANGULAR
+var scrollDiv = document.getElementById("scrollDiv");
+scrollDiv.scrollTop = scrollDiv.scrollHeight;
+-->
+              <div id="scrollDiv" class="messages-or-something">
+                  <div class="message">
+                      <b>Batman: </b><em>Then why do you want to kill me?</em>
+                  </div>
+                  <div class="message">
+                      <b>Joker: </b>*giggles*<em> I don't, I don't want to kill you! What would I do without you? Go back to ripping off mob dealers? No, no, NO! No. You... you... complete me. </em>
+                  </div>
+                  <div class="message">
+                      <b>Batman: </b><em> You're garbage who kills for money.  </em>
+                  </div>
+                  <div class="message">
+                      <b>Joker: </b><em> Don't talk like one of them. You're not! Even if you'd like to be. To them, you're just a freak, like me! They need you right now, but when they don't, they'll cast you out, like a leper! You see, their morals, their code, it's a bad joke. Dropped at the first sign of trouble. They're only as good as the world allows them to be. I'll show you. When the chips are down, these... these civilized people, they'll eat each other. See, I'm not a monster. I'm just ahead of the curve.  </em>
+                  </div>
+              </div>
+          </div>
+          <form class="type-message" action="#" method="POST">
+              <textarea rows="3" placeholder="Your message here" class="text-area" (keyup.enter)="sendMessage()"></textarea>
+<!-- https://stackoverflow.com/questions/8934088/how-to-make-enter-key-in-a-textarea-submit-a-form -->
+          </form>
+      </div>
+  </div>

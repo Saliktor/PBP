@@ -1,9 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files
 /* You can add global styles to this file, and also import other style files */
 
 body{
+    background: #27ae60;
+}
+
+/* body{
     background:#27ae60;
-    padding: 3em;
+    /* padding: 3em; 
     font-family: 'Raleway', 'Arial';
     color: #fff;
 }
@@ -22,4 +26,4 @@ ul li a{
 a{
     color:#fff;
     text-decoration:none;
-}
+}  */

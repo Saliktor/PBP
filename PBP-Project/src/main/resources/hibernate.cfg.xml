@@ -15,6 +15,7 @@
 		<property name="hibernate.format_sql">true</property>
 		<!-- Backwards compatibility for id generation -->
 		<property name="hibernate.id.new_generator_mappings">false</property>
+		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		
 		<!-- Tell Hibernate that we are mapping classes -->
 		<!-- XML -->
@@ -22,12 +23,12 @@
 		
 		<!-- Annotation -->
 		<mapping class="com.revature.beans.UserAccount"/>
-<!-- 		<mapping class="com.revature.beans.Message"/>
+		<mapping class="com.revature.beans.Message"/>
 		<mapping class="com.revature.beans.Configuration"/>
 		<mapping class="com.revature.beans.Move"/> 
 		<mapping class="com.revature.beans.Player"/>
 		<mapping class="com.revature.beans.Game"/>
-		<mapping class="com.revature.beans.Team"/>  -->
+		<mapping class="com.revature.beans.Team"/> 
 
 	</session-factory>
 </hibernate-configuration>

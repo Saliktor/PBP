@@ -1,0 +1,161 @@
+/* The CSS gods told me to do this. Who am I to question their logic? */
+*,*:before,*:after {
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+}
+body {
+    background-color: #27ae60;
+    min-height: 100vh;
+    margin: 0px;
+}
+h1 {
+    margin: 0;
+}
+.container {
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    width: 100%;
+}
+.gameboard {
+    display: inline-flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 80vh;
+    display: inline-flex;
+    right: 0;
+    flex-shrink: 0;
+}
+.chatbox {
+    display: inline-flex;
+    flex-direction: column;
+    margin-left: 15px;
+    width: 40vh;
+    background-color: white;
+    min-width: 200px;
+    position: relative;
+    justify-content: stretch;
+}
+.chatheader {
+    padding: 3px;
+}
+.type-message {
+    resize: none;
+}
+.text-area {
+    resize: none;
+    width: 100%;
+    margin: 0;
+    border: 0;
+}
+.message-window {
+    overflow-y: auto;
+    flex-grow: 1;
+    /* flex-direction: column-reverse; */
+    display: flex;
+}
+.messages-or-something {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+.message {
+    width: 100%;
+    background: linear-gradient(#d9d9d9, #e6e6e6);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.game {
+    display: inline-block;
+    right: 0;
+    width: 50%;
+}
+.row-a {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-basis: 12.5%;
+    flex-grow: 1;
+}
+.row-b {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-basis: 12.5%;
+    flex-grow: 1;
+}
+.square {
+    /* flex: 12.5%; */
+    /* flex-grow: 1; */
+    flex-basis: 12.5%;
+    min-width: 50px;
+    min-height: 50px;
+    /* height: 100px; */
+}
+.row-a > .square:nth-child(odd) {
+    background-color: #1c7d44;
+}
+.row-a > .square:nth-child(even){
+    background-color: #219150;
+}
+.row-b > .square:nth-child(even){
+    background-color: #1c7d44;
+}
+.row-b > .square:nth-child(odd){
+    background-color: #219150;
+}
+.whitepiece {
+    height: 99%;
+    width: 99%;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid black;
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    margin: auto;
+}
+.blackpiece {
+    height: 99%;
+    width: 99%;
+    background-color: black;
+    border-radius: 50%;
+    border: 1px solid black;
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    margin: auto;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+}
+.reversi {
+    text-align: center;
+    margin: 10px;
+}
+#logout {
+    float:right;
+}

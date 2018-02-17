@@ -14,20 +14,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
 import com.revature.services.UserService;
-import com.revature.services.UserServiceImp;
 
 @Controller
 @RequestMapping(value="/login")
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "*")
 public class LoginController {
-	public static void main(String[] args) {
-		UserService us = new UserServiceImp();
-		
-		UserAccount u = us.getUser("testuser", "password");
-		//UserAccount u  = us.createUser("testuser", "password", "test@email.com");
-		log.trace(u.toString());
-		
-	}
 	private ObjectMapper om = new ObjectMapper();
 	
 	private static Logger log = Logger.getLogger(LoginController.class);
@@ -37,29 +28,18 @@ public class LoginController {
 	public void setLogin(UserService uService) {
 		this.uService = uService;
 	}
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String goLogin(HttpSession session) {
-		if(session.getAttribute("user")!=null)
-			return "home";
-		return "login";
-	}
-	
+
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
 	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
-		System.out.println(username);
-		System.out.println(password);
-
 		UserAccount user = uService.getUser(username, password);
 		System.out.println(user);
 		if(user == null) {
-			return om.writeValueAsString(null);
+			return "null";
 		} else {
 			session.setAttribute("currentUser", user);
 			return om.writeValueAsString(user);
-		}
-			
+		}	
 	}
 }
 
