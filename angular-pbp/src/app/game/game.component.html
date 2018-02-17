@@ -10,8 +10,8 @@ The pieces are hidden/unhidden when the boardstate is received. Should be able t
 Once classes are known, the variables can be updated and this implemented. Remove the 72 lines beneath it.
 
 
-<div *ngFor="let row of WTF IS THIS VARIABLE">
-    <div *ngFor="let col of WTF IS THIS VARIABLE" class="square">
+<div *ngFor="let row of WTF IS THIS VARIABLE; #rowIdx = index">
+    <div *ngFor="let col of WTF IS THIS VARIABLE; #colIdx = index" class="square" [attr.id]="{{#colIdx + #rowIdx}}">
         <div [class.hidden]="VARIABLE !== 1" class="whitepiece"></div>
         <div [class.hidden]="VARIABLE !== 2" class="blackpiece"></div>
         <div [class.hidden]="VARIABLE !== 8" class="valid-move" (click)="sendMove()"></div>
