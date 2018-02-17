@@ -359,7 +359,7 @@ public class GameServiceImp implements GameService {
 			//Add the player to the game object
 			Game game = player.getGame();
 			game.addPlayer(player);
-			
+
 			//Persist the new player and game
 			gameDAO.createNewGameAndPlayer(player);			
 		}
