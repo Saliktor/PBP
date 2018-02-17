@@ -30,31 +30,42 @@ export class GameService {
   //   });
   // }
 
+
+  /*Call made by angular to create a new game session
+  * Makes a new player containing the new game tied to currentUser
+  * Will recieve an updated player from server with proper ids that will save player to session
+  */
   createNewGame() {
     const body = this.createNewGameBody();
-    this.http.post(this.newGameURL, body, { headers: this.headers})
+    return this.http.post(this.newGameURL, body, { headers: this.headers})
       .map(resp => {
         const player = resp.json() as Player;
         localStorage.setItem('player', JSON.stringify(player));
+        return player;
       });
   }
 
-  /* Creates a new game and player and returns the player as a JSON object string */
+  /* Creates a new game and player and returns the player as a JSON object string 
+  *  Helper Method
+  */
   createNewGameBody(): String{
     const currentUser = JSON.parse(localStorage.getItem('currentUser')) as User;
     const newGame = new Game();
 
     const newPlayer = new Player();
-    newPlayer.id = currentUser.id;
-    newPlayer.username = currentUser.username;
-    newPlayer.password = currentUser.password;
-    newPlayer.email = currentUser.email;
-    newPlayer.isAdmin = currentUser.isAdmin;
-    newPlayer.isBanned = currentUser.isBanned;
-    newPlayer.isMuted = currentUser.isMuted;
+    newPlayer.user = currentUser;
     newPlayer.game = newGame;
 
     return JSON.stringify(newPlayer);
+  }
+
+
+  getWorkingGame() {
+    const body = JSON.parse(localStorage.getItem('player')) as Player;
+    return this.http.post(this.workingGameURL, body, { headers: this.headers})
+      .map(resp => {
+        return resp.json() as WorkingGame;
+      });
   }
 
   /* Player signs in to the server to let server know what player the user wishes to become. Server will

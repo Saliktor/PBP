@@ -18,6 +18,23 @@ import com.revature.gamelogic.WorkingGame;
 public class GameServiceImp implements GameService {
 	private static boolean noMoreMoves = false;
 	private static GameDAOImp gameDAO = new GameDAOImp();
+	
+	/* Only two teams are needed for all players
+	 * Person who creates the game will be assigned white team
+	 * Other player in game will be assigned to black
+	 * Only works for 1v1 games
+	 */
+	private static Team white_team, black_team;
+	static {
+		white_team = new Team();
+		white_team.setId(1);
+		white_team.setTeamName("white");
+		
+		black_team = new Team();
+		black_team.setId(2);
+		black_team.setTeamName("black");
+	}
+
 
 	public WorkingGame makeMove(int xid, int yid, Player player) {
 		//TODO
@@ -336,22 +353,15 @@ public class GameServiceImp implements GameService {
 		}
 
 		public void createNewGame(Player player) {
-			//TODO persist remaining objects to database once DAO's are updated
+			//Set players team to white cause they created the game
+			player.setTeam(white_team);
 			
-			//Create the team bean, persist to db, and to add to player
-			Team team = new Team();
-			team.setTeamName("white");
-			//team = gameDAO.createNewTeam(team);
-			player.setTeam(team);
-			
-			//Add the player to the game object and persist to the db
+			//Add the player to the game object
 			Game game = player.getGame();
 			game.addPlayer(player);
-			game = gameDAO.createNewGame(game);
 			
-			//Persist the player to db
-			//player = gameDAO.createNewPlayer(player);
-			
+			//Persist the new player and game
+			gameDAO.createNewGameAndPlayer(player);			
 		}
 
 		public Game getGame(Player player) {

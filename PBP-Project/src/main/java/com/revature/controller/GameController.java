@@ -19,7 +19,7 @@ import com.revature.gamelogic.WorkingGame;
 import com.revature.services.GameService;
 
 @Controller
-@CrossOrigin(origins= "*")
+@CrossOrigin(origins= "*", allowCredentials = "true", allowedHeaders = "*")
 public class GameController {
 	private ObjectMapper om = new ObjectMapper();
 
@@ -31,14 +31,29 @@ public class GameController {
 	}
 	
 	
+	/* POST call that takes the passed player object and properly formats and persist the
+	 * Player and Game beans. Return player after formatting to angular so it can update its
+	 * copy of player and game with appropriate id's
+	 */
 	@RequestMapping(value="/game-new", method=RequestMethod.POST)
 	@ResponseBody
 	public String createNewGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
 		gameService.createNewGame(player);
-
+		
+		System.out.println("Player: " + session.getAttribute("player"));
 		return om.writeValueAsString(player);
-
+	}
+	
+	
+	/* GET call to retrieve the WorkingGame for current player */
+	@RequestMapping(value="/game-workinggame", method=RequestMethod.POST)
+	@ResponseBody
+	public String getWorkingGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
+		Game game = player.getGame();
+		WorkingGame wgame = new WorkingGame(game);
+		wgame.team = player.getTeam();
+		return om.writeValueAsString(wgame);
 	}
 	
 	

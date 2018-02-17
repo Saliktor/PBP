@@ -1,6 +1,8 @@
 import { User } from './user';
 import { Game } from './game';
 
-export class Player extends User {
+export class Player{
+    id: Number;
+    user: User;
     game: Game;
 }
