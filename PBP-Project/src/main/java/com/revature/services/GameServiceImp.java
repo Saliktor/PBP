@@ -359,7 +359,7 @@ public class GameServiceImp implements GameService {
 		public Game createNewGame(Player player) {
 			Team team = new Team();
 			team.setTeamName("white");
-			team.addPlayer(player);
+			//team.addPlayer(player);
 			player.setTeam(team);
 			Game game = player.getGame();
 			game.addPlayer(player);

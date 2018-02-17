@@ -1,16 +1,14 @@
 package com.revature.TestingStuff;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Game;
-import com.revature.beans.Message;
+import com.revature.beans.Player;
+import com.revature.beans.Team;
 import com.revature.beans.UserAccount;
 import com.revature.dao.MessageDAO;
 import com.revature.dao.MessageDAOImp;
@@ -33,14 +31,37 @@ public class Test {
 	
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
+		Session session = hu.getSession();
+		UserAccount user = us.getUser("mrBitch", "password");
+		log.trace(user);
+		//Team team = new Team();
+		//team.setId(1);
+		//team.setTeamName("Black");
+		Player player = (Player) session.get(Player.class, 3);
 		
-		UserAccount u = new UserAccount();
-		u.setUsername("user");
-		u.setPassword("password");
+		player.getGame().setAa(2);
+		
+		log.trace(player);
+		Transaction tx = session.getTransaction();
+		tx.begin();
+		 session.update(player);
+		 tx.commit();
+//		player.setGame(game);
+//		player.setTeam(team);
+//		player.setUser(user);
+//		user.addPlayer(player);
+//		
+		
+//		
+//		Transaction tx = session.getTransaction();
+//		
+//		tx = session.beginTransaction();
+//		session.merge(player);
+//		tx.commit();
+		session.close();
 		
 		
-		UserAccount newUser = us.getUser("anaser91", "password");
-		log.trace(newUser);
+		
 		
 		
 	}

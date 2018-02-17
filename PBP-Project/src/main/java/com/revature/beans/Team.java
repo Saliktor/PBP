@@ -14,8 +14,8 @@ public class Team {
 	@Id
 	int id;
 	String teamName;
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="team")
-	Set<Player> players = new HashSet<Player>();
+//	@OneToMany(fetch=FetchType.EAGER, mappedBy="team")
+//	Set<Player> players = new HashSet<Player>();
 	
 	public Team() {
 		
@@ -37,17 +37,17 @@ public class Team {
 		this.teamName = teamName;
 	}
 
-	public Set<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(Set<Player> players) {
-		this.players = players;
-	}
-	
-	public void addPlayer(Player player) {
-		this.players.add(player);
-	}
+//	public Set<Player> getPlayers() {
+//		return players;
+//	}
+//
+//	public void setPlayers(Set<Player> players) {
+//		this.players = players;
+//	}
+//	
+//	public void addPlayer(Player player) {
+//		this.players.add(player);
+//	}
 	
 	
 	
