@@ -18,19 +18,6 @@ export class GameService {
 
   constructor(private http: Http) { }
 
-
-  /*Retrieves the boardstate for the game currently in session according to what player is signed in on java side. Be sure
-   that the player has signed in before this method is called */
-  // getGameBoard() {
-  //   return this.http.get(this.boardstateURL, { headers: this.headers, withCredentials: true })
-  //   .map(resp => {
-  //     const gameboard = new Game();
-  //     gameboard.boardState = resp.json() as Number[][];
-  //     return gameboard;
-  //   });
-  // }
-
-
   /*Call made by angular to create a new game session
   * Makes a new player containing the new game tied to currentUser
   * Will recieve an updated player from server with proper ids that will save player to session
