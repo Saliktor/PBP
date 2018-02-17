@@ -335,25 +335,29 @@ public class GameServiceImp implements GameService {
 			return false;
 		}
 
-		public Game createNewGame(Player player) {
+		public WorkingGame createNewGame(Player player) {
+			//Create the team bean to add to player
 			Team team = new Team();
 			team.setTeamName("white");
-			team.addPlayer(player);
 			player.setTeam(team);
 			
+			//Add the player to the game object
 			Game game = player.getGame();
 			game.addPlayer(player);
 			
-			//This throws a Hibernate.MappingException
-			//Does this also save the team and player to the data base as well?
-			//game = gameDAO.createNewGame(game);
+			//persist all necessary objects to database
+			game = gameDAO.createNewGame(game);
+			//TODO persist the table and player to database as well
+			// team = gameDAO.createNewTeam(team);
+			//  ^^^^ might need to re-add this to player
+			// player = gameDAO.createNewPlayer(player);
+			// ^^ might have to re-add this to game
 			
-			gameDAO.createNewGame(new Game());
+			//Create the WorkingGame to be returned to angular
+			WorkingGame newWorkingGame = new WorkingGame(game);
+			newWorkingGame.team = player.getTeam();
 			
-			System.out.println(team);
-			System.out.println(player);
-			System.out.println(game);
-			return game;
+			return newWorkingGame;
 		}
 
 		public Game getGame(Player player) {

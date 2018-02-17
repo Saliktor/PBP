@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
@@ -24,16 +25,19 @@ public class GameDAOImp implements GameDAO {
 	}
 
 	public Game createNewGame(Game game) {
-		Game newGame = null;
+		Transaction tx = null;
 		Session session = hu.getSession();
 		try {
-			newGame = (Game) session.save(game);
+			tx = session.beginTransaction();
+			session.save(game);
+			tx.commit();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 			return null;
 		}
-		return newGame;
+		return game;
 	}
 
 	public Game getGame(Player player) {

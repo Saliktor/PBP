@@ -30,15 +30,16 @@ public class GameController {
 		this.gameService = gameService;
 	}
 	
-	//This needs to be changed to a post and the parameter should take in a game
+	
 	@RequestMapping(value="/game-new", method=RequestMethod.POST)
 	@ResponseBody
 	public String createNewGame(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
-		gameService.createNewGame(player);
+		return gameService.createNewGame(player);
+
 		
 		//Dummy return in mean time until service can appropriately handle creation of new game/player etc.
-		return "null";
+//		return "null";
 	}
 	
 	

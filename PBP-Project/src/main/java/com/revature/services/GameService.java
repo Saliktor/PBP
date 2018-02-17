@@ -15,7 +15,7 @@ public interface GameService {
 	Set<Square> findValidMoves(Player player);
 	//update, create, retrieve
 	boolean updateGame(Game game);
-	Game createNewGame(Player player);
+	WorkingGame createNewGame(Player player);
 	Game getGame(Player player);
 	
 

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { Game } from './game';
 import { User } from './user';
 import { Player } from './player';
+import { WorkingGame } from './WorkingGame';
 
 @Injectable()
 export class GameService {
@@ -33,7 +34,7 @@ export class GameService {
     const body = this.createNewGameBody();
     return this.http.post(this.newGameURL, body, { headers: this.headers, withCredentials: true})
       .map(resp => {
-        return resp.json() as Game;
+        return resp.json() as WorkingGame
       });
   }
 
@@ -52,7 +53,6 @@ export class GameService {
     newPlayer.isMuted = currentUser.isMuted;
     newPlayer.game = newGame;
 
-    console.log(newPlayer);
     return JSON.stringify(newPlayer);
   }
 

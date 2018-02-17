@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.revature.gamelogic.WorkingGame;
 
 @Entity
-@Table(name = "message")
+@Table(name = "game")
 public class Game {
 	
 	@Id
