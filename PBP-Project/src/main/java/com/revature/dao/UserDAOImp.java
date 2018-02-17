@@ -106,5 +106,21 @@ public class UserDAOImp implements UserDAO {
 	}
 
 
+	public UserAccount updateUser(UserAccount user) {
+		Session session = hu.getSession();
+		UserAccount updatedUser = null;
+		try{
+			user = (UserAccount) session.merge(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return user;
+		} finally {
+			session.close();
+		}
+		return user;
+	}
+
+
 
 }

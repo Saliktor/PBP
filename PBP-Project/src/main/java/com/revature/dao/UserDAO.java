@@ -8,6 +8,7 @@ public interface UserDAO {
 	UserAccount getUser(UserAccount user);
 	boolean isEmailAvailable(String email);
 	boolean isUsernameAvailable(String email);
+	UserAccount updateUser (UserAccount user);
 	
 	
 	boolean deleteUser(int userId);

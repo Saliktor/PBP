@@ -8,6 +8,8 @@ public interface UserService {
 	public UserAccount createAdmin(String username, String password, String email);
 	
 	public UserAccount getUser(String username, String password);
+
 	public Player getPlayer(int id);
 
+	public UserAccount editUser(UserAccount user);
 }

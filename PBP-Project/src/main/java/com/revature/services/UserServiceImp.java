@@ -57,11 +57,15 @@ public class UserServiceImp implements UserService {
 		user.setPassword(password);
 		user = userDAO.getUser(user);
 		return user;
-}
+	}
 
 	public Player getPlayer(int id) {
 		
 		Player player = playerDAO.getPlayer(id);
 		return player;
+	}
+
+	public UserAccount editUser(UserAccount user) {
+		return userDAO.updateUser(user);
 	}
 }

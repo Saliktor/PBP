@@ -37,7 +37,7 @@ public class LoginController {
 		if(user == null) {
 			return "null";
 		} else {
-			session.setAttribute("user", user);
+			session.setAttribute("currentUser", user);
 			return om.writeValueAsString(user);
 		}	
 	}
