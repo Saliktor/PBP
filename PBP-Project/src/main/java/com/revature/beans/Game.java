@@ -12,20 +12,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.revature.gamelogic.WorkingGame;
 
 @Entity
-@Table(name = "game")
+@Table(name = "Game")
 public class Game {
 	
 	@Id
 	@SequenceGenerator(name="game_pk",sequenceName="game_seq", allocationSize=1)
 	@GeneratedValue(generator="game_pk", strategy=GenerationType.SEQUENCE)
 	int id;
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Move> moves = new HashSet<Move>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
 	

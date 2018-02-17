@@ -1,12 +1,7 @@
 package com.revature.beans;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Team {
@@ -33,10 +28,5 @@ public class Team {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
-	}
-
-	@Override
-	public String toString() {
-		return "Team [id=" + id + ", teamName=" + teamName + "]";
 	}
 }

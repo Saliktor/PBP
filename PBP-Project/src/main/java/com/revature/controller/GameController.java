@@ -35,7 +35,9 @@ public class GameController {
 	@ResponseBody
 	public String createNewGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
-		return om.writeValueAsString(gameService.createNewGame(player));
+		gameService.createNewGame(player);
+
+		return om.writeValueAsString(player);
 
 	}
 	

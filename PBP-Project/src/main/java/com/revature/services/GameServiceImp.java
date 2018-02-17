@@ -335,7 +335,7 @@ public class GameServiceImp implements GameService {
 			return false;
 		}
 
-		public WorkingGame createNewGame(Player player) {
+		public void createNewGame(Player player) {
 			//TODO persist remaining objects to database once DAO's are updated
 			
 			//Create the team bean, persist to db, and to add to player
@@ -352,11 +352,6 @@ public class GameServiceImp implements GameService {
 			//Persist the player to db
 			//player = gameDAO.createNewPlayer(player);
 			
-			//Create the WorkingGame to be returned to angular
-			WorkingGame newWorkingGame = new WorkingGame(game);
-			newWorkingGame.team = player.getTeam();
-			
-			return newWorkingGame;
 		}
 
 		public Game getGame(Player player) {

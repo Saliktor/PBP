@@ -1,3 +1,5 @@
+import { Player } from './player';
+
 export class User {
     id: Number;
     username: string;
@@ -6,4 +8,5 @@ export class User {
     isAdmin: Number;
     isBanned: Number;
     isMuted: Number;
+    players: Player[];
 }

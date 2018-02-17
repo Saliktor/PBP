@@ -1,14 +1,20 @@
 package com.revature.beans;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="UserAccount")
@@ -18,6 +24,17 @@ public class UserAccount {
 	@SequenceGenerator(name="user_pk",sequenceName="useraccount_seq", allocationSize=1)
 	@GeneratedValue(generator="user_pk", strategy=GenerationType.SEQUENCE)
 	int id;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	Set<Player> players;
+	public Set<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
+	}
+
 	@Column(name = "username", nullable = false, unique = true)
 	String username;
 	String password;
@@ -86,14 +103,29 @@ public class UserAccount {
 	public void setIsMuted(int isMuted) {
 		this.isMuted = isMuted;
 	}
+	
+	public void addPlayer(Player player) {
+		this.players.add(player);
+	}
 
 	@Override
 	public String toString() {
-		return "UserAccount [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", isAdmin=" + isAdmin + ", isBanned=" + isBanned + ", isMuted=" + isMuted + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserAccount [id=");
+		builder.append(id);
+		builder.append(", username=");
+		builder.append(username);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", isAdmin=");
+		builder.append(isAdmin);
+		builder.append(", isBanned=");
+		builder.append(isBanned);
+		builder.append(", isMuted=");
+		builder.append(isMuted);
+		builder.append("]");
+		return builder.toString();
 	}
-	
-	
-
-
 }

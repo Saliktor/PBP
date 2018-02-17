@@ -11,7 +11,7 @@ import { WorkingGame } from './WorkingGame';
 
 @Injectable()
 export class GameService {
-  private boardstateURL = 'http://localhost:8080/PBP/game-boardstate';
+  private workingGameURL = 'http://localhost:8080/PBP/game-workinggame';
   private playerSignInURL = 'http://localhost:8080/PBP/game-player';
   private newGameURL = 'http://localhost:8080/PBP/game-new';
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
@@ -32,9 +32,10 @@ export class GameService {
 
   createNewGame() {
     const body = this.createNewGameBody();
-    return this.http.post(this.newGameURL, body, { headers: this.headers})
+    this.http.post(this.newGameURL, body, { headers: this.headers})
       .map(resp => {
-        return resp.json() as WorkingGame;
+        const player = resp.json() as Player;
+        localStorage.setItem('player', JSON.stringify(player));
       });
   }
 
@@ -56,28 +57,18 @@ export class GameService {
     return JSON.stringify(newPlayer);
   }
 
-  /*Signs in a player to the selected game and user. This is a call to server to get the player attached to the current user and selected
-    game. Server should return a player type */
-  // playerSignIn(game: Game, user: User) {
-  //   // const body = `userID=${user.id}&gameID=${game.gameID}`;
-  //   const game1 = new Game();
-  //   game1.id = 666;
-  //   const player = new Player();
-  //   player.id = 88;
-  //   player.game = game1;
-  //   //player.game = game1;
-   
-  //   const body = `${JSON.stringify(player)}`;
-  //   console.log(JSON.stringify(player));
-  //   // const body = `userID=100&gameID=32`;
-  //   return this.http.post(this.playerSignInURL, body, { headers: this.headers, withCredentials: true })
-  //   .map(resp => {
-  //     const player = resp.json();
-  //     // localStorage.setItem('currentUser', JSON.stringify(user));
-  //     return player;
-  //   });
-  // }
+  /* Player signs in to the server to let server know what player the user wishes to become. Server will
+    reply with a WorkingGame */
+  playerSignIn(player: Player) {
+    const body = JSON.stringify(player);
+    return this.http.post(this.playerSignInURL, body, { headers: this.headers})
+    .map(resp => {
+      const workingGame = resp.json() as WorkingGame;
 
-  /*Retrieve all players associated with the user*/
+      //Possible scenario of resp being null?
 
+      localStorage.setItem('player', JSON.stringify(player));
+      return workingGame;
+    });
+  }
 }
