@@ -10,8 +10,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-  private loginUrl = 'http://localhost:8080/PBP/login';
-  private registerUrl = 'http://localhost:8080/PBP/register';
+  private loginUrl = 'http://localhost:8070/PBP/login';
+  private registerUrl = 'http://localhost:8070/PBP/register';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   public currentUser: CurrentUser = new CurrentUser();
 

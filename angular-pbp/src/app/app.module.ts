@@ -11,6 +11,9 @@ import { UserService } from './user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessageListComponent } from './chatbox/message-list/message-list.component';
+import { MessageItemComponent } from './chatbox/message-item/message-item.component';
+import { MessageFormComponent } from './chatbox/message-form/message-form.component';
 
 
 
@@ -20,7 +23,10 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    MessageListComponent,
+    MessageItemComponent,
+    MessageFormComponent
   ],
   imports: [
     BrowserModule,

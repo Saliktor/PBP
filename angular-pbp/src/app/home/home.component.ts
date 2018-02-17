@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { Message } from '../message';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  public message : Message;
+  public messages : Message[];
+  constructor(private userService: UserService, private router: Router) { 
+    this.message = new Message('');
+    this.messages = [
+      new Message('Welcome to Reversi Simulator', new Date())
+    ];
+
+  }
 
   ngOnInit() {
   }
