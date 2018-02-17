@@ -15,11 +15,11 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="ID")
 public class Player extends UserAccount{
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "TEAM")
 	Team team;
 	
@@ -41,6 +41,17 @@ public class Player extends UserAccount{
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Player [game=");
+		builder.append(game);
+		builder.append(", team=");
+		builder.append(team);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	

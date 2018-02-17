@@ -39,28 +39,9 @@ public class Test {
 		u.setPassword("password");
 		
 		
-		UserAccount newUser = us.getUser("user1", "password");
-		Game game  = new Game();
-		game.setId(1);
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-		Date date = dateFormat.parse("30/1/2007");
-		long d = date.getDate();
-		Timestamp t = new Timestamp(d);
-		//Message test
-		Message message = new Message();
-		message.setMessageContent("what's up");
-		message.setTimeMade(timestamp);
-		message.setUser(newUser);
-		message.setGame(game);
-		log.trace(t);
-		List<Message> messages = gService.getNewMessages(game, t);
-		//log.trace(mDAO.saveMessage(message));
-		log.trace(messages.toString());
-		// Message message2 = mDAO.getLatestMessage();
-		// log.trace(message2.toString());
-		//log.trace(newUser.toString());
+		UserAccount newUser = us.getUser("anaser91", "password");
+		log.trace(newUser);
+		
 		
 	}
 }

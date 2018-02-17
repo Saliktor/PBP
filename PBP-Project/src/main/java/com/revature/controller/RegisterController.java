@@ -2,7 +2,6 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,33 +13,36 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
 import com.revature.services.UserService;
-import com.revature.services.UserServiceImp;
+
+
 
 @Controller
-@RequestMapping(value="/login")
+@RequestMapping(value="/register")
 @CrossOrigin(origins= "*")
-public class LoginController {
-	private ObjectMapper om = new ObjectMapper();
-	
-	private static Logger log = Logger.getLogger(LoginController.class);
+public class RegisterController {
 	@Autowired
 	private UserService uService;
 	
 	public void setLogin(UserService uService) {
 		this.uService = uService;
 	}
-
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String getRegister(HttpSession session) {
+		return "register";
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
-		UserAccount user = uService.getUser(username, password);
-		log.trace(username + password);
+	public String register(String username, String password, String email, ObjectMapper om, HttpSession session) throws JsonProcessingException {
+		UserAccount user = uService.createUser(username, password, email);
 		if(user == null) {
-			return "null";
+			return om.writeValueAsString("null");
 		} else {
 			session.setAttribute("user", user);
 			return om.writeValueAsString(user);
-		}	
+		}
+			
 	}
 }
 

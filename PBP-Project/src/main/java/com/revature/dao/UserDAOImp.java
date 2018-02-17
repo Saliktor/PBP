@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.revature.TestingStuff.Test;
 import com.revature.beans.UserAccount;
 import com.revature.util.HibernateUtil;
 
@@ -15,20 +14,20 @@ public class UserDAOImp implements UserDAO {
 	private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(UserDAOImp.class);
 	
-	
-	@Override
+
 	public boolean createUser(UserAccount user) {
 		Session session = hu.getSession();
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
+			log.trace("Begun transaction");
 			log.trace(session.save(user));
 			tx.commit();
 			return true;
 		} catch(Exception e) {
 			if(tx!=null) {
 				tx.rollback();
-				e.printStackTrace();
+				log.error("Exception occured while creating user", e);
 				return false;
 			}
 		} finally {
@@ -37,13 +36,7 @@ public class UserDAOImp implements UserDAO {
 		return false;
 	}
 
-	@Override
-	public boolean deleteUser(int UserId) {
-		
-		return false;
-	}
 
-	@Override
 	public UserAccount getUser(UserAccount user) {
 		Session session = hu.getSession();
 		UserAccount newUser = null;
@@ -61,15 +54,57 @@ public class UserDAOImp implements UserDAO {
 			session.close();
 		}
 		
-		return newUser;
+		return newUser;		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean isEmailAvailable(String email) {
+		Session session = hu.getSession();
+		UserAccount newUser = null;
+		try {
+			Criteria criteria = session.createCriteria(UserAccount.class);
+			criteria.add(Restrictions.eq("email", email));
+			
+			newUser = (UserAccount) criteria.uniqueResult();
+			if(newUser == null)
+				return true;
+
+		} catch (Exception e) {
+			log.trace(e);
+			return false;
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+
+	public boolean isUsernameAvailable(String username) {
+		Session session = hu.getSession();
+		UserAccount newUser = null;
+		try {
+			Criteria criteria = session.createCriteria(UserAccount.class);
+			criteria.add(Restrictions.eq("username", username));
+			
+			newUser = (UserAccount) criteria.uniqueResult();
+			if(newUser == null)
+				return true;
+
+		} catch (Exception e) {
+			log.trace(e);
+			return false;
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+
+	public boolean deleteUser(int userId) {
+		
+		return false;
+	}
+
+
 
 }
