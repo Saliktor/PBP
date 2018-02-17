@@ -27,6 +27,14 @@ public class UserAccount {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	Set<Player> players;
+	public Set<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
+	}
+
 	@Column(name = "username", nullable = false, unique = true)
 	String username;
 	String password;

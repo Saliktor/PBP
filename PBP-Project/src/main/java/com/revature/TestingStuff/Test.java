@@ -1,14 +1,12 @@
 package com.revature.TestingStuff;
 
 import java.text.ParseException;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import com.revature.beans.Game;
 import com.revature.beans.Player;
-import com.revature.beans.Team;
 import com.revature.beans.UserAccount;
 import com.revature.dao.MessageDAO;
 import com.revature.dao.MessageDAOImp;
@@ -37,15 +35,20 @@ public class Test {
 		//Team team = new Team();
 		//team.setId(1);
 		//team.setTeamName("Black");
-		Player player = (Player) session.get(Player.class, 3);
+//		Player player = (Player) session.get(Player.class, 3);
+//		Player player2 = (Player) session.get(Player.class, 1);
+//		Player player3 = new Player();
+//		player3.setUser(user);
+//		Game game = (Game) session.get(Game.class, 3);
 		
-		player.getGame().setAa(2);
 		
-		log.trace(player);
-		Transaction tx = session.getTransaction();
-		tx.begin();
-		 session.update(player);
-		 tx.commit();
+		//player3.setGame(player.getGame());
+		Set<Player> players = gService.getUserPlayers(user);
+		log.trace(players);
+		//Transaction tx = session.getTransaction();
+	//	tx.begin();
+		// session.save(player3);
+		// tx.commit();
 //		player.setGame(game);
 //		player.setTeam(team);
 //		player.setUser(user);

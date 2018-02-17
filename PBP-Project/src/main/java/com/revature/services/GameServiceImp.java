@@ -13,6 +13,7 @@ import com.revature.beans.Message;
 import com.revature.beans.Move;
 import com.revature.beans.Player;
 import com.revature.beans.Team;
+import com.revature.beans.UserAccount;
 import com.revature.dao.GameDAOImp;
 import com.revature.dao.MessageDAO;
 import com.revature.dao.MessageDAOImp;
@@ -351,34 +352,41 @@ public class GameServiceImp implements GameService {
 			//return gameDao.getGame(Player.getGameId);
 		}
 
-		public boolean updateGame(Game game) {
-			// TODO Auto-generated method stub
-			return false;
+		@Override
+		public Game updateGame(Player player) {
+			if(gameDAO.updateGame(player))
+				return player.getGame();
+			
+			return null;
 		}
 
 		public Game createNewGame(Player player) {
-			Team team = new Team();
-			team.setTeamName("white");
+			//Team team = new Team();
+			//team.setTeamName("white");
 			//team.addPlayer(player);
-			player.setTeam(team);
-			Game game = player.getGame();
-			game.addPlayer(player);
+//			Game game = player.getGame();
+//			game.addPlayer(player);
 			
 			//This throws a Hibernate.MappingException
 			//Does this also save the team and player to the data base as well?
 			//game = gameDAO.createNewGame(game);
 			
-			gameDAO.createNewGame(game);
+			if (gameDAO.createNewGameAndPlayer(player)) {;
+				return player.getGame(); 
+			}
+				
 			
-			System.out.println(team);
-			System.out.println(player);
-			System.out.println(game);
-			return game;
+			return null;
 		}
 
 		public Game getGame(Player player) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+		@Override
+		public Set<Player> getUserPlayers(UserAccount user) {
+			return gameDAO.getUserPlayersAndGames(user);
 		}
 
 }

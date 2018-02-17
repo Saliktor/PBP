@@ -7,6 +7,7 @@ import java.util.Set;
 import com.revature.beans.Game;
 import com.revature.beans.Message;
 import com.revature.beans.Player;
+import com.revature.beans.UserAccount;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
@@ -20,8 +21,9 @@ public interface GameService {
 	WorkingGame makeMove(int xid, int yid, Player player);
 	Set<Square> findValidMoves(Player player);
 	//update, create, retrieve
-	boolean updateGame(Game game);
+	Game updateGame(Player player);
 	Game createNewGame(Player player);
 	Game getGame(Player player);
+	Set<Player> getUserPlayers (UserAccount user);
 	
 }

@@ -73,13 +73,19 @@ public class Player{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Player [game=");
+		builder.append("Player [id=");
+		builder.append(id);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", game=");
 		builder.append(game);
 		builder.append(", team=");
 		builder.append(team);
 		builder.append("]");
 		return builder.toString();
 	}
+
+	
 	
 	
 }
