@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
-import com.revature.beans.UserAccount;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 

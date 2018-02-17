@@ -32,9 +32,9 @@ export class GameService {
 
   createNewGame() {
     const body = this.createNewGameBody();
-    return this.http.post(this.newGameURL, body, { headers: this.headers, withCredentials: true})
+    return this.http.post(this.newGameURL, body, { headers: this.headers})
       .map(resp => {
-        return resp.json() as WorkingGame
+        return resp.json() as WorkingGame;
       });
   }
 

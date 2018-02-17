@@ -31,7 +31,7 @@ export class UserService {
   login(username: string, password: string) {
     if (username && password) {
       const body = `username=${username}&password=${password}`;
-      return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true })
+      return this.http.post(this.loginUrl, body, { headers: this.headers})
         .map(resp => {
           let user = resp.json();
           if (user == null) {
@@ -48,7 +48,7 @@ export class UserService {
   register(username: string, password: string, email: string) {
     if (username && password && email) {
       const body = `username=${username}&password=${password}&email=${email}`;
-      return this.http.post(this.registerUrl, body, { headers: this.headers, withCredentials: true })
+      return this.http.post(this.registerUrl, body, { headers: this.headers})
         .map( resp => {
           let user = resp.json();
           if (user == null){

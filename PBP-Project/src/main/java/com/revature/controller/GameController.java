@@ -33,13 +33,10 @@ public class GameController {
 	
 	@RequestMapping(value="/game-new", method=RequestMethod.POST)
 	@ResponseBody
-	public String createNewGame(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
+	public String createNewGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
-		return gameService.createNewGame(player);
+		return om.writeValueAsString(gameService.createNewGame(player));
 
-		
-		//Dummy return in mean time until service can appropriately handle creation of new game/player etc.
-//		return "null";
 	}
 	
 	
