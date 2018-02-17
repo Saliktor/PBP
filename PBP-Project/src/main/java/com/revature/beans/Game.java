@@ -94,6 +94,10 @@ public class Game {
 	
 	public Game() {
 		super();
+		this.dd = 1;
+		this.de = 2;
+		this.ed = 2;
+		this.ee = 1;
 	}
 	
 	public Game (WorkingGame g) {
@@ -699,6 +703,10 @@ public class Game {
 	public void setPlayers(Set<Player> players) {
 		this.players = players;
 	}
+	
+	public void addPlayer(Player player) {
+		this.players.add(player);
+	}
 
 	public Set<Message> getMessages() {
 		return messages;
@@ -707,4 +715,21 @@ public class Game {
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
+
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", aa=" + aa
+				+ ", ab=" + ab + ", ac=" + ac + ", ad=" + ad + ", ae=" + ae + ", af=" + af + ", ag=" + ag + ", ah=" + ah
+				+ ", ba=" + ba + ", bb=" + bb + ", bc=" + bc + ", bd=" + bd + ", be=" + be + ", bf=" + bf + ", bg=" + bg
+				+ ", bh=" + bh + ", ca=" + ca + ", cb=" + cb + ", cc=" + cc + ", cd=" + cd + ", ce=" + ce + ", cf=" + cf
+				+ ", cg=" + cg + ", ch=" + ch + ", da=" + da + ", db=" + db + ", dc=" + dc + ", dd=" + dd + ", de=" + de
+				+ ", df=" + df + ", dg=" + dg + ", dh=" + dh + ", ea=" + ea + ", eb=" + eb + ", ec=" + ec + ", ed=" + ed
+				+ ", ee=" + ee + ", ef=" + ef + ", eg=" + eg + ", eh=" + eh + ", fa=" + fa + ", fb=" + fb + ", fc=" + fc
+				+ ", fd=" + fd + ", fe=" + fe + ", ff=" + ff + ", fg=" + fg + ", fh=" + fh + ", ga=" + ga + ", gb=" + gb
+				+ ", gc=" + gc + ", gd=" + gd + ", ge=" + ge + ", gf=" + gf + ", gg=" + gg + ", gh=" + gh + ", ha=" + ha
+				+ ", hb=" + hb + ", hc=" + hc + ", hd=" + hd + ", he=" + he + ", hf=" + hf + ", hg=" + hg + ", hh=" + hh
+				+ "]";
+	}
+	
+	
 }

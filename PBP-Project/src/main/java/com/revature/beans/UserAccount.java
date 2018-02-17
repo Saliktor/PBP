@@ -89,22 +89,11 @@ public class UserAccount {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserAccount [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", isAdmin=");
-		builder.append(isAdmin);
-		builder.append(", isBanned=");
-		builder.append(isBanned);
-		builder.append(", isMuted=");
-		builder.append(isMuted);
-		builder.append("]");
-		return builder.toString();
+		return "UserAccount [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", isAdmin=" + isAdmin + ", isBanned=" + isBanned + ", isMuted=" + isMuted + "]";
 	}
+	
+	
+
+
 }

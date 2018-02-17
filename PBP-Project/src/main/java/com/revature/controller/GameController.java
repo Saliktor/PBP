@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Game;
 import com.revature.beans.Player;
+import com.revature.beans.UserAccount;
 import com.revature.gamelogic.WorkingGame;
 import com.revature.services.GameService;
 
@@ -27,6 +28,15 @@ public class GameController {
 	
 	public void setGameService(GameService gameService) {
 		this.gameService = gameService;
+	}
+	
+	//This needs to be changed to a post and the parameter should take in a game
+	@RequestMapping(value="/game-new", method=RequestMethod.POST)
+	@ResponseBody
+	public String createNewGame(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
+		session.setAttribute("player", player);
+		gameService.createNewGame(player);
+		return "null";
 	}
 	
 	

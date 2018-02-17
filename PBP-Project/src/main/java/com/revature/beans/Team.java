@@ -45,5 +45,16 @@ public class Team {
 		this.players = players;
 	}
 	
+	public void addPlayer(Player player) {
+		this.players.add(player);
+	}
+
+	@Override
+	public String toString() {
+		return "Team [id=" + id + ", teamName=" + teamName + "]";
+	}
+	
+	
+	
 	
 }

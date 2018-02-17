@@ -45,7 +45,9 @@ public class Player extends UserAccount{
 
 	@Override
 	public String toString() {
-		return "Player [game=" + game + ", team=" + team + "]";
+		return "Player [game=" + game + ", team=" + team +
+				", id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", isAdmin=" + isAdmin + ", isBanned=" + isBanned + ", isMuted=" + isMuted + "]";
 	}
 	
 	

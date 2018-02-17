@@ -11,17 +11,19 @@ export class GameComponent implements OnInit {
   constructor(private gameService: GameService ) {}
 
   ngOnInit() {
-    this.gameService.getGameBoard().subscribe( boardstate => {
-      console.log(boardstate);
-    });
+    this.gameService.createNewGame().subscribe( game => { console.log(game); });
 
-    this.gameService.playerSignIn(null, null).subscribe( player => {
-      console.log(player);
-    });
+    // this.gameService.getGameBoard().subscribe( boardstate => {
+    //   console.log(boardstate);
+    // });
+
+    // this.gameService.playerSignIn(null, null).subscribe( player => {
+    //   console.log(player);
+    // });
   }
 
   sendMessage(){
-    console.log("Success")
+    console.log('Send message was called but no implementation');
   }
 
 }

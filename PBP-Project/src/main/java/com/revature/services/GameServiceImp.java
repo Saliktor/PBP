@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.revature.beans.Game;
 import com.revature.beans.Move;
 import com.revature.beans.Player;
+import com.revature.beans.Team;
 import com.revature.dao.GameDAOImp;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
@@ -334,14 +335,26 @@ public class GameServiceImp implements GameService {
 			return false;
 		}
 
-		public boolean createNewGame(Game game, Player player) {
-			// TODO Auto-generated method stub
-			return false;
+		public Game createNewGame(Player player) {
+			Team team = new Team();
+			team.setTeamName("white");
+			team.addPlayer(player);
+			player.setTeam(team);
+			
+			Game game = player.getGame();
+			game.addPlayer(player);
+			
+			//This throws a Hibernate.MappingException
+			game = gameDAO.createNewGame(game);
+			
+			System.out.println(team);
+			System.out.println(player);
+			System.out.println(game);
+			return game;
 		}
 
 		public Game getGame(Player player) {
 			// TODO Auto-generated method stub
 			return null;
 		}
-
 }

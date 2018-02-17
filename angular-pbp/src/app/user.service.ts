@@ -37,24 +37,12 @@ export class UserService {
           if (user == null) {
             return null;
           } else {
-            user = this.createUser(resp.json());
+            user = resp.json() as User;
             localStorage.setItem('currentUser', JSON.stringify(user));
             return user;
           }
         });
     }
-  }
-
-  createUser(userJsonObject): User {
-    const user: User = new User();
-    user.id = userJsonObject.id;
-    user.username = userJsonObject.username;
-    user.password = userJsonObject.password;
-    user.email = userJsonObject.email;
-    user.isAdmin = userJsonObject.isAdmin === 1 ? true : false;
-    user.isBanned = userJsonObject.isBanned === 1 ? true : false;
-    user.isMuted = userJsonObject.isAdmin === 1 ? true : false;
-    return user;
   }
 
   register(username: string, password: string, email: string) {
@@ -66,7 +54,7 @@ export class UserService {
           if (user == null){
             return null;
           } else {
-            user = this.createUser(resp.json());
+            user = resp.json() as User;
             localStorage.setItem('currentUser', JSON.stringify(user));
             return user;
           }

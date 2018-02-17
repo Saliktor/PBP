@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
+import com.revature.beans.UserAccount;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
@@ -14,7 +15,7 @@ public interface GameService {
 	Set<Square> findValidMoves(Player player);
 	//update, create, retrieve
 	boolean updateGame(Game game);
-	boolean createNewGame(Game game, Player player);
+	Game createNewGame(Player player);
 	Game getGame(Player player);
 	
 

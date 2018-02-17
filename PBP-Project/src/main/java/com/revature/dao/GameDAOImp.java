@@ -23,7 +23,7 @@ public class GameDAOImp implements GameDAO {
 		return updatedGame;
 	}
 
-	public Game createNewGame(Game game, Player player) {
+	public Game createNewGame(Game game) {
 		Game newGame = null;
 		Session session = hu.getSession();
 		try {
