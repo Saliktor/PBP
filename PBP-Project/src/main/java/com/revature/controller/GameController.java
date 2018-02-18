@@ -58,13 +58,12 @@ public class GameController {
 	}
 	
 	
-	//This needs to be changed to a post and the parameter should take in a game
-	@RequestMapping(value="/game-player", method=RequestMethod.POST)
-	@ResponseBody
-	public String playerSignIn(@RequestBody Player player , HttpSession session) throws JsonProcessingException {
-		System.out.println("Player Sign In");
-		System.out.println(player.toString());
-		return null;
+	@RequestMapping(value="/game-join", method=RequestMethod.POST)
+	public String joinGameSession(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
+		session.setAttribute("player", player);
+		Game game = player.getGame();
+		WorkingGame wgame = new WorkingGame(game);
+		return om.writeValueAsString(wgame);
 	}
 	
 	

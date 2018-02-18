@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
+import { Player } from '../player';
+import { User } from '../user';
 
 @Component({
   selector: 'app-game',
@@ -11,7 +13,6 @@ export class GameComponent implements OnInit {
   constructor(private gameService: GameService ) {}
 
   ngOnInit() {
-    this.createNewGame();
   }
 
   sendMessage() {
@@ -25,8 +26,12 @@ export class GameComponent implements OnInit {
         console.log(workingGame);
       });
     });
+  }
 
-
+  joinGameSession(player: Player){
+    this.gameService.joinGameSession(player).subscribe( workingGame =>{
+      console.log(workingGame);
+    });
   }
 
 

@@ -14,6 +14,7 @@ export class GameService {
   private workingGameURL = 'http://localhost:8080/PBP/game-workinggame';
   private playerSignInURL = 'http://localhost:8080/PBP/game-player';
   private newGameURL = 'http://localhost:8080/PBP/game-new';
+  private joinGameURL = 'http://localhost:8080/PBP/game-join';
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
 
   constructor(private http: Http) { }
@@ -51,6 +52,14 @@ export class GameService {
       .map(resp => {
         return resp.json() as WorkingGame;
       });
+  }
+
+  joinGameSession(player: Player){
+    const body = JSON.stringify(player);
+    return this.http.post(this.joinGameURL, body, {headers: this.headers, withCredentials: true})
+      .map(resp => {
+        return resp.json() as WorkingGame;
+      })
   }
 
   /* Player signs in to the server to let server know what player the user wishes to become. Server will
