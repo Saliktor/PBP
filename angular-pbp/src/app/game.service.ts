@@ -22,9 +22,12 @@ export class GameService {
   * Makes a new player containing the new game tied to currentUser
   * Will recieve an updated player from server with proper ids that will save player to session
   */
+  /*Call made to server to create a new game session on behalf of the user
+  *
+  */
   createNewGame() {
-    const body = this.createNewGameBody();
-    return this.http.post(this.newGameURL, body, { headers: this.headers})
+    // const body = this.createNewGameBody();
+    return this.http.get(this.newGameURL, { headers: this.headers, withCredentials: true})
       .map(resp => {
         const player = resp.json() as Player;
         localStorage.setItem('player', JSON.stringify(player));
@@ -49,7 +52,7 @@ export class GameService {
 
   getWorkingGame() {
     const body = JSON.parse(localStorage.getItem('player')) as Player;
-    return this.http.post(this.workingGameURL, body, { headers: this.headers})
+    return this.http.post(this.workingGameURL, body, { headers: this.headers, withCredentials: true})
       .map(resp => {
         return resp.json() as WorkingGame;
       });

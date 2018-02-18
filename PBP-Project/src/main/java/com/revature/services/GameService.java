@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
+import com.revature.beans.UserAccount;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
@@ -15,6 +16,9 @@ public interface GameService {
 	//update, create, retrieve
 	boolean updateGame(Game game);
 	void createNewGame(Player player);
+	Player createNewGame(UserAccount user);
+	
+	
 	Game getGame(Player player);
 	
 

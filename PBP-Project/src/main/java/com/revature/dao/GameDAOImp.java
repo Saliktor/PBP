@@ -23,6 +23,8 @@ public class GameDAOImp implements GameDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			session.close();
 		}
 		return updatedGame;
 	}
@@ -39,6 +41,8 @@ public class GameDAOImp implements GameDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return null;
+		} finally {
+			session.close();
 		}
 		return game;
 	}
@@ -51,6 +55,8 @@ public class GameDAOImp implements GameDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			session.close();
 		}
 		return currentPlayer.getGame();
 	}
@@ -63,6 +69,8 @@ public class GameDAOImp implements GameDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			session.close();
 		}
 		return currentGame;
 	}
@@ -80,6 +88,8 @@ public class GameDAOImp implements GameDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return false;
+		}finally {
+			session.close();
 		}
 		return true;
 	}
@@ -97,6 +107,8 @@ public class GameDAOImp implements GameDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return false;
+		}finally {
+			session.close();
 		}
 		return true;
 	}
@@ -123,6 +135,8 @@ public class GameDAOImp implements GameDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return null;
+		}finally {
+			session.close();
 		}
 		return players;
 	}

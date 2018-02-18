@@ -10,6 +10,7 @@ import com.revature.beans.Game;
 import com.revature.beans.Move;
 import com.revature.beans.Player;
 import com.revature.beans.Team;
+import com.revature.beans.UserAccount;
 import com.revature.dao.GameDAOImp;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
@@ -362,6 +363,30 @@ public class GameServiceImp implements GameService {
 
 			//Persist the new player and game
 			gameDAO.createNewGameAndPlayer(player);			
+		}
+		
+		/* Creates a new game and player on behalf of the user
+		 * Returns the newly updated user object containing newly added player
+		 */
+		public Player createNewGame(UserAccount user) {
+			//Create a new player and assign the user and team
+			Player player = new Player();
+			player.setUser(user);
+			player.setTeam(white_team);
+			
+			//Create a new game. Assign player to game and game to player (dont like this)
+			Game newGame = new Game();
+			newGame.addPlayer(player);
+			player.setGame(newGame);
+
+			//Persist the new player and game
+			gameDAO.createNewGameAndPlayer(player);			
+			
+			//Update the user object
+			user.addPlayer(player);
+			
+			//return the new player
+			return player;
 		}
 
 		public Game getGame(Player player) {
