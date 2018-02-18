@@ -1,12 +1,10 @@
 package com.revature.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,5 +43,17 @@ public class LoginController {
 		UserAccount user = (UserAccount)session.getAttribute("currentUser");
 		return om.writeValueAsString(user.getPlayers());
 	}
+	
+	/* A simple call to invalidate the session on server side
+	 * Returns a null string cause nothing to be sent back
+	 */
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) throws JsonProcessingException {
+		session.invalidate();
+		log.trace("Logged out");
+		return "null";
+	}
+	
+	
 }
 
