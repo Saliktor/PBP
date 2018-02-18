@@ -18,41 +18,36 @@ export class GameService {
 
   constructor(private http: Http) { }
 
-  /*Call made by angular to create a new game session
-  * Makes a new player containing the new game tied to currentUser
-  * Will recieve an updated player from server with proper ids that will save player to session
-  */
   /*Call made to server to create a new game session on behalf of the user
-  *
+  * Adds newly returned player to localstorage for this will be the player and game used
+  * Updates the currentUser in localstorage with new player
   */
   createNewGame() {
-    // const body = this.createNewGameBody();
     return this.http.get(this.newGameURL, { headers: this.headers, withCredentials: true})
       .map(resp => {
         const player = resp.json() as Player;
         localStorage.setItem('player', JSON.stringify(player));
+        this.addNewPlayerToUser(player);
         return player;
       });
   }
 
-  /* Creates a new game and player and returns the player as a JSON object string 
-  *  Helper Method
+  /* Adds a new player to list of players attached to currentUser
+  * Updates the currentUser in localstorage just in case
+  * Helper Method
   */
-  createNewGameBody(): String{
+  addNewPlayerToUser(player: Player){
     const currentUser = JSON.parse(localStorage.getItem('currentUser')) as User;
-    const newGame = new Game();
-
-    const newPlayer = new Player();
-    newPlayer.user = currentUser;
-    newPlayer.game = newGame;
-
-    return JSON.stringify(newPlayer);
+    const players = currentUser.players;
+    players.push(player);
+    currentUser.players = players;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }
 
-
+  /* Call to server to grab the WorkingGame 
+  */
   getWorkingGame() {
-    const body = JSON.parse(localStorage.getItem('player')) as Player;
-    return this.http.post(this.workingGameURL, body, { headers: this.headers, withCredentials: true})
+    return this.http.get(this.workingGameURL, { headers: this.headers, withCredentials: true})
       .map(resp => {
         return resp.json() as WorkingGame;
       });
@@ -60,16 +55,16 @@ export class GameService {
 
   /* Player signs in to the server to let server know what player the user wishes to become. Server will
     reply with a WorkingGame */
-  playerSignIn(player: Player) {
-    const body = JSON.stringify(player);
-    return this.http.post(this.playerSignInURL, body, { headers: this.headers})
-    .map(resp => {
-      const workingGame = resp.json() as WorkingGame;
+  // playerSignIn(player: Player) {
+  //   const body = JSON.stringify(player);
+  //   return this.http.post(this.playerSignInURL, body, { headers: this.headers})
+  //   .map(resp => {
+  //     const workingGame = resp.json() as WorkingGame;
 
-      //Possible scenario of resp being null?
+  //     //Possible scenario of resp being null?
 
-      localStorage.setItem('player', JSON.stringify(player));
-      return workingGame;
-    });
-  }
+  //     localStorage.setItem('player', JSON.stringify(player));
+  //     return workingGame;
+  //   });
+  // }
 }

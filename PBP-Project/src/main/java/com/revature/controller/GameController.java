@@ -31,20 +31,6 @@ public class GameController {
 	}
 	
 	
-	/* POST call that takes the passed player object and properly formats and persist the
-	 * Player and Game beans. Return player after formatting to angular so it can update its
-	 * copy of player and game with appropriate id's
-	 */
-	@RequestMapping(value="/game-new", method=RequestMethod.POST)
-	public String createNewGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
-		session.setAttribute("player", player);
-		gameService.createNewGame(player);
-		
-		System.out.println("Player: " + session.getAttribute("player"));
-		return om.writeValueAsString(player);
-	}
-	
-	
 	/* GET call that takes the passed player object and properly formats and persist the
 	 * Player and Game beans. Return player after formatting to angular so it can update its
 	 * copy of player and game with appropriate id's
@@ -61,23 +47,14 @@ public class GameController {
 	}
 	
 	
-	
 	/* GET call to retrieve the WorkingGame for current player */
-	@RequestMapping(value="/game-workinggame", method=RequestMethod.POST)
-	@ResponseBody
-	public String getWorkingGame(@RequestBody Player player, ObjectMapper om, HttpSession session) throws JsonProcessingException {
+	@RequestMapping(value="/game-workinggame", method=RequestMethod.GET)
+	public String getWorkingGame(ObjectMapper om, HttpSession session) throws JsonProcessingException {
+		Player player = (Player)session.getAttribute("player");
 		Game game = player.getGame();
 		WorkingGame wgame = new WorkingGame(game);
 		wgame.team = player.getTeam();
 		return om.writeValueAsString(wgame);
-	}
-	
-	
-	@RequestMapping(value="/game-boardstate", method=RequestMethod.GET)
-	@ResponseBody
-	public String getBoardState(HttpSession session) throws JsonProcessingException {
-		Player player = (Player)session.getAttribute("player");
-		return om.writeValueAsString(gameService.getBoardState(player));
 	}
 	
 	
@@ -88,14 +65,6 @@ public class GameController {
 		System.out.println("Player Sign In");
 		System.out.println(player.toString());
 		return null;
-	}
-	
-	
-	@RequestMapping(value="/game", method=RequestMethod.GET)
-	@ResponseBody
-	public String sendValidMoves(HttpSession session) throws JsonProcessingException {
-		Player player = (Player)session.getAttribute("player");
-		return om.writeValueAsString(gameService.findValidMoves(player));
 	}
 	
 	

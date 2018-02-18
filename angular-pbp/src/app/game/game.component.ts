@@ -21,9 +21,9 @@ export class GameComponent implements OnInit {
   createNewGame() {
     this.gameService.createNewGame().subscribe( player => {
       console.log(player);
-      // this.gameService.getWorkingGame().subscribe( workingGame => {
-      //   console.log(workingGame);
-      // });
+      this.gameService.getWorkingGame().subscribe( workingGame => {
+        console.log(workingGame);
+      });
     });
 
 
