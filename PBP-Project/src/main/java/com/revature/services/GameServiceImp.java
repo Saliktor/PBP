@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -31,7 +32,9 @@ public class GameServiceImp implements GameService {
 	private static boolean noMoreMoves = false;
 	//
 	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
+	//private static GameDAO gameDAO = ac.getBean(GameDAO.class);
+	@Autowired
+	private GameDAO gameDAO;
 	
 	
 	@Override

@@ -6,13 +6,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
 import com.revature.game.util.HibernateUtil;
 
-@Component
+@Repository
 public class GameDAOImp implements GameDAO, HibernateSession {
 	private Session session;
 

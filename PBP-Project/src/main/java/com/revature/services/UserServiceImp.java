@@ -23,7 +23,9 @@ public class UserServiceImp implements UserService {
 	//private static UserDAOImp userDAO = new UserDAOImp();
 	
 	@Autowired
-	private static UserDAO userDAO = ac.getBean(UserDAO.class);
+	private UserDAO userDAO;
+	
+	//private static UserDAO userDAO = ac.getBean(UserDAO.class);
 	//private static PlayerDAO playerDAO = new PlayerDAOImp();
 	private static PlayerDAO playerDAO = ac.getBean(PlayerDAO.class);
 	

@@ -13,12 +13,13 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Game;
 import com.revature.beans.Message;
 import com.revature.game.util.HibernateUtil;
 
-@Component
+@Repository
 public class MessageDAOImp implements MessageDAO, HibernateSession {
 	private static Logger log = Logger.getLogger(MessageDAOImp.class);
 	private Session session;

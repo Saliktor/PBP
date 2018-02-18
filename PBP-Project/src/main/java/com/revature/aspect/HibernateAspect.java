@@ -30,6 +30,8 @@ public class HibernateAspect {
 			obj = pjp.proceed();
 		} catch(Throwable e) {
 			tx.rollback();
+			if (obj instanceof Boolean)
+			    obj = false;
 			throw e;
 		}
 		

@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.revature.beans.UserAccount;
 import com.revature.game.util.HibernateUtil;
 
-@Component
+@Repository
 public class UserDAOImp implements UserDAO, HibernateSession {
 
 	// private static HibernateUtil hu = HibernateUtil.getInstance();
