@@ -5,106 +5,78 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.UserAccount;
-import com.revature.util.HibernateUtil;
+import com.revature.game.util.HibernateUtil;
 
-public class UserDAOImp implements UserDAO {
+@Component
+public class UserDAOImp implements UserDAO, HibernateSession {
 
-	private static HibernateUtil hu = HibernateUtil.getInstance();
+	// private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(UserDAOImp.class);
-	
 
+	private Session session;
+
+	@Override
+	public void setSession(Session session) {
+		this.session = session;
+
+	}
+
+	@Override
 	public boolean createUser(UserAccount user) {
-		Session session = hu.getSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			log.trace("Begun transaction");
-			log.trace(session.save(user));
-			tx.commit();
-			return true;
-		} catch(Exception e) {
-			if(tx!=null) {
-				tx.rollback();
-				log.error("Exception occured while creating user", e);
-				return false;
-			}
-		} finally {
-			session.close();
-		}
-		return false;
+		// Session session = hu.getSession();
+		session.save(user);
+		return true;
 	}
 
-
+	@Override
 	public UserAccount getUser(UserAccount user) {
-		Session session = hu.getSession();
+		log.trace("USER ACCOUNT CALLED!");
 		UserAccount newUser = null;
-		try {
-			Criteria criteria = session.createCriteria(UserAccount.class);
-			criteria.add(Restrictions.eq("username", user.getUsername()))
-			.add(Restrictions.eq("password", user.getPassword()));
-			
-			newUser = (UserAccount) criteria.uniqueResult();
-			
-			
-		} catch (Exception e) {
-			log.trace(e);
-		} finally {
-			session.close();
-		}
-		
-		return newUser;		
+
+		Criteria criteria = session.createCriteria(UserAccount.class);
+		criteria.add(Restrictions.eq("username", user.getUsername()))
+				.add(Restrictions.eq("password", user.getPassword()));
+
+		newUser = (UserAccount) criteria.uniqueResult();
+
+		return newUser;
 	}
-	
 
 	public boolean isEmailAvailable(String email) {
-		Session session = hu.getSession();
 		UserAccount newUser = null;
-		try {
-			Criteria criteria = session.createCriteria(UserAccount.class);
-			criteria.add(Restrictions.eq("email", email));
-			
-			newUser = (UserAccount) criteria.uniqueResult();
-			if(newUser == null)
-				return true;
 
-		} catch (Exception e) {
-			log.trace(e);
-			return false;
-		} finally {
-			session.close();
-		}
+		Criteria criteria = session.createCriteria(UserAccount.class);
+		criteria.add(Restrictions.eq("email", email));
+
+		newUser = (UserAccount) criteria.uniqueResult();
+		if (newUser == null)
+			return true;
+
 		return false;
 	}
-
 
 	public boolean isUsernameAvailable(String username) {
-		Session session = hu.getSession();
 		UserAccount newUser = null;
-		try {
-			Criteria criteria = session.createCriteria(UserAccount.class);
-			criteria.add(Restrictions.eq("username", username));
-			
-			newUser = (UserAccount) criteria.uniqueResult();
-			if(newUser == null)
-				return true;
+		log.trace(session);
+		Criteria criteria = session.createCriteria(UserAccount.class);
+		criteria.add(Restrictions.eq("username", username));
 
-		} catch (Exception e) {
-			log.trace(e);
-			return false;
-		} finally {
-			session.close();
-		}
+		newUser = (UserAccount) criteria.uniqueResult();
+		if (newUser == null)
+			return true;
+
 		return false;
 	}
-
 
 	public boolean deleteUser(int userId) {
-		
+
 		return false;
 	}
-
-
 
 }

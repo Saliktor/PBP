@@ -10,6 +10,7 @@ public interface UserDAO {
 	boolean isUsernameAvailable(String email);
 	
 	
+	
 	boolean deleteUser(int userId);
 
 }

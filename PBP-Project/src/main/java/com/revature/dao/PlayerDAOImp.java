@@ -2,30 +2,27 @@ package com.revature.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Player;
-import com.revature.util.HibernateUtil;
+import com.revature.game.util.HibernateUtil;
 
-public class PlayerDAOImp implements PlayerDAO {
+@Component
+public class PlayerDAOImp implements PlayerDAO, HibernateSession {
 
-	private static HibernateUtil hu = HibernateUtil.getInstance();
+	private Session session;
+	//private static HibernateUtil hu = HibernateUtil.getInstance();
 	@Override
 	public Player getPlayer(int PlayerId) {
 		Player player = null;
-		Session session = hu.getSession();
-		Transaction tx = null;
-		
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			 player = (Player) session.get(Player.class, PlayerId);
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return null;
-			
-		}
+		player = (Player) session.get(Player.class, PlayerId);
 		return player;
+	}
+	
+	@Override
+	public void setSession(Session session) {
+		this.session = session;
+		
 	}
 
 }

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
-import com.revature.services.UserService;
-import com.revature.services.UserServiceImp;
+import com.revature.game.services.UserService;
+import com.revature.game.services.UserServiceImp;
 
 @Controller
 @RequestMapping(value="/login")

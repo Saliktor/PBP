@@ -4,106 +4,62 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
-import com.revature.util.HibernateUtil;
+import com.revature.game.util.HibernateUtil;
 
-public class GameDAOImp implements GameDAO {
-	
-	private static HibernateUtil hu = HibernateUtil.getInstance();
+public class GameDAOImp implements GameDAO, HibernateSession {
+	private static ApplicationContext ac;
+	private Session session;
+
+	@Override
+	public void setSession(Session session) {
+		this.session = session;
+	}
 
 	public Game updateGame(Game game) {
 		Game updatedGame = null;
-		Session session = hu.getSession();
-		try {
-			updatedGame = (Game) session.merge(game);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		updatedGame = (Game) session.merge(game);
 		return updatedGame;
 	}
 
 	public Game createNewGame(Game game) {
-		Transaction tx = null;
-		Session session = hu.getSession();
-		try {
-			tx = session.beginTransaction();
-			session.save(game);
-			tx.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return null;
-		}
-		return game;
+		Game createdGame = null;
+		session.save(game);
+		createdGame = game;
+		return createdGame;
 	}
 
 	public Game getGame(Player player) {
 		Player currentPlayer = null;
-		Session session = hu.getSession();
-		try {
-			currentPlayer = (Player) session.get(Player.class, player.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		currentPlayer = (Player) session.get(Player.class, player.getId());
 		return currentPlayer.getGame();
 	}
-	
+
 	public Game getGame(int gameID) {
 		Game currentGame = null;
-		Session session = hu.getSession();
-		try {
-			currentGame = (Game) session.get(Game.class, gameID);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		currentGame = (Game) session.get(Game.class, gameID);
 		return currentGame;
 	}
 
 	@Override
 	public boolean createNewGameAndPlayer(Player player) {
-		Session session = hu.getSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			session.save(player);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}
+		session.save(player);
 		return true;
 	}
 
 	@Override
 	public boolean updateGame(Player player) {
-		Session session = hu.getSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			session.update(player);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}
+		session.update(player);
 		return true;
 	}
 
 	@Override
 	public Player joinGame(Game game) {
-		
+
 		return null;
 	}
 
@@ -111,21 +67,9 @@ public class GameDAOImp implements GameDAO {
 	public Set<Player> getUserPlayersAndGames(UserAccount user) {
 		Set<Player> players = null;
 		UserAccount thisUser = null;
-		Session session = hu.getSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			thisUser = (UserAccount) session.get(user.getClass(), user.getId());
-			players = thisUser.getPlayers();
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return null;
-		}
+		thisUser = (UserAccount) session.get(user.getClass(), user.getId());
+		players = thisUser.getPlayers();
 		return players;
 	}
-	
 
 }
