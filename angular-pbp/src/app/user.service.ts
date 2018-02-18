@@ -32,8 +32,7 @@ export class UserService {
   }
 
   getPlayers(){
-    const body = localStorage.getItem('currentUser');
-    return this.http.post(this.getPlayersUrl, body, {headers: this.objectheaders, withCredentials: true})
+    return this.http.get(this.getPlayersUrl,  {headers: this.objectheaders, withCredentials: true})
       .map(resp => {
         const players =  resp.json() as Player[];
         const user = JSON.parse(localStorage.getItem('currentUser')) as User;
@@ -41,6 +40,7 @@ export class UserService {
         // Assign the players array to the users update the localstorage session
         user.players = players;
         localStorage.setItem('currentUser', JSON.stringify(user));
+        return players;
       });
   }
 
