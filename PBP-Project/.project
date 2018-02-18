@@ -35,24 +35,6 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-<<<<<<< HEAD
-			<name>org.jboss.tools.cdi.core.cdibuilder</name>
-=======
-			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
->>>>>>> master
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-<<<<<<< HEAD
-			<name>org.eclipse.wst.validation.validationbuilder</name>
-=======
-			<name>org.eclipse.m2e.core.maven2Builder</name>
->>>>>>> master
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.springframework.ide.eclipse.core.springnature</nature>
