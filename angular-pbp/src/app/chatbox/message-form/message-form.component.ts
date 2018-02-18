@@ -25,11 +25,11 @@ export class MessageFormComponent implements OnInit {
   }
   public sendMessage(): void {
  
-    console.log(`message at start of send message: ${this.message.content} and time: ${this.message.timestamp}`);
-    this.message.timestamp = new Date();
+    console.log(`message at start of send message: ${this.message.messageContent} and time: ${this.message.timePosted}`);
+    this.message.timePosted = new Date();
     this.messages.push(this.message);
     
-    console.log(`message at start of user service: ${this.message.content} and time: ${this.message.timestamp}`);
+    console.log(`message at start of user service: ${this.message.messageContent} and time: ${this.message.timePosted}`);
     this.userService.saveMessage(this.message)
     .subscribe(user =>{
       
@@ -37,7 +37,7 @@ export class MessageFormComponent implements OnInit {
     });
  this.message = new Message('');
 
- console.log(`message at end of send message: ${this.message.content} and time: ${this.message.timestamp}`);
+ console.log(`message at end of send message: ${this.message.messageContent} and time: ${this.message.timePosted}`);
     
   }
 

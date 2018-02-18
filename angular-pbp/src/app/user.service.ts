@@ -17,7 +17,6 @@ export class UserService {
   private registerUrl = 'http://localhost:8070/PBP/register';
   private messageUrl = 'http://localhost:8070/PBP/message/newmessage'
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
-  private mHeaders = new Headers({ 'Content-Type': 'application/json'});
   public currentUser: CurrentUser = new CurrentUser();
 
   constructor(private http: Http) { }
@@ -79,9 +78,10 @@ export class UserService {
   }
 
   saveMessage(message : Message){
+   // message.user = this.getCurrentUser();
     if(message){
-      console.log(`messageContent is ${message.content} and timestamp is ${message.timestamp.getMilliseconds()}`);
-    const body = `messsageContent=${message.content}&timeStamp=${message.timestamp.getMilliseconds()  }`;
+      console.log(`messageContent is ${message.messageContent} and timeStamp is ${message.timePosted.getMilliseconds()}`);
+    const body = `messageContent=${message.messageContent}&timeStamp=${message.timePosted.getMilliseconds()  }`;
     return this.http.post(this.messageUrl, body ,{ headers: this.headers, withCredentials: true})
       .map (resp => resp.json () as Message
     );

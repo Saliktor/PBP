@@ -48,7 +48,8 @@ public class MessageController {
 		//Game currentGame = (Game) session.getAttribute("currentGame");
 		UserAccount testUser = uService.getUser("user1", "password");
 		Game testGame = new Game();
-		testGame.setId(1);
+		//was set to 1 set to 121 cause it is in the database
+		testGame.setId(121);
 		//UserAccount currentUser = (UserAccount) session.getAttribute("currentUser");
 		Timestamp timeMade = new Timestamp(System.currentTimeMillis());
 		newMessage.setGame(testGame);

@@ -1,14 +1,16 @@
+import { User } from "./user";
+
 export class Message {
     id : number; 
-    userId : number;
+   // user : User;
     gameId: number;
-    timestamp: Date; 
-    content: string;
+    timePosted: Date; 
+    messageContent: string;
     
 
-    constructor(content: string,  timestamp?: Date){
-        this.content = content;
-        this.timestamp = timestamp;
+    constructor(messageContent: string,  timePosted?: Date){
+        this.messageContent = messageContent;
+        this.timePosted = timePosted;
      
       }
     
