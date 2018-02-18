@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
       .subscribe( user => {
         if (user != null) {
           this.router.navigate(['./home']);
+          this.userService.getPlayers().subscribe( players => {
+            console.log(players);
+          });
         } else {
           this.alertMessage = 'Not a valid Username/Password';
           this.username = null;

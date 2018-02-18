@@ -1,11 +1,14 @@
 package com.revature.services;
 
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
+import com.revature.dao.GameDAOImp;
 import com.revature.dao.PlayerDAO;
 import com.revature.dao.PlayerDAOImp;
 import com.revature.dao.UserDAOImp;
@@ -16,6 +19,7 @@ public class UserServiceImp implements UserService {
 	
 	private static UserDAOImp userDAO = new UserDAOImp();
 	private static PlayerDAO playerDAO = new PlayerDAOImp();
+	private static GameDAOImp gameDAO = new GameDAOImp();
 	
 	/*
 	 * Creates a user object based on passed parameters
@@ -56,6 +60,13 @@ public class UserServiceImp implements UserService {
 		user.setUsername(username);
 		user.setPassword(password);
 		user = userDAO.getUser(user);
+		
+		if(user == null) {
+			return null;
+		}else {
+			user.setPlayers(this.getPlayers(user));
+		}
+		
 		return user;
 	}
 
@@ -63,6 +74,11 @@ public class UserServiceImp implements UserService {
 		
 		Player player = playerDAO.getPlayer(id);
 		return player;
+	}
+	
+	public Set<Player> getPlayers(UserAccount user){
+		Set<Player> players = gameDAO.getUserPlayersAndGames(user);
+		return players;
 	}
 
 	public UserAccount editUser(UserAccount user) {

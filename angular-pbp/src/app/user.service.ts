@@ -5,13 +5,16 @@ import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
+import { Player } from './player';
 
 
 @Injectable()
 export class UserService {
   private loginUrl = 'http://localhost:8080/PBP/login';
   private registerUrl = 'http://localhost:8080/PBP/register';
+  private getPlayersUrl = 'http://localhost:8080/PBP/login-getplayers';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
+  private objectheaders = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
 
   constructor(private http: Http) { }
 
@@ -28,15 +31,29 @@ export class UserService {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
+  getPlayers(){
+    const body = localStorage.getItem('currentUser');
+    return this.http.post(this.getPlayersUrl, body, {headers: this.objectheaders, withCredentials: true})
+      .map(resp => {
+        const players =  resp.json() as Player[];
+        const user = JSON.parse(localStorage.getItem('currentUser')) as User;
+
+        // Assign the players array to the users update the localstorage session
+        user.players = players;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      });
+  }
+
   login(username: string, password: string) {
     if (username && password) {
       const body = `username=${username}&password=${password}`;
-      return this.http.post(this.loginUrl, body, { headers: this.headers})
+      return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true})
         .map(resp => {
           let user = resp.json();
           if (user == null) {
             return null;
           } else {
+            console.log(user);
             user = resp.json() as User;
             localStorage.setItem('currentUser', JSON.stringify(user));
             return user;

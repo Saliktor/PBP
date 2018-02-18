@@ -21,14 +21,14 @@ public class Player{
 	@GeneratedValue(generator="player_pk", strategy=GenerationType.SEQUENCE)
 	int id;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn (name = "USERID")
 	UserAccount user;
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "TEAM")
 	Team team;
 	
@@ -74,8 +74,8 @@ public class Player{
 		StringBuilder builder = new StringBuilder();
 		builder.append("Player [id=");
 		builder.append(id);
-		builder.append(", user=");
-		builder.append(user);
+//		builder.append(", user=");
+//		builder.append(user);
 		builder.append(", game=");
 		builder.append(game);
 		builder.append(", team=");
