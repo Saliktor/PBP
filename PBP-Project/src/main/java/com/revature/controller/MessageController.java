@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -36,9 +37,9 @@ public class MessageController {
 	@Autowired
 	private UserService uService;
 	
-	@RequestMapping(value="message/newmessage")
+	@RequestMapping(value="/message/newmessage", method=RequestMethod.POST)
 	public void saveMessage(String messageContent, String timeStamp,
-			HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+			HttpSession session, HttpServletResponse response, HttpServletRequest request) throws JsonProcessingException {
 		
 		Message newMessage = new Message();
 		Format format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");

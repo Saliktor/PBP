@@ -7,6 +7,7 @@ import { Message } from '../../message';
   styleUrls: ['./message-item.component.css']
 })
 export class MessageItemComponent implements OnInit {
+  
   @Input('message')
   private message: Message;
 

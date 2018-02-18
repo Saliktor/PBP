@@ -1,9 +1,10 @@
 export class Message {
-    id : number;
+    id : number; 
+    userId : number;
+    gameId: number;
+    timestamp: Date; 
     content: string;
-    timestamp: Date;
-    // user : User;
-    //game: Game;
+    
 
     constructor(content: string,  timestamp?: Date){
         this.content = content;

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   public message : Message;
   public messages : Message[];
+  
   constructor(private userService: UserService, private router: Router) { 
     this.message = new Message('');
     this.messages = [
