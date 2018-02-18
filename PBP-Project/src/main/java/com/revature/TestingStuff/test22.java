@@ -13,11 +13,11 @@ import com.revature.beans.Game;
 import com.revature.beans.UserAccount;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImp;
-import com.revature.game.services.GameService;
-import com.revature.game.services.GameServiceImp;
-import com.revature.game.services.UserService;
-import com.revature.game.services.UserServiceImp;
 import com.revature.game.util.HibernateUtil;
+import com.revature.services.GameService;
+import com.revature.services.GameServiceImp;
+import com.revature.services.UserService;
+import com.revature.services.UserServiceImp;
 
 public class test22 {
 	private static ApplicationContext ac;

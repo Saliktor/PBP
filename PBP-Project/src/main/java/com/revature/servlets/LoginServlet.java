@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImp;
-import com.revature.game.services.UserService;
-import com.revature.game.services.UserServiceImp;
+import com.revature.services.UserService;
+import com.revature.services.UserServiceImp;
 
 public class LoginServlet extends HttpServlet{
 

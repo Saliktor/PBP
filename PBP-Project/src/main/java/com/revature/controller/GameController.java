@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Game;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
-import com.revature.game.services.GameService;
 import com.revature.gamelogic.WorkingGame;
+import com.revature.services.GameService;
 
 @Controller
 @CrossOrigin(origins= "*")

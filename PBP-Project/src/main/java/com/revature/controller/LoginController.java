@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.UserAccount;
-import com.revature.game.services.UserService;
-import com.revature.game.services.UserServiceImp;
+import com.revature.services.UserService;
+import com.revature.services.UserServiceImp;
 
 @Controller
 @RequestMapping(value="/login")
@@ -34,11 +34,14 @@ public class LoginController {
 	@ResponseBody
 	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
 		UserAccount user = uService.getUser(username, password);
-		log.trace(username + password);
+		UserAccount u = (UserAccount) session.getAttribute("user");
+		
+		log.trace(u);
 		if(user == null) {
 			return "null";
 		} else {
 			session.setAttribute("user", user);
+			log.trace(user);
 			return om.writeValueAsString(user);
 		}	
 	}

@@ -5,14 +5,15 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Game;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
 import com.revature.game.util.HibernateUtil;
 
+@Component
 public class GameDAOImp implements GameDAO, HibernateSession {
-	private static ApplicationContext ac;
 	private Session session;
 
 	@Override

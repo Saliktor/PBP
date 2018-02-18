@@ -1,4 +1,7 @@
-package com.revature.game.services;
+package com.revature.services;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
