@@ -13,10 +13,13 @@ public interface GameService {
 	
 	WorkingGame makeMove(int xid, int yid, Player player);
 	Set<Square> findValidMoves(Player player);
+	
 	//update, create, retrieve
 	boolean updateGame(Game game);
 	void createNewGame(Player player);
 	Player createNewGame(UserAccount user);
+	
+	Player joinGameAsNewUser(UserAccount user, int gameID);
 	
 	
 	Game getGame(Player player);

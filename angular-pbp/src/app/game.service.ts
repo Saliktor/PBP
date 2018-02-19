@@ -8,6 +8,7 @@ import { Game } from './game';
 import { User } from './user';
 import { Player } from './player';
 import { WorkingGame } from './WorkingGame';
+import { Square } from './square';
 
 @Injectable()
 export class GameService {
@@ -15,7 +16,14 @@ export class GameService {
   private playerSignInURL = 'http://localhost:8080/PBP/game-player';
   private newGameURL = 'http://localhost:8080/PBP/game-new';
   private joinGameURL = 'http://localhost:8080/PBP/game-join';
+  private joinGameAsNewUserURL = 'http://localhost:8080/PBP/game-join-new';
+  private makeMoveURL = 'http://locahost:8080/PBP/game-makemove';
+
+
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
+
+  // This header is used when creating string literal to send instead of parsing whole object
+  private nonObjectHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
 
   constructor(private http: Http) { }
 
@@ -37,7 +45,7 @@ export class GameService {
   * Updates the currentUser in localstorage just in case
   * Helper Method
   */
-  addNewPlayerToUser(player: Player){
+  addNewPlayerToUser(player: Player) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')) as User;
     const players = currentUser.players;
     players.push(player);
@@ -45,7 +53,7 @@ export class GameService {
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }
 
-  /* Call to server to grab the WorkingGame 
+  /* Call to server to grab the WorkingGame
   */
   getWorkingGame() {
     return this.http.get(this.workingGameURL, { headers: this.headers, withCredentials: true})
@@ -54,26 +62,38 @@ export class GameService {
       });
   }
 
-  joinGameSession(player: Player){
+  /* Join game session as player
+  * Not to be used for new user to a game session
+  */
+  joinGameSession(player: Player) {
     const body = JSON.stringify(player);
     return this.http.post(this.joinGameURL, body, {headers: this.headers, withCredentials: true})
       .map(resp => {
         return resp.json() as WorkingGame;
-      })
+      });
   }
 
-  /* Player signs in to the server to let server know what player the user wishes to become. Server will
-    reply with a WorkingGame */
-  // playerSignIn(player: Player) {
-  //   const body = JSON.stringify(player);
-  //   return this.http.post(this.playerSignInURL, body, { headers: this.headers})
-  //   .map(resp => {
-  //     const workingGame = resp.json() as WorkingGame;
+  /* Call for when a new user joins game session through game_id invitation
+  * Receives new player associated to game session and user
+  */
+  joinGameSessionNewPlayer(gameID: Number) {
+    const body = `gameID=${gameID}`;
+    return this.http.post(this.joinGameAsNewUserURL, body, {headers: this.nonObjectHeaders, withCredentials: true})
+      .map(resp => {
+        return resp.json() as Player;
+      });
+  }
 
-  //     //Possible scenario of resp being null?
 
-  //     localStorage.setItem('player', JSON.stringify(player));
-  //     return workingGame;
-  //   });
-  // }
+  /* Call to server to make a move
+  * Receives new workinggame
+  */
+  makeMove(move: Square) {
+    console.log('Server makeMove');
+    const body = JSON.stringify(move);
+    return this.http.post(this.makeMoveURL, body, {headers: this.headers, withCredentials: true})
+      .map(resp => {
+        return resp.json() as WorkingGame;
+      });
+  }
 }

@@ -365,6 +365,7 @@ public class GameServiceImp implements GameService {
 			gameDAO.createNewGameAndPlayer(player);			
 		}
 		
+		
 		/* Creates a new game and player on behalf of the user
 		 * Returns the newly updated user object containing newly added player
 		 */
@@ -377,6 +378,7 @@ public class GameServiceImp implements GameService {
 			//Create a new game. Assign player to game and game to player (dont like this)
 			Game newGame = new Game();
 			newGame.addPlayer(player);
+			newGame.setWhoseTurn(white_team);
 			player.setGame(newGame);
 
 			//Persist the new player and game
@@ -386,6 +388,49 @@ public class GameServiceImp implements GameService {
 			user.addPlayer(player);
 			
 			//return the new player
+			return player;
+		}
+		
+		public Player joinGameAsNewUser(UserAccount user, int gameID) {
+			Game game = gameDAO.getGame(gameID);
+			
+			//If no game found matching the id, then not valid and return null
+			if(game == null)
+				return null;
+			
+			Set<Player> players = game.getPlayers();
+			
+			/*
+			 * If the game already has two players then this is not a valid request
+			 * This would be changed if spectators are allowed or more than 2 players per game
+			 */
+			if(players.size() >= 2)
+				return null;
+			/*
+			 * Check for if the currentUser already has a player attached to game
+			 * If a player is found then return null for this is invalid request
+			 */
+			for(Player player: players) {
+				if(player.getUser().getId() == user.getId()) {
+					return null;
+				}
+			}
+			
+			//Create new player for user and make team black
+			Player player = new Player();
+			player.setGame(game);
+			player.setTeam(black_team);
+			player.setUser(user);
+			
+			//
+			game.addPlayer(player);
+			game.setWhoseTurn(black_team);
+			
+			user.addPlayer(player);
+			
+			//Persist the new player.This dao call works for just player as well
+			gameDAO.createNewGameAndPlayer(player);	
+			
 			return player;
 		}
 

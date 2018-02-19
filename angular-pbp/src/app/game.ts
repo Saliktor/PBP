@@ -1,3 +1,5 @@
+import { Team } from './team';
+
 export class Game {
     id: Number;
 
@@ -65,6 +67,8 @@ export class Game {
     hf: Number = 0;
     hg: Number = 0;
     hh: Number = 0;
+
+    whoseTurn: Team;
 
     constructor() {
         this.dd = 1;

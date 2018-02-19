@@ -8,7 +8,7 @@ import com.revature.beans.Team;
 public class WorkingGame implements Cloneable {
 	public int id;
 	public Square[][] boardstate = new Square[8][8]; 
-	public Team team;
+	public Team whoseTurn;
 	
 	public WorkingGame() {
 		super();
@@ -97,13 +97,49 @@ public class WorkingGame implements Cloneable {
 		this.boardstate[7][5] = new Square(7,5,g.getHf());
 		this.boardstate[7][6] = new Square(7,6,g.getHg());
 		this.boardstate[7][7] = new Square(7,7,g.getHh());
+		
+		this.whoseTurn = g.getWhoseTurn();
 	}
 	
 	
 	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.deepHashCode(boardstate);
+		result = prime * result + id;
+		result = prime * result + ((whoseTurn == null) ? 0 : whoseTurn.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WorkingGame other = (WorkingGame) obj;
+		if (!Arrays.deepEquals(boardstate, other.boardstate))
+			return false;
+		if (id != other.id)
+			return false;
+		if (whoseTurn == null) {
+			if (other.whoseTurn != null)
+				return false;
+		} else if (!whoseTurn.equals(other.whoseTurn))
+			return false;
+		return true;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "WorkingGame [id=" + id + ", boardstate=" + Arrays.toString(boardstate) + ", team=" + team + "]";
+		return "WorkingGame [id=" + id + ", boardstate=" + Arrays.toString(boardstate) + ", whoseTurn=" + whoseTurn
+				+ "]";
 	}
 
 	public void printBoard() {

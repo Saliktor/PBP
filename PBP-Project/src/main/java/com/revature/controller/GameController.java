@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Game;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
+import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 import com.revature.services.GameService;
 
@@ -57,7 +58,9 @@ public class GameController {
 		return om.writeValueAsString(wgame);
 	}
 	
-	
+	/* Used to rejoin a game session
+	 * Only to be used for players who are already part of the game session
+	 */
 	@RequestMapping(value="/game-join", method=RequestMethod.POST)
 	public String joinGameSession(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
@@ -67,12 +70,18 @@ public class GameController {
 	}
 	
 	
-	@RequestMapping(value="/game", method=RequestMethod.POST)
-	@ResponseBody
-	public String recieveMove(int xid, int yid, int team, HttpSession session) throws JsonProcessingException {
-		//Need to add player to session upon user first joining the game
-		Player player = (Player)session.getAttribute("player");
-		WorkingGame wg = gameService.makeMove(xid, yid, player);
-		return om.writeValueAsString(wg.boardstate);
+	@RequestMapping(value="/game-join-new", method=RequestMethod.POST)
+	public String joinGameSessionNewUser(int gameID, HttpSession session) throws JsonProcessingException {
+		UserAccount user = (UserAccount)session.getAttribute("currentUser");
+		Player player = gameService.joinGameAsNewUser(user, gameID);
+		return om.writeValueAsString(player);
+	}
+	
+	
+	@RequestMapping(value="/game-makemove", method=RequestMethod.POST)
+	public String recieveMove(@RequestBody Square move, HttpSession session) throws JsonProcessingException {
+		System.out.println("recieveMove");
+		//TODO
+		return "null";
 	}
 }
