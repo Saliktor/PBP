@@ -1,0 +1,43 @@
+.new-game {
+
+}
+
+.card {
+    /* box-shadow: y x blur size color; */
+    box-shadow: 0px 2px 2px -1px rgba(0,0,0,0.3);
+    border-radius: 3px;
+    padding: 15px 10px;
+    color: white;
+    background-color: #343a40;/* #ecf0f1;*/
+}
+.card + .card {
+    margin-top: 10px;
+}
+
+.account-info {
+    margin-top: 30px;
+    display: inline-block;
+    width: 40%;
+    margin-right: 5%;
+}
+
+.games {
+    margin-top: 30px;
+    display: inline-block;
+    width: 40%;
+    margin-left: 5%;
+    background-color: blue;
+}
+
+.user-info {
+    width: 100%;
+}
+
+/*
+workingGame and Game table/obj has whoseTurn
+
+workingGame keeps 8s
+
+java makes game...?
+
+*/

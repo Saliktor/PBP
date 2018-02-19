@@ -1,4 +1,48 @@
 <div class="container" *ngIf="loggedIn()">
-  hello
+
+  <div class="account-info card" id="profile" *ngIf="loggedIn()">
+    <h2 id="logintitle">Player Information</h2>
+    <br>
+    <table class="user-info">
+      <tbody>
+        <tr>
+          <td>Username:</td>
+          <td>{{userAccount.userName}}</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{userAccount.username}}</td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>Active</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <!-- <h3>Username: {{userAccount.username}}</h3>
+    <h3>Email: {{userAccount.email}}</h3>
+    <h3>Status: Active</h3> -->
+
+    <div class="form-group">
+      <label for="login">Username</label>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+    </div>
+  </div>
+
+
+  <div class="games">
+    <div *ngFor="let game of VAR_FOR_ALL_GAMES" class="card">
+        <h2>Game #{{game.id}}</h2>
+        <p *ngIf="game.whoseTurn == player.team" class="whose-turn">Your Turn!</p>
+        <p *ngIf="game.whoseTurn != player.team" class="whose-turn">Your Opponent's Turn!</p>
+    </div>
+
+    <div class="card">
+      <button class="new-game" (click)="NewGame()">Create a new game</button>
+    </div>
+  </div>
 
 </div>
