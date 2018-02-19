@@ -20,7 +20,6 @@ public class HibernateAspect {
 	
 	@Around("Daos()")
 	public Object manageSession(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("I GOT CALLED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Object obj = null;
 		Session session = hu.getSession();
 		Transaction tx = session.beginTransaction();
