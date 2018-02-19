@@ -12,6 +12,7 @@ import { WorkingGame } from '../WorkingGame';
 })
 export class GameComponent implements OnInit {
   workingGame: WorkingGame;
+  player: Player;
 
   constructor(private gameService: GameService ) {}
 
@@ -33,6 +34,7 @@ export class GameComponent implements OnInit {
   /*Call to server to create a new game session */
   createNewGame() {
     return this.gameService.createNewGame().subscribe( player => {
+      this.player = player;
       return this.gameService.getWorkingGame().subscribe( workingGame => {
         console.log(workingGame);
         // Update board here
@@ -55,6 +57,7 @@ export class GameComponent implements OnInit {
   */
   joinGameSessionNewPlayer(gameID: Number) {
     this.gameService.joinGameSessionNewPlayer(gameID).subscribe( player => {
+      this.player = player;
       this.gameService.getWorkingGame().subscribe( workingGame => {
         this.workingGame = workingGame;
         // Update board here
@@ -66,12 +69,13 @@ export class GameComponent implements OnInit {
 
   makeMove(move: Square) {
     this.gameService.makeMove(move).subscribe( player => {
-      console.log(player);
+      this.player = player;
+      this.gameService.getWorkingGame().subscribe( workingGame => {
+        this.workingGame = workingGame;
+        // Update board here
+      });
     });
-    this.gameService.getWorkingGame().subscribe( workingGame => {
-      this.workingGame = workingGame;
-      // Update board here
-    });
+
   }
 
 
