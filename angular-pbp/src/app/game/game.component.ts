@@ -35,7 +35,7 @@ export class GameComponent implements OnInit {
     return this.gameService.createNewGame().subscribe( player => {
       return this.gameService.getWorkingGame().subscribe( workingGame => {
         console.log(workingGame);
-        //Update board here
+        // Update board here
       });
     });
   }
@@ -45,9 +45,8 @@ export class GameComponent implements OnInit {
   */
   joinGameSession(player: Player) {
     this.gameService.joinGameSession(player).subscribe( workingGame => {
-      console.log('Inside call to joinGameSession: ', workingGame)
       this.workingGame = workingGame;
-      //Update board here
+      // Update board here
     });
   }
 
@@ -58,20 +57,20 @@ export class GameComponent implements OnInit {
     this.gameService.joinGameSessionNewPlayer(gameID).subscribe( player => {
       this.gameService.getWorkingGame().subscribe( workingGame => {
         this.workingGame = workingGame;
-        //Update board here
+        // Update board here
       });
     });
 
 
   }
 
-  makeMove(move: Square){
+  makeMove(move: Square) {
     this.gameService.makeMove(move).subscribe( player => {
       console.log(player);
     });
     this.gameService.getWorkingGame().subscribe( workingGame => {
       this.workingGame = workingGame;
-      //Update board here
+      // Update board here
     });
   }
 

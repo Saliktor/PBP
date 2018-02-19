@@ -19,7 +19,7 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  loggedIn(): boolean{
+  loggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('currentUser')) as User;
     if (user == null) {
       return false;
@@ -28,7 +28,7 @@ export class UserService {
     }
   }
 
-  getPlayers(){
+  getPlayers() {
     return this.http.get(this.getPlayersUrl, {headers: this.objectheaders, withCredentials: true})
       .map(resp => {
         const players =  resp.json() as Player[];
@@ -65,7 +65,7 @@ export class UserService {
       return this.http.post(this.registerUrl, body, { headers: this.headers, withCredentials: true})
         .map( resp => {
           let user = resp.json();
-          if (user == null){
+          if (user == null) {
             return null;
           } else {
             user = resp.json() as User;
@@ -73,10 +73,10 @@ export class UserService {
             return user;
           }
         });
-    } else {console.log('User Serivce register recieved an empty parameter');}
+    } else {console.log('User Serivce register recieved an empty parameter'); }
   }
 
-  logout(){
+  logout() {
     console.log('User Service logout');
     localStorage.clear();
     return this.http.get(this.logoutUrl, { headers: this.headers, withCredentials: true})
@@ -84,7 +84,7 @@ export class UserService {
   }
 
 
-  getCurrentUser(): User{
+  getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 }
