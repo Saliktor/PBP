@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,12 +23,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Game;
 import com.revature.beans.Message;
 import com.revature.beans.UserAccount;
+import com.revature.dao.MessageDAOImp;
 import com.revature.services.GameService;
 import com.revature.services.UserService;
 
 @Controller
 @CrossOrigin(origins="http://localhost:4200")
 public class MessageController {
+	private static Logger log = Logger.getLogger(MessageController.class);
 	private ObjectMapper om = new ObjectMapper();
 
 	
@@ -39,7 +42,7 @@ public class MessageController {
 	
 	@RequestMapping(value="/message/newmessage", method=RequestMethod.POST)
 	public void saveMessage(String messageContent, String timeStamp,
-			HttpSession session, HttpServletResponse response, HttpServletRequest request) throws JsonProcessingException {
+			HttpSession session, HttpServletResponse response, HttpServletRequest request) /*throws JsonProcessingException*/ {
 		
 		Message newMessage = new Message();
 		Format format = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
@@ -65,14 +68,17 @@ public class MessageController {
 					
 	}
 	
-	@RequestMapping(value="/message/getnewmessages")
+	@RequestMapping(value="/message/getnewmessages", method=RequestMethod.POST)
 	@ResponseBody
 	public String getNewMessages(String timeStamp, 
 			HttpSession session, HttpServletRequest request) throws JsonProcessingException {
+		log.debug("The timestamp is: "+timeStamp);
+		log.trace(request.getParameter("timeStamp"));
 		Timestamp timestamp = toTimestamp(timeStamp);
 		//Game currentGame = (Game) session.getAttribute("currentGame");
 		Game currentGame = new Game();
-		currentGame.setId(1);
+		//matches above in save mes parameters
+		currentGame.setId(121);
 		List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
 		
 		return om.writeValueAsString(newMessages);

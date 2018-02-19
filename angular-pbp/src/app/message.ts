@@ -2,7 +2,7 @@ import { User } from "./user";
 
 export class Message {
     id : number; 
-   // user : User;
+   user : User;
     gameId: number;
     timePosted: Date; 
     messageContent: string;

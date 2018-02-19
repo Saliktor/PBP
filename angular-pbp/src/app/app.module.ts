@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MessageListComponent } from './chatbox/message-list/message-list.component';
 import { MessageItemComponent } from './chatbox/message-item/message-item.component';
 import { MessageFormComponent } from './chatbox/message-form/message-form.component';
+import { GetMessagesService } from './get-messages.service';
 
 
 
@@ -34,7 +35,7 @@ import { MessageFormComponent } from './chatbox/message-form/message-form.compon
     FormsModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService,GetMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import { Message } from './message';
-import { request } from 'https';
+
 
 
 
@@ -18,6 +18,7 @@ export class UserService {
   private messageUrl = 'http://localhost:8070/PBP/message/newmessage'
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   public currentUser: CurrentUser = new CurrentUser();
+  public message: Message = new Message('');
 
   constructor(private http: Http) { }
 
@@ -78,12 +79,23 @@ export class UserService {
   }
 
   saveMessage(message : Message){
-   // message.user = this.getCurrentUser();
     if(message){
       console.log(`messageContent is ${message.messageContent} and timeStamp is ${message.timePosted.getMilliseconds()}`);
     const body = `messageContent=${message.messageContent}&timeStamp=${message.timePosted.getMilliseconds()  }`;
     return this.http.post(this.messageUrl, body ,{ headers: this.headers, withCredentials: true})
-      .map (resp => resp.json () as Message
+    //syntax error need to fix response
+    // not sure what needs to happen after I send data to the server and if i get a repsonse back
+      .map (resp => {
+        console.log(resp);
+        const message = resp.json() as Message;
+        if(message == null){
+            return null;
+        }else{
+            this.message = message
+            return message;
+
+        }
+      }
     );
   }else{console.log("Invalid message recieved")}
   }
