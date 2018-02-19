@@ -1,4 +1,4 @@
-package com.revature.TestingStuff;
+package com.revature.testing;
 
 import java.sql.Date;
 import java.sql.Timestamp;

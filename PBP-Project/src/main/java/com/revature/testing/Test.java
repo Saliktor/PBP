@@ -1,10 +1,14 @@
-package com.revature.TestingStuff;
+package com.revature.testing;
 
 import java.text.ParseException;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
@@ -18,14 +22,23 @@ import com.revature.services.GameServiceImp;
 import com.revature.services.UserService;
 import com.revature.services.UserServiceImp;
 
+@Component
 public class Test {
 
+	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 	//private static HibernateUtil hu = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(Test.class);
 	private static UserDAO uDAO = new UserDAOImp();
-	private static UserService us = new UserServiceImp();
+	//private static UserService us = new UserServiceImp();
+	
+	private static UserService us = ;
+	
 	private static MessageDAO mDAO = new MessageDAOImp();
 	private static GameService gService = new GameServiceImp();
+	
+	public void setUserService (UserService us) {
+		this.us = us;
+	}
 	
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
@@ -44,7 +57,7 @@ public class Test {
 		
 		//player3.setGame(player.getGame());
 		Set<Player> players = gService.getUserPlayers(user);
-		log.trace(players);
+		log.trace(user);
 		//Transaction tx = session.getTransaction();
 	//	tx.begin();
 		// session.save(player3);
