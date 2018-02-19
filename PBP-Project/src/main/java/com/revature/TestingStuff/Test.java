@@ -30,7 +30,7 @@ public class Test {
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
 		//Session session = hu.getSession();
-		UserAccount user = us.getUser("mrBitch", "password");
+		UserAccount user = us.getUser("user1", "password");
 		log.trace(user);
 		//Team team = new Team();
 		//team.setId(1);

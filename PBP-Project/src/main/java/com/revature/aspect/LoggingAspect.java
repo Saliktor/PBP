@@ -32,7 +32,7 @@ public class LoggingAspect {
 		return obj;
 	}
 	
-	/* Hooks */
+	
 	@Pointcut("execution(* com.revature..*(..))")
 	public void everything() {}
 }
