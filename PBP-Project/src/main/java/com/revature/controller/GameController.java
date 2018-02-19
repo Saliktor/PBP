@@ -54,7 +54,6 @@ public class GameController {
 		Player player = (Player)session.getAttribute("player");
 		Game game = player.getGame();
 		WorkingGame wgame = new WorkingGame(game);
-		wgame.team = player.getTeam();
 		return om.writeValueAsString(wgame);
 	}
 	
@@ -81,7 +80,6 @@ public class GameController {
 	@RequestMapping(value="/game-makemove", method=RequestMethod.POST)
 	public String recieveMove(@RequestBody Square move, HttpSession session) throws JsonProcessingException {
 		System.out.println("recieveMove");
-		//TODO
 		return "null";
 	}
 }
