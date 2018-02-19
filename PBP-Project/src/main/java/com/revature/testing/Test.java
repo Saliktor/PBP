@@ -31,14 +31,12 @@ public class Test {
 	private static UserDAO uDAO = new UserDAOImp();
 	//private static UserService us = new UserServiceImp();
 	
-	private static UserService us = ;
+	private static UserService us = ac.getBean(UserService.class);
 	
 	private static MessageDAO mDAO = new MessageDAOImp();
 	private static GameService gService = new GameServiceImp();
 	
-	public void setUserService (UserService us) {
-		this.us = us;
-	}
+
 	
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
