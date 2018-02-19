@@ -6,6 +6,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -31,17 +32,28 @@ public class Test {
 	private static UserDAO uDAO = new UserDAOImp();
 	//private static UserService us = new UserServiceImp();
 	
-	private static UserService us = ac.getBean(UserService.class);
+	//private static UserService us = ac.getBean(UserService.class);
+	
+	@Autowired
+	private UserService us;
+	
+	@Autowired
+	private test22 t;
 	
 	private static MessageDAO mDAO = new MessageDAOImp();
 	private static GameService gService = new GameServiceImp();
 	
-
+	public UserAccount getUser() {
+		return t.getUser();
+	}
+	
 	
 	//Just testing stuff
 	public static void main(String[] args) throws ParseException {
 		//Session session = hu.getSession();
-		UserAccount user = us.getUser("user1", "password");
+		
+		Test t = ac.getBean(Test.class);
+		UserAccount user = t.getUser();
 		log.trace(user);
 		//Team team = new Team();
 		//team.setId(1);
@@ -54,8 +66,8 @@ public class Test {
 		
 		
 		//player3.setGame(player.getGame());
-		Set<Player> players = gService.getUserPlayers(user);
-		log.trace(user);
+		//Set<Player> players = gService.getUserPlayers(user);
+		//log.trace(user);
 		//Transaction tx = session.getTransaction();
 	//	tx.begin();
 		// session.save(player3);
