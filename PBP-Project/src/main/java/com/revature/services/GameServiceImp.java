@@ -35,28 +35,27 @@ public class GameServiceImp implements GameService {
 		black_team.setId(2);
 		black_team.setTeamName("black");
 	}
-
-
-	public WorkingGame makeMove(int xid, int yid, Player player) {
-		//TODO
-		Move newMove = new Move();
-		int team = player.getTeam().getId();
+	
+	public void makeMove(Square move, Player player) {
 		
-		Square newSquare = new Square(xid, yid, team);
-		Game game = null;
+		//Call overloaded makeMove and retrieve the new WorkingGame
+		Game game = player.getGame();
+		WorkingGame wg = new WorkingGame(game);
+		wg = makeMove(wg, move, move.value);
 		
-		//Call dao to retrieve game
-		//game = GameDao.getGame(player.gameid);
+		//Flip whose turn it is
+		if(wg.whoseTurn == white_team) 
+			wg.whoseTurn = black_team;
+		else
+			wg.whoseTurn = white_team;
 		
-		WorkingGame wg = new WorkingGame(/*game*/);
-		wg = makeMove(wg, newSquare, team);
-		
-		//Update gameboard in database
+		//Create a new game based on the updated WorkingGame and update player
 		game = new Game(wg);
-		//GameDao.updateGame(WorkingGame);
-		
-		return wg;
+		player.setGame(game);
+		//Update the player/game
+		gameDAO.updateGame(player);		
 	}
+
 	
 	public Set<Square> findValidMoves(Player player){
 		//TODO

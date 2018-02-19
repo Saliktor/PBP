@@ -64,7 +64,9 @@ public class GameController {
 	public String joinGameSession(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
 		Game game = player.getGame();
+		System.out.println(game);
 		WorkingGame wgame = new WorkingGame(game);
+		System.out.println(wgame);
 		return om.writeValueAsString(wgame);
 	}
 	
@@ -79,7 +81,10 @@ public class GameController {
 	
 	@RequestMapping(value="/game-makemove", method=RequestMethod.POST)
 	public String recieveMove(@RequestBody Square move, HttpSession session) throws JsonProcessingException {
-		System.out.println("recieveMove");
-		return "null";
+		Player player = (Player)session.getAttribute("player");
+		
+		gameService.makeMove(move,player);
+		session.setAttribute("player", player);
+		return om.writeValueAsString(player);
 	}
 }

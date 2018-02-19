@@ -3,6 +3,7 @@ import { GameService } from '../game.service';
 import { Player } from '../player';
 import { User } from '../user';
 import { Square } from '../square';
+import { WorkingGame } from '../WorkingGame';
 
 @Component({
   selector: 'app-game',
@@ -10,15 +11,19 @@ import { Square } from '../square';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  workingGame: WorkingGame;
 
   constructor(private gameService: GameService ) {}
 
   ngOnInit() {
-    const square = new Square();
-    square.idx = 3;
-    square.idy = 8;
-    square.value = 1;
-    this.makeMove(square);
+    // const user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    // this.joinGameSession(user.players[0]);
+
+    // const square = new Square();
+    // square.idx = 5;
+    // square.idy = 3;
+    // square.value = 1;
+    // this.makeMove(square);
   }
 
   sendMessage() {
@@ -39,8 +44,9 @@ export class GameComponent implements OnInit {
   * This is used for players only, not new users to game session
   */
   joinGameSession(player: Player) {
-    return this.gameService.joinGameSession(player).subscribe( workingGame => {
-      console.log(workingGame);
+    this.gameService.joinGameSession(player).subscribe( workingGame => {
+      console.log('Inside call to joinGameSession: ', workingGame)
+      this.workingGame = workingGame;
     });
   }
 
@@ -51,15 +57,18 @@ export class GameComponent implements OnInit {
     this.gameService.joinGameSessionNewPlayer(gameID).subscribe( player => {
       console.log(player);
     });
-    return this.gameService.getWorkingGame().subscribe( workingGame => {
-      console.log( workingGame );
+    this.gameService.getWorkingGame().subscribe( workingGame => {
+      this.workingGame = workingGame;
     });
+
   }
 
-  makeMove(move: Square) {
-    console.log('Making move');
-    this.gameService.makeMove(move).subscribe( workingGame => {
-      console.log(workingGame);
+  makeMove(move: Square){
+    this.gameService.makeMove(move).subscribe( player => {
+      console.log(player);
+    });
+    this.gameService.getWorkingGame().subscribe( workingGame => {
+      this.workingGame = workingGame;
     });
   }
 

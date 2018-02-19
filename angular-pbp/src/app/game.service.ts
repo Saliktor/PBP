@@ -17,7 +17,7 @@ export class GameService {
   private newGameURL = 'http://localhost:8080/PBP/game-new';
   private joinGameURL = 'http://localhost:8080/PBP/game-join';
   private joinGameAsNewUserURL = 'http://localhost:8080/PBP/game-join-new';
-  private makeMoveURL = 'http://locahost:8080/PBP/game-makemove';
+  private makeMoveURL = 'http://localhost:8080/PBP/game-makemove';
 
 
   private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
@@ -93,7 +93,9 @@ export class GameService {
     const body = JSON.stringify(move);
     return this.http.post(this.makeMoveURL, body, {headers: this.headers, withCredentials: true})
       .map(resp => {
-        return resp.json() as WorkingGame;
+        const player = resp.json() as Player;
+        localStorage.setItem('player', JSON.stringify(player));
+        return player;
       });
   }
 }

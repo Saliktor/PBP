@@ -76,8 +76,8 @@ public class Player{
 		builder.append(id);
 //		builder.append(", user=");
 //		builder.append(user);
-		builder.append(", game=");
-		builder.append(game);
+//		builder.append(", game=");
+//		builder.append(game);
 		builder.append(", team=");
 		builder.append(team);
 		builder.append("]");

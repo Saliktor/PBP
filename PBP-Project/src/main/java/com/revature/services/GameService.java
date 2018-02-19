@@ -11,7 +11,7 @@ import com.revature.gamelogic.WorkingGame;
 public interface GameService {
 	int[][] getBoardState(Player player);
 	
-	WorkingGame makeMove(int xid, int yid, Player player);
+	void makeMove(Square move,  Player player);
 	Set<Square> findValidMoves(Player player);
 	
 	//update, create, retrieve
