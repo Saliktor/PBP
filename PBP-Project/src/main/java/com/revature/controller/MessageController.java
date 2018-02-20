@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,25 +70,11 @@ public class MessageController {
 					
 	}
 	
-	/*@RequestMapping(value="/message/getnewmessages")
-    public String getNewMessages(@RequestParam(value="timeStamp", required=false, defaultValue="1519067509050") String timeStamp, HttpSession session, HttpServletRequest request) throws JsonProcessingException {
-        log.debug("The timestamp is: "+timeStamp);
-        log.trace(request.getParameter("timeStamp"));
-        Timestamp timestamp = toTimestamp(timeStamp);
-        //Game currentGame = (Game) session.getAttribute("currentGame");
-        Game currentGame = new Game();
-        //matches above in save mes parameters
-        currentGame.setId(121);
-        List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
-
-        return "YoDawg";
-    }*/
-	
 	@RequestMapping(value="/message/getnewmessages", method=RequestMethod.GET)
     @ResponseBody
-    public String getNewMessages() {
+    public String getNewMessages(@RequestParam("timeStamp") String timeStamp) {
         try {
-            String timeStamp = "1519067509050";
+           // String timeStamp = "1519067509050";
             log.debug("The timestamp is: "+timeStamp);
          //   log.trace(request.getParameter("timeStamp"));
             Timestamp timestamp = toTimestamp(timeStamp);
