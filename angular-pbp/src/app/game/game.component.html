@@ -1,5 +1,5 @@
 <!-- Need to add interpolation for gameID -->
-<h1 class="reversi" id="reversi">Game #{{workingGame.id}}</h1>
+<h1 class="reversi" id="reversi" *ngIf="loggedIn()">Game #{{gameid}}</h1>
   <div class="container">
       <div class="gameboard">
 <!--

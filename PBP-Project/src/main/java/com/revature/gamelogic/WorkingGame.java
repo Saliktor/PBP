@@ -21,6 +21,11 @@ public class WorkingGame implements Cloneable {
 		this.boardstate[4][4].value = 1;
 		this.boardstate[3][4].value = 2;
 		this.boardstate[4][3].value = 2;
+		this.boardstate[2][4].value = 8; // ce
+		this.boardstate[4][2].value = 8; // ec
+		this.boardstate[3][5].value = 8; // df
+		this.boardstate[5][3].value = 8; // fd
+		
 	}
 	
 	public WorkingGame(Game g) {

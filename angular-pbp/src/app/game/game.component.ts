@@ -6,7 +6,9 @@ import { Square } from '../square';
 import { WorkingGame } from '../WorkingGame';
 import { Message } from "../message";
 import { Headers, Http } from '@angular/http';
-import { GetMessagesService } from '../get-messages.service'
+import { GetMessagesService } from '../get-messages.service';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -14,20 +16,29 @@ import { GetMessagesService } from '../get-messages.service'
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  workingGame: WorkingGame;
-  player: Player;
+  public workingGame: WorkingGame;
+  public player: Player;
   public message : Message;
   public messages : Message[];
   public timeStamp: Date;
+  public gameid: String = "";
 
-  constructor(private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService ) {}
+  constructor(private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService, private userService: UserService, private router: Router ) {
+    this.message = new Message('');
+    this.messages = [
+      new Message("Shit's broke, yo.",new Date(Date.now()))
+    ];
+  }
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    console.log(user.players[0]);
+    this.player = user.players[0];
+    this.gameid = ""+user.players[0].game.id;
     this.joinGameSession(user.players[0]);
 
-    this.timeStamp = new Date('18 FEB 2018 03:16:23:520000000 PM');
-    console.log(this.timeStamp.toDateString());
+    this.timeStamp = new Date(Date.now());
+    console.log("First Print: "+this.timeStamp.toDateString());
     //I think that if I want the chatbox to get recent messages when first seen, I do it here
       this.GetMessagesService.getNewMessages(this.timeStamp)
       // it should return an array of Messages so I need to push, concat the items into my messages array
@@ -65,7 +76,7 @@ export class GameComponent implements OnInit {
   joinGameSession(player: Player) {
     this.gameService.joinGameSession(player).subscribe( workingGame => {
       this.workingGame = workingGame;
-      // Update board here
+      this.updateBoardState(workingGame);
     });
   }
 
@@ -77,7 +88,7 @@ export class GameComponent implements OnInit {
       this.player = player;
       this.gameService.getWorkingGame().subscribe( workingGame => {
         this.workingGame = workingGame;
-        // Update board here
+        this.updateBoardState(workingGame);
       });
     });
 
@@ -87,6 +98,8 @@ export class GameComponent implements OnInit {
   makeMove(move: Square) {
     this.gameService.makeMove(move).subscribe( player => {
       this.player = player;
+      console.log("***********************************************");
+      console.log(player);
       this.gameService.getWorkingGame().subscribe( workingGame => {
         // this.workingGame = workingGame;
         console.log(workingGame);
@@ -143,7 +156,12 @@ export class GameComponent implements OnInit {
 
   }
 
-
+  loggedIn(): boolean{
+    if (!this.userService.loggedIn()) {
+      this.router.navigate(['./login']);
+    }
+    return true;
+  }
 
 
 }

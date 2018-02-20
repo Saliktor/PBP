@@ -116,7 +116,11 @@ public class Game {
 	}
 	
 	public Game (WorkingGame g) {
-	    this.id = g.id;
+	    updateGame(g);
+	}
+	
+	public void updateGame (WorkingGame g) {
+		this.id = g.id;
 	    this.aa = g.boardstate[0][0].value;
 	    this.ab = g.boardstate[0][1].value;
 	    this.ac = g.boardstate[0][2].value;

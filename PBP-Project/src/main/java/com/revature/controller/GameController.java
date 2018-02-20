@@ -81,7 +81,6 @@ public class GameController {
 	@RequestMapping(value="/game-makemove", method=RequestMethod.POST)
 	public String recieveMove(@RequestBody Square move, HttpSession session) throws JsonProcessingException {
 		Player player = (Player)session.getAttribute("player");
-		
 		gameService.makeMove(move,player);
 		session.setAttribute("player", player);
 		return om.writeValueAsString(player);

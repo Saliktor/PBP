@@ -48,22 +48,56 @@ public class GameServiceImp implements GameService {
 	
 	public void makeMove(Square move, Player player) {
 		
+//		//Call overloaded makeMove and retrieve the new WorkingGame
+//		Game game = player.getGame();
+//		WorkingGame wg = new WorkingGame(game);
+//		wg = makeMove(wg, move, move.value);
+//		
+//		//Flip whose turn it is
+//		if(wg.whoseTurn == white_team) 
+//			wg.whoseTurn = black_team;
+//		else
+//			wg.whoseTurn = white_team;
+//		
+//		// Put valid moves in the board
+//		System.out.println(wg.whoseTurn.getId());
+//		Set<Square> vm = findValidMoves(wg, wg.whoseTurn.getId());
+//		wg.printBoard();
+//		for (Square s : vm) {
+//			wg.boardstate[s.idx][s.idy].value = 8;
+//		}
+//		wg.printBoard();
+//		
+//		//Create a new game based on the updated WorkingGame and update player
+//		game = new Game(wg);
+//		player.setGame(game);
+//		
+//		//Update the player/game
+//		gameDAO.updateGame(game);	
+//		
+//		
 		//Call overloaded makeMove and retrieve the new WorkingGame
-		Game game = player.getGame();
-		WorkingGame wg = new WorkingGame(game);
-		wg = makeMove(wg, move, move.value);
-		
-		//Flip whose turn it is
-		if(wg.whoseTurn == white_team) 
-			wg.whoseTurn = black_team;
-		else
-			wg.whoseTurn = white_team;
-		
-		//Create a new game based on the updated WorkingGame and update player
-		game = new Game(wg);
-		player.setGame(game);
-		//Update the player/game
-		gameDAO.updateGame(player);		
+        Game game = player.getGame();
+        WorkingGame wg = new WorkingGame(game);
+        wg = makeMove(wg, move, move.value);
+        
+		System.out.println(wg.toString());
+        //Flip whose turn it is
+        if(wg.whoseTurn.equals(white_team)) 
+            wg.whoseTurn = black_team;
+        else
+            wg.whoseTurn = white_team;
+        
+        Set<Square> vm = findValidMoves(wg, wg.whoseTurn.getId());
+		for (Square s : vm) {
+			wg.boardstate[s.idx][s.idy].value = 8;
+		}
+		System.out.println(wg.toString());
+        //Update Game object with the WorkingGame
+        game.updateGame(wg);
+        
+        //Persist change in Game object to database
+        gameDAO.updateGame(game);
 	}
 
 	public List<Message> getNewMessages(Game game, Timestamp timestamp) {
