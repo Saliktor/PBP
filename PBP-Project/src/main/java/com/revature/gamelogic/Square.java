@@ -15,9 +15,6 @@ public class Square {
 		this.idy = idy;
 		this.value = value;
 	}
-	
-	
-	
 
 	@Override
 	public int hashCode() {
