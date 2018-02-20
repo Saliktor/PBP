@@ -6,9 +6,9 @@ import com.revature.beans.Game;
 import com.revature.beans.Team;
 
 public class WorkingGame implements Cloneable {
-	public int id;
-	public Square[][] boardstate = new Square[8][8]; 
-	public Team whoseTurn;
+	private int id;
+	private Square[][] boardstate = new Square[8][8]; 
+	private Team whoseTurn;
 	
 	public WorkingGame() {
 		super();
