@@ -29,16 +29,16 @@ export class HomeComponent implements OnInit {
       this.GetMessagesService.getNewMessages(this.timeStamp)
       // it should return an array of Messages so I need to push, concat the items into my messages array
       //Also I don't think
-      .subscribe(message => this.message =
-        {
-          id :message['id'], 
+      .subscribe(messages => this.messages = messages
+        
+          /* id :message['id'], 
           user : message['user'],
           gameId: message['game'],
           timePosted : message['timeStamp'],
-           messageContent: message['messageContent']
+           messageContent: message['messageContent'] */
 
 
-      });
+      );
       this.messages.push(this.message);
       this.message= new Message('');
 

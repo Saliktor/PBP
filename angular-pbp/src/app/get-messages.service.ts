@@ -29,12 +29,12 @@ export class GetMessagesService {
        
         const body =  `timeStamp=${/*Date.parse( '18 FEB 2018 03:16:23:520000000 PM' )*/ t}`;
         console.log(body);
-    return this.http.get(this.messageUrl+body , { headers: this.headers, withCredentials: true })
+    return this.http.get(this.messageUrl , { headers: this.headers, withCredentials: true })
       .map(
           resp => {
             console.log('Get messages response:'+resp);
             const messages = resp.json() as Message[];
-
+            console.log(messages);
             return messages;
           }
 
