@@ -6,8 +6,6 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import org.springframework.stereotype.Service;
 
@@ -23,11 +21,14 @@ import com.revature.dao.UserDAO;
 public class UserServiceImp implements UserService {
 	static final Logger log = Logger.getLogger(UserServiceImp.class);
 	
-	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-	private static PlayerDAO playerDAO = ac.getBean(PlayerDAO.class);
-	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private PlayerDAO playerDAO;
+
+	@Autowired
+	private GameDAO gameDAO;
 	
 	/*
 	 * Creates a user object based on passed parameters

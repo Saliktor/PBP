@@ -19,7 +19,6 @@ import com.revature.beans.Team;
 import com.revature.beans.UserAccount;
 import com.revature.dao.GameDAO;
 import com.revature.dao.MessageDAO;
-import com.revature.dao.MessageDAOImp;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
@@ -27,7 +26,7 @@ import com.revature.gamelogic.WorkingGame;
 public class GameServiceImp implements GameService {
 	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
-	private static MessageDAO mDAO = new MessageDAOImp();
+	private static MessageDAO mDAO = ac.getBean(MessageDAO.class);
 
 	private static boolean noMoreMoves = false;
 	

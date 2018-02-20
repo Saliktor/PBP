@@ -17,9 +17,9 @@ import com.revature.services.UserService;
 @RestController
 @CrossOrigin(origins= "http://localhost:4200", allowCredentials = "true", allowedHeaders = "*")
 public class LoginController {
-	private ObjectMapper om = new ObjectMapper();
-	
+	private ObjectMapper om = new ObjectMapper();	
 	private static Logger log = Logger.getLogger(LoginController.class);
+	
 	@Autowired
 	private UserService uService;
 	

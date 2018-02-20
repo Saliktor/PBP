@@ -13,6 +13,7 @@ import com.revature.beans.UserAccount;
 public class GameDAOImp implements GameDAO, HibernateSession {
 	
 	private Session session;
+	
 	public void setSession(Session session) {
 		this.session = session;
 	}

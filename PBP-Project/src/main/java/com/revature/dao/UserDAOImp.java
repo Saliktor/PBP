@@ -16,7 +16,6 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 	private Session session;
 
 	public void setSession(Session session) {
-		System.out.println("YESIWASCALLED");
 		this.session = session;
 
 	}
@@ -30,9 +29,6 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 		log.trace("USER ACCOUNT CALLED!");
 		UserAccount newUser = null;
 		
-		System.out.println(user);
-		System.out.println(session);
-
 		Criteria criteria = session.createCriteria(UserAccount.class);
 		criteria.add(Restrictions.eq("username", user.getUsername()))
 				.add(Restrictions.eq("password", user.getPassword()));
