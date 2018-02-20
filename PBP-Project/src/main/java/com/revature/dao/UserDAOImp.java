@@ -58,10 +58,10 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 		criteria.add(Restrictions.eq("username", username));
 
 		newUser = (UserAccount) criteria.uniqueResult();
-		if (newUser == null)
-			return true;
+		
+		return newUser == null;
 
-		return false;
+		
 	}
 
 	public boolean deleteUser(int userId) {
