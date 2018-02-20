@@ -22,12 +22,15 @@ public class Move {
 	@SequenceGenerator(name="move_pk",sequenceName="move_seq", allocationSize=1)
 	@GeneratedValue(generator="move_pk", strategy=GenerationType.SEQUENCE)
 	int id;
+	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
+	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "PLAYERID")
 	Player player;
+	
 	Timestamp timeMade;
 	String play;
 	

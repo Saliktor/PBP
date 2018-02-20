@@ -7,17 +7,28 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import com.revature.beans.Game;
-import com.revature.beans.Move;
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.revature.beans.Message;
 import com.revature.beans.Player;
 import com.revature.beans.Team;
-import com.revature.dao.GameDAOImp;
+import com.revature.beans.UserAccount;
+import com.revature.dao.GameDAO;
+import com.revature.dao.MessageDAO;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
 @Component
 public class GameServiceImp implements GameService {
+	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
+	private static MessageDAO mDAO = ac.getBean(MessageDAO.class);
+
 	private static boolean noMoreMoves = false;
-	private static GameDAOImp gameDAO = new GameDAOImp();
 	
 	/* Only two teams are needed for all players
 	 * Person who creates the game will be assigned white team
@@ -34,31 +45,40 @@ public class GameServiceImp implements GameService {
 		black_team.setId(2);
 		black_team.setTeamName("black");
 	}
-
-
-	public WorkingGame makeMove(int xid, int yid, Player player) {
-		//TODO
-		Move newMove = new Move();
-		int team = player.getTeam().getId();
+	
+	public void makeMove(Square move, Player player) {
 		
-		Square newSquare = new Square(xid, yid, team);
-		Game game = null;
+		//Call overloaded makeMove and retrieve the new WorkingGame
+		Game game = player.getGame();
+		WorkingGame wg = new WorkingGame(game);
+		wg = makeMove(wg, move, move.value);
 		
-		//Call dao to retrieve game
-		//game = GameDao.getGame(player.gameid);
+		//Flip whose turn it is
+		if(wg.whoseTurn == white_team) 
+			wg.whoseTurn = black_team;
+		else
+			wg.whoseTurn = white_team;
 		
-		WorkingGame wg = new WorkingGame(/*game*/);
-		wg = makeMove(wg, newSquare, team);
-		
-		//Update gameboard in database
+		//Create a new game based on the updated WorkingGame and update player
 		game = new Game(wg);
-		//GameDao.updateGame(WorkingGame);
-		
-		return wg;
+		player.setGame(game);
+		//Update the player/game
+		gameDAO.updateGame(player);		
 	}
+
+	public List<Message> getNewMessages(Game game, Timestamp timestamp) {
+		return mDAO.getNewMessages(game, timestamp);
+	}
+
+	public boolean saveMessage(Message message) {
+		if (mDAO.saveMessage(message))
+			return true;
+		
+		return false;
+	}
+
 	
 	public Set<Square> findValidMoves(Player player){
-		//TODO
 		int team = player.getTeam().getId();
 		//Call dao to retrieve game
 		//game = GameDao.getGame(player.gameid);
@@ -348,7 +368,6 @@ public class GameServiceImp implements GameService {
 		}
 
 		public boolean updateGame(Game game) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -363,9 +382,91 @@ public class GameServiceImp implements GameService {
 			//Persist the new player and game
 			gameDAO.createNewGameAndPlayer(player);			
 		}
+		
+		
+		/* Creates a new game and player on behalf of the user
+		 * Returns the newly updated user object containing newly added player
+		 */
+		public Player createNewGame(UserAccount user) {
+			//Create a new player and assign the user and team
+			Player player = new Player();
+			player.setUser(user);
+			player.setTeam(white_team);
+			
+			//Create a new game. Assign player to game and game to player (dont like this)
+			Game newGame = new Game();
+			newGame.addPlayer(player);
+			newGame.setWhoseTurn(white_team);
+			player.setGame(newGame);
 
-		public Game getGame(Player player) {
-			// TODO Auto-generated method stub
+			//Persist the new player and game
+			gameDAO.createNewGameAndPlayer(player);			
+			
+			//Update the user object
+			user.addPlayer(player);
+			
+			//return the new player
+			return player;
+		}
+		
+		
+		public Player joinGameAsNewUser(UserAccount user, int gameID) {
+			Game game = gameDAO.getGame(gameID);
+			
+			//If no game found matching the id, then not valid and return null
+			if(game == null)
+				return null;
+			
+			Set<Player> players = game.getPlayers();
+			
+			/*
+			 * If the game already has two players then this is not a valid request
+			 * This would be changed if spectators are allowed or more than 2 players per game
+			 */
+			if(players.size() >= 2)
+				return null;
+			/*
+			 * Check for if the currentUser already has a player attached to game
+			 * If a player is found then return null for this is invalid request
+			 */
+			for(Player player: players) {
+				if(player.getUser().getId() == user.getId()) {
+					return null;
+				}
+			}
+			
+			//Create new player for user and make team black
+			Player player = new Player();
+			player.setGame(game);
+			player.setTeam(black_team);
+			player.setUser(user);
+			
+			//
+			game.addPlayer(player);
+			game.setWhoseTurn(black_team);
+			
+			user.addPlayer(player);
+			
+			//Persist the new player.This dao call works for just player as well
+			gameDAO.createNewGameAndPlayer(player);	
+			
+			return player;
+		}
+		
+		public Game updateGame(Player player) {
+			if(gameDAO.updateGame(player))
+				return player.getGame();
+			
 			return null;
 		}
+
+
+		public Game getGame(Player player) {
+			return null;
+		}
+
+		public Set<Player> getUserPlayers(UserAccount user) {
+			return gameDAO.getUserPlayersAndGames(user);
+		}
+
 }

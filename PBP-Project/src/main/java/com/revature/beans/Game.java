@@ -3,11 +3,14 @@ package com.revature.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -26,13 +29,19 @@ public class Game {
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Move> moves = new HashSet<Move>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
 	
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "whose_turn")
+	Team whoseTurn;
+
 	int aa;
     int ab;
     int ac;
@@ -172,6 +181,8 @@ public class Game {
 	    this.hf = g.boardstate[7][5].value;
 	    this.hg = g.boardstate[7][6].value;
 	    this.hh = g.boardstate[7][7].value;
+	    
+	    this.whoseTurn = g.whoseTurn;
 	}
 
 	public int getId() {
@@ -721,21 +732,265 @@ public class Game {
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
+	
+	public Team getWhoseTurn() {
+		return whoseTurn;
+	}
+
+	public void setWhoseTurn(Team whoseTurn) {
+		this.whoseTurn = whoseTurn;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + aa;
+		result = prime * result + ab;
+		result = prime * result + ac;
+		result = prime * result + ad;
+		result = prime * result + ae;
+		result = prime * result + af;
+		result = prime * result + ag;
+		result = prime * result + ah;
+		result = prime * result + ba;
+		result = prime * result + bb;
+		result = prime * result + bc;
+		result = prime * result + bd;
+		result = prime * result + be;
+		result = prime * result + bf;
+		result = prime * result + bg;
+		result = prime * result + bh;
+		result = prime * result + ca;
+		result = prime * result + cb;
+		result = prime * result + cc;
+		result = prime * result + cd;
+		result = prime * result + ce;
+		result = prime * result + cf;
+		result = prime * result + cg;
+		result = prime * result + ch;
+		result = prime * result + da;
+		result = prime * result + db;
+		result = prime * result + dc;
+		result = prime * result + dd;
+		result = prime * result + de;
+		result = prime * result + df;
+		result = prime * result + dg;
+		result = prime * result + dh;
+		result = prime * result + ea;
+		result = prime * result + eb;
+		result = prime * result + ec;
+		result = prime * result + ed;
+		result = prime * result + ee;
+		result = prime * result + ef;
+		result = prime * result + eg;
+		result = prime * result + eh;
+		result = prime * result + fa;
+		result = prime * result + fb;
+		result = prime * result + fc;
+		result = prime * result + fd;
+		result = prime * result + fe;
+		result = prime * result + ff;
+		result = prime * result + fg;
+		result = prime * result + fh;
+		result = prime * result + ga;
+		result = prime * result + gb;
+		result = prime * result + gc;
+		result = prime * result + gd;
+		result = prime * result + ge;
+		result = prime * result + gf;
+		result = prime * result + gg;
+		result = prime * result + gh;
+		result = prime * result + ha;
+		result = prime * result + hb;
+		result = prime * result + hc;
+		result = prime * result + hd;
+		result = prime * result + he;
+		result = prime * result + hf;
+		result = prime * result + hg;
+		result = prime * result + hh;
+		result = prime * result + id;
+		result = prime * result + ((messages == null) ? 0 : messages.hashCode());
+		result = prime * result + ((moves == null) ? 0 : moves.hashCode());
+		result = prime * result + ((players == null) ? 0 : players.hashCode());
+		result = prime * result + ((whoseTurn == null) ? 0 : whoseTurn.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Game other = (Game) obj;
+		if (aa != other.aa)
+			return false;
+		if (ab != other.ab)
+			return false;
+		if (ac != other.ac)
+			return false;
+		if (ad != other.ad)
+			return false;
+		if (ae != other.ae)
+			return false;
+		if (af != other.af)
+			return false;
+		if (ag != other.ag)
+			return false;
+		if (ah != other.ah)
+			return false;
+		if (ba != other.ba)
+			return false;
+		if (bb != other.bb)
+			return false;
+		if (bc != other.bc)
+			return false;
+		if (bd != other.bd)
+			return false;
+		if (be != other.be)
+			return false;
+		if (bf != other.bf)
+			return false;
+		if (bg != other.bg)
+			return false;
+		if (bh != other.bh)
+			return false;
+		if (ca != other.ca)
+			return false;
+		if (cb != other.cb)
+			return false;
+		if (cc != other.cc)
+			return false;
+		if (cd != other.cd)
+			return false;
+		if (ce != other.ce)
+			return false;
+		if (cf != other.cf)
+			return false;
+		if (cg != other.cg)
+			return false;
+		if (ch != other.ch)
+			return false;
+		if (da != other.da)
+			return false;
+		if (db != other.db)
+			return false;
+		if (dc != other.dc)
+			return false;
+		if (dd != other.dd)
+			return false;
+		if (de != other.de)
+			return false;
+		if (df != other.df)
+			return false;
+		if (dg != other.dg)
+			return false;
+		if (dh != other.dh)
+			return false;
+		if (ea != other.ea)
+			return false;
+		if (eb != other.eb)
+			return false;
+		if (ec != other.ec)
+			return false;
+		if (ed != other.ed)
+			return false;
+		if (ee != other.ee)
+			return false;
+		if (ef != other.ef)
+			return false;
+		if (eg != other.eg)
+			return false;
+		if (eh != other.eh)
+			return false;
+		if (fa != other.fa)
+			return false;
+		if (fb != other.fb)
+			return false;
+		if (fc != other.fc)
+			return false;
+		if (fd != other.fd)
+			return false;
+		if (fe != other.fe)
+			return false;
+		if (ff != other.ff)
+			return false;
+		if (fg != other.fg)
+			return false;
+		if (fh != other.fh)
+			return false;
+		if (ga != other.ga)
+			return false;
+		if (gb != other.gb)
+			return false;
+		if (gc != other.gc)
+			return false;
+		if (gd != other.gd)
+			return false;
+		if (ge != other.ge)
+			return false;
+		if (gf != other.gf)
+			return false;
+		if (gg != other.gg)
+			return false;
+		if (gh != other.gh)
+			return false;
+		if (ha != other.ha)
+			return false;
+		if (hb != other.hb)
+			return false;
+		if (hc != other.hc)
+			return false;
+		if (hd != other.hd)
+			return false;
+		if (he != other.he)
+			return false;
+		if (hf != other.hf)
+			return false;
+		if (hg != other.hg)
+			return false;
+		if (hh != other.hh)
+			return false;
+		if (id != other.id)
+			return false;
+		if (messages == null) {
+			if (other.messages != null)
+				return false;
+		} else if (!messages.equals(other.messages))
+			return false;
+		if (moves == null) {
+			if (other.moves != null)
+				return false;
+		} else if (!moves.equals(other.moves))
+			return false;
+		if (players == null) {
+			if (other.players != null)
+				return false;
+		} else if (!players.equals(other.players))
+			return false;
+		if (whoseTurn == null) {
+			if (other.whoseTurn != null)
+				return false;
+		} else if (!whoseTurn.equals(other.whoseTurn))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", aa=" + aa
-				+ ", ab=" + ab + ", ac=" + ac + ", ad=" + ad + ", ae=" + ae + ", af=" + af + ", ag=" + ag + ", ah=" + ah
-				+ ", ba=" + ba + ", bb=" + bb + ", bc=" + bc + ", bd=" + bd + ", be=" + be + ", bf=" + bf + ", bg=" + bg
-				+ ", bh=" + bh + ", ca=" + ca + ", cb=" + cb + ", cc=" + cc + ", cd=" + cd + ", ce=" + ce + ", cf=" + cf
-				+ ", cg=" + cg + ", ch=" + ch + ", da=" + da + ", db=" + db + ", dc=" + dc + ", dd=" + dd + ", de=" + de
-				+ ", df=" + df + ", dg=" + dg + ", dh=" + dh + ", ea=" + ea + ", eb=" + eb + ", ec=" + ec + ", ed=" + ed
-				+ ", ee=" + ee + ", ef=" + ef + ", eg=" + eg + ", eh=" + eh + ", fa=" + fa + ", fb=" + fb + ", fc=" + fc
-				+ ", fd=" + fd + ", fe=" + fe + ", ff=" + ff + ", fg=" + fg + ", fh=" + fh + ", ga=" + ga + ", gb=" + gb
-				+ ", gc=" + gc + ", gd=" + gd + ", ge=" + ge + ", gf=" + gf + ", gg=" + gg + ", gh=" + gh + ", ha=" + ha
-				+ ", hb=" + hb + ", hc=" + hc + ", hd=" + hd + ", he=" + he + ", hf=" + hf + ", hg=" + hg + ", hh=" + hh
-				+ "]";
+		return "Game [id=" + id + ", moves=" + moves + ", players=" + players + ", messages=" + messages
+				+ ", whoseTurn=" + whoseTurn + ", aa=" + aa + ", ab=" + ab + ", ac=" + ac + ", ad=" + ad + ", ae=" + ae
+				+ ", af=" + af + ", ag=" + ag + ", ah=" + ah + ", ba=" + ba + ", bb=" + bb + ", bc=" + bc + ", bd=" + bd
+				+ ", be=" + be + ", bf=" + bf + ", bg=" + bg + ", bh=" + bh + ", ca=" + ca + ", cb=" + cb + ", cc=" + cc
+				+ ", cd=" + cd + ", ce=" + ce + ", cf=" + cf + ", cg=" + cg + ", ch=" + ch + ", da=" + da + ", db=" + db
+				+ ", dc=" + dc + ", dd=" + dd + ", de=" + de + ", df=" + df + ", dg=" + dg + ", dh=" + dh + ", ea=" + ea
+				+ ", eb=" + eb + ", ec=" + ec + ", ed=" + ed + ", ee=" + ee + ", ef=" + ef + ", eg=" + eg + ", eh=" + eh
+				+ ", fa=" + fa + ", fb=" + fb + ", fc=" + fc + ", fd=" + fd + ", fe=" + fe + ", ff=" + ff + ", fg=" + fg
+				+ ", fh=" + fh + ", ga=" + ga + ", gb=" + gb + ", gc=" + gc + ", gd=" + gd + ", ge=" + ge + ", gf=" + gf
+				+ ", gg=" + gg + ", gh=" + gh + ", ha=" + ha + ", hb=" + hb + ", hc=" + hc + ", hd=" + hd + ", he=" + he
+				+ ", hf=" + hf + ", hg=" + hg + ", hh=" + hh + "]";
 	}
-	
-	
 }

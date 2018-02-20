@@ -28,7 +28,7 @@
 		<mapping class="com.revature.beans.Move"/> 
 		<mapping class="com.revature.beans.Player"/>
 		<mapping class="com.revature.beans.Game"/>
-		<mapping class="com.revature.beans.Team"/> 
+		<mapping class="com.revature.beans.Team"/>
 
 	</session-factory>
 </hibernate-configuration>

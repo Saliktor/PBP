@@ -16,6 +16,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 @Entity
 @Table(name="UserAccount")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -24,17 +28,11 @@ public class UserAccount {
 	@SequenceGenerator(name="user_pk",sequenceName="useraccount_seq", allocationSize=1)
 	@GeneratedValue(generator="user_pk", strategy=GenerationType.SEQUENCE)
 	int id;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	Set<Player> players;
-	public Set<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(Set<Player> players) {
-		this.players = players;
-	}
-
+	
 	@Column(name = "username", nullable = false, unique = true)
 	String username;
 	String password;
@@ -104,28 +102,23 @@ public class UserAccount {
 		this.isMuted = isMuted;
 	}
 	
+	public Set<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
+	}
+	
 	public void addPlayer(Player player) {
 		this.players.add(player);
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserAccount [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", isAdmin=");
-		builder.append(isAdmin);
-		builder.append(", isBanned=");
-		builder.append(isBanned);
-		builder.append(", isMuted=");
-		builder.append(isMuted);
-		builder.append("]");
-		return builder.toString();
+		return "UserAccount [id=" + id + ", players=" + players + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", isAdmin=" + isAdmin + ", isBanned=" + isBanned + ", isMuted=" + isMuted + "]";
 	}
+
+	
 }

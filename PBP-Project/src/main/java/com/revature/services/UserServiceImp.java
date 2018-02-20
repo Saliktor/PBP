@@ -1,21 +1,34 @@
 package com.revature.services;
 
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
 
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
+import com.revature.dao.GameDAO;
 import com.revature.dao.PlayerDAO;
-import com.revature.dao.PlayerDAOImp;
-import com.revature.dao.UserDAOImp;
+import com.revature.dao.UserDAO;
 
-@Component
+
+@Service
 public class UserServiceImp implements UserService {
 	static final Logger log = Logger.getLogger(UserServiceImp.class);
 	
-	private static UserDAOImp userDAO = new UserDAOImp();
-	private static PlayerDAO playerDAO = new PlayerDAOImp();
+	@Autowired
+	private UserDAO userDAO;
+	
+	@Autowired
+	private PlayerDAO playerDAO;
+
+	@Autowired
+	private GameDAO gameDAO;
 	
 	/*
 	 * Creates a user object based on passed parameters
@@ -45,27 +58,43 @@ public class UserServiceImp implements UserService {
 
 	}
 	
+	
+	/* Creates a new admin account. Not updated, do not use without testing */
 	public UserAccount createAdmin(String username, String password, String email) {
 		UserAccount user = createUser(username, password, email);
 		user.setIsAdmin(1);
 		return user;
 	}
 	
+	
+	/* Retrieve a user account from database with passed parameters */
 	public UserAccount getUser(String username, String password) {
 		UserAccount user = new UserAccount();
 		user.setUsername(username);
 		user.setPassword(password);
 		user = userDAO.getUser(user);
+		
+		if(user == null) {
+			return null;
+		}else {
+			user.setPlayers(this.getPlayers(user));
+		}
+		
 		return user;
 	}
-
-	public Player getPlayer(int id) {
 		
+
+	/* Retrieve a player from database with passed player id */
+	public Player getPlayer(int id) {
 		Player player = playerDAO.getPlayer(id);
 		return player;
 	}
-
-	public UserAccount editUser(UserAccount user) {
-		return userDAO.updateUser(user);
+	
+	
+	/* Retrieve a set of players attached to a user account*/
+	public Set<Player> getPlayers(UserAccount user){
+		Set<Player> players = gameDAO.getUserPlayersAndGames(user);
+		return players;
 	}
+
 }
