@@ -14,5 +14,5 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
 	<!-- Set up our resources folder -->
-<!-- 	<mvc:resources location="/static" mapping="/**"></mvc:resources> -->
- </beans>
+<!-- 	<mvc:resources location="/static" mapping="/**"></mvc:resources>
+ --></beans>
