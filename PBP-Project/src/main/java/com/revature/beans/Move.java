@@ -35,7 +35,7 @@ public class Move {
 	String play;
 	
 	public Move() {
-		
+		super();
 	}
 	public int getId() {
 		return id;

@@ -36,6 +36,7 @@ public class Message {
 	String messageContent;
 	
 	public Message() {
+		super();
 	
 	}
 

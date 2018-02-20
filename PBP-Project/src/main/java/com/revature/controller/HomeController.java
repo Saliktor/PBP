@@ -16,7 +16,6 @@ public class HomeController {
 	@RequestMapping(method=RequestMethod.GET,  produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String goHome(HttpSession session) {
-		System.out.println("Get Home");
 		return "Welcome to Home";
     }
 }
