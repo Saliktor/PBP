@@ -30,7 +30,7 @@ public class LoginController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
 		UserAccount user = uService.getUser(username, password);
-		
+		System.out.println("Hello");
 		if(user == null) {
 			return "null";
 		} else {

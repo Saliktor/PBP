@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { Headers, Http } from '@angular/http';
-
+import { Message } from './message';
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
@@ -14,8 +14,11 @@ export class UserService {
   private registerUrl = 'http://localhost:8080/PBP/register';
   private getPlayersUrl = 'http://localhost:8080/PBP/login-getplayers';
   private logoutUrl = 'http://localhost:8080/PBP/logout';
+  private messageUrl = 'http://localhost:8080/PBP/message/newmessage';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   private objectheaders = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
+  public message: Message = new Message('');
+
 
   constructor(private http: Http) { }
 
@@ -44,9 +47,11 @@ export class UserService {
   login(username: string, password: string) {
     if (username && password) {
       const body = `username=${username}&password=${password}`;
+      console.log("before POST");
       return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true})
         .map(resp => {
           let user = resp.json();
+          console.log("POST received");
           if (user == null) {
             return null;
           } else {

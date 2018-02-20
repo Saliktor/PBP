@@ -4,8 +4,9 @@ import { Player } from '../player';
 import { User } from '../user';
 import { Square } from '../square';
 import { WorkingGame } from '../WorkingGame';
-import { Message } from "../Message";
+import { Message } from "../message";
 import { Headers, Http } from '@angular/http';
+import { GetMessagesService } from '../get-messages.service'
 
 @Component({
   selector: 'app-game',
@@ -15,12 +16,27 @@ import { Headers, Http } from '@angular/http';
 export class GameComponent implements OnInit {
   workingGame: WorkingGame;
   player: Player;
+  public message : Message;
+  public messages : Message[];
+  public timeStamp: Date;
 
-  constructor(private gameService: GameService, private http: Http ) {}
+  constructor(private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService ) {}
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('currentUser')) as User;
     this.joinGameSession(user.players[0]);
+
+    this.timeStamp = new Date('18 FEB 2018 03:16:23:520000000 PM');
+    console.log(this.timeStamp.toDateString());
+    //I think that if I want the chatbox to get recent messages when first seen, I do it here
+      this.GetMessagesService.getNewMessages(this.timeStamp)
+      // it should return an array of Messages so I need to push, concat the items into my messages array
+      //Also I don't think
+      .subscribe(messages => this.messages = messages
+
+      );
+      this.messages.push(this.message);
+      this.message= new Message('');
 // const square = new Square(3,2,1);
 // square.idx = 3;
 // square.idy = 2;
@@ -127,30 +143,10 @@ export class GameComponent implements OnInit {
 
   }
 
-  private messageUrl = 'http://localhost:8070/PBP/message/newmessage'
-  public message: Message = new Message('');
 
-  saveMessage(message : Message){
-    if(message){
-      console.log(`messageContent is ${message.messageContent} and timeStamp is ${message.timePosted.getMilliseconds()}`);
-    const body = `messageContent=${message.messageContent}&timeStamp=${message.timePosted.getMilliseconds()  }`;
-    return this.http.post(this.messageUrl, body ,{ headers: this.headers, withCredentials: true})
-    //syntax error need to fix response
-    // not sure what needs to happen after I send data to the server and if i get a repsonse back
-      .map (resp => {
-        console.log(resp);
-        const message = resp.json() as Message;
-        if(message == null){
-            return null;
-        }else{
-            this.message = message
-            return message;
-        }
-      }
-    );
-  }else{console.log("Invalid message recieved")}
-  }
-}
 
 
 }
+
+
+
