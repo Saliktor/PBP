@@ -72,6 +72,7 @@ public class MessageController {
 		Game currentGame = new Game();
 		currentGame.setId(1);
 		List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
+		System.out.println(newMessages);
 		
 		return om.writeValueAsString(newMessages);
 	}

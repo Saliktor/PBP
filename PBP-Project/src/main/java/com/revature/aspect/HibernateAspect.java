@@ -20,6 +20,7 @@ public class HibernateAspect {
 	
 	@Around("Daos()")
 	public Object manageSession(ProceedingJoinPoint pjp) throws Throwable {
+		System.out.println("I got called");
 		Object obj = null;
 		Session session = hu.getSession();
 		Transaction tx = session.beginTransaction();
@@ -29,8 +30,6 @@ public class HibernateAspect {
 			obj = pjp.proceed();
 		} catch(Throwable e) {
 			tx.rollback();
-			if (obj instanceof Boolean)
-			    obj = false;
 			throw e;
 		}
 		

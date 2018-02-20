@@ -19,7 +19,7 @@ import com.revature.beans.Game;
 import com.revature.beans.Message;
 import com.revature.game.util.HibernateUtil;
 
-@Repository
+@Component
 public class MessageDAOImp implements MessageDAO, HibernateSession {
 	private static Logger log = Logger.getLogger(MessageDAOImp.class);
 	private Session session;

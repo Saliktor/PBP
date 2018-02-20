@@ -28,13 +28,16 @@ import com.revature.gamelogic.WorkingGame;
 @Component
 public class GameServiceImp implements GameService {
 
-	private static MessageDAO mDAO = new MessageDAOImp();
+	//private static MessageDAO mDAO = new MessageDAOImp();
 	private static boolean noMoreMoves = false;
 	//
 	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
-	//@Autowired
-	//private GameDAO gameDAO;
+	//private static GameDAO gameDAO = ac.getBean(GameDAO.class);
+	@Autowired
+	private GameDAO gameDAO;
+	
+	@Autowired
+	private MessageDAO mDAO;
 	
 	
 	@Override

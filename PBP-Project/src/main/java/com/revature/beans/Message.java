@@ -21,7 +21,7 @@ public class Message {
 	@SequenceGenerator(name="message_pk",sequenceName="message_seq", allocationSize=1)
 	@GeneratedValue(generator="message_pk", strategy=GenerationType.SEQUENCE)
 	int id;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
