@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "message")
 public class Message {
@@ -20,12 +22,15 @@ public class Message {
 	@Id
 	@SequenceGenerator(name="message_pk",sequenceName="message_seq", allocationSize=1)
 	@GeneratedValue(generator="message_pk", strategy=GenerationType.SEQUENCE)
+	@JsonIgnore
 	int id;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
+	@JsonIgnore
 	Game game;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "USERID")
+	@JsonIgnore
 	UserAccount user;
 	Timestamp timePosted;
 	String messageContent;
