@@ -17,7 +17,7 @@ export class UserService {
   private messageUrl = 'http://localhost:8080/PBP/message/newmessage';
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   private objectheaders = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': true});
-  public message: Message = new Message('');
+  public message = new Message('');
 
 
   constructor(private http: Http) { }
