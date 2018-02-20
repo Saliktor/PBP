@@ -59,11 +59,12 @@ public class GameServiceImp implements GameService {
 		else
 			wg.setWhoseTurn(white_team);
 		
-		//Create a new game based on the updated WorkingGame and update player
-		game = new Game(wg);
-		player.setGame(game);
-		//Update the player/game
-		gameDAO.updateGame(player);		
+		
+		//Update Game object with the WorkingGame
+		game.updateGame(wg);
+		
+		//Persist change in Game object to database
+		gameDAO.updateGame(game);	
 	}
 
 	public List<Message> getNewMessages(Game game, Timestamp timestamp) {

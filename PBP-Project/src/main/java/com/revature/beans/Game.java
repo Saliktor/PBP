@@ -116,73 +116,7 @@ public class Game {
 	}
 	
 	public Game (WorkingGame g) {
-	    this.id = g.getId();
-	    this.aa = g.getBoardstate()[0][0].getValue();
-	    this.ab = g.getBoardstate()[0][1].getValue();
-	    this.ac = g.getBoardstate()[0][2].getValue();
-	    this.ad = g.getBoardstate()[0][3].getValue();
-	    this.ae = g.getBoardstate()[0][4].getValue();
-	    this.af = g.getBoardstate()[0][5].getValue();
-	    this.ag = g.getBoardstate()[0][6].getValue();
-	    this.ah = g.getBoardstate()[0][7].getValue();
-	    this.ba = g.getBoardstate()[1][0].getValue();
-	    this.bb = g.getBoardstate()[1][1].getValue();
-	    this.bc = g.getBoardstate()[1][2].getValue();
-	    this.bd = g.getBoardstate()[1][3].getValue();
-	    this.be = g.getBoardstate()[1][4].getValue();
-	    this.bf = g.getBoardstate()[1][5].getValue();
-	    this.bg = g.getBoardstate()[1][6].getValue();
-	    this.bh = g.getBoardstate()[1][7].getValue();
-	    this.ca = g.getBoardstate()[2][0].getValue();
-	    this.cb = g.getBoardstate()[2][1].getValue();
-	    this.cc = g.getBoardstate()[2][2].getValue();
-	    this.cd = g.getBoardstate()[2][3].getValue();
-	    this.ce = g.getBoardstate()[2][4].getValue();
-	    this.cf = g.getBoardstate()[2][5].getValue();
-	    this.cg = g.getBoardstate()[2][6].getValue();
-	    this.ch = g.getBoardstate()[2][7].getValue();
-	    this.da = g.getBoardstate()[3][0].getValue();
-	    this.db = g.getBoardstate()[3][1].getValue();
-	    this.dc = g.getBoardstate()[3][2].getValue();
-	    this.dd = g.getBoardstate()[3][3].getValue();
-	    this.de = g.getBoardstate()[3][4].getValue();
-	    this.df = g.getBoardstate()[3][5].getValue();
-	    this.dg = g.getBoardstate()[3][6].getValue();
-	    this.dh = g.getBoardstate()[3][7].getValue();
-	    this.ea = g.getBoardstate()[4][0].getValue();
-	    this.eb = g.getBoardstate()[4][1].getValue();
-	    this.ec = g.getBoardstate()[4][2].getValue();
-	    this.ed = g.getBoardstate()[4][3].getValue();
-	    this.ee = g.getBoardstate()[4][4].getValue();
-	    this.ef = g.getBoardstate()[4][5].getValue();
-	    this.eg = g.getBoardstate()[4][6].getValue();
-	    this.eh = g.getBoardstate()[4][7].getValue();
-	    this.fa = g.getBoardstate()[5][0].getValue();
-	    this.fb = g.getBoardstate()[5][1].getValue();
-	    this.fc = g.getBoardstate()[5][2].getValue();
-	    this.fd = g.getBoardstate()[5][3].getValue();
-	    this.fe = g.getBoardstate()[5][4].getValue();
-	    this.ff = g.getBoardstate()[5][5].getValue();
-	    this.fg = g.getBoardstate()[5][6].getValue();
-	    this.fh = g.getBoardstate()[5][7].getValue();
-	    this.ga = g.getBoardstate()[6][0].getValue();
-	    this.gb = g.getBoardstate()[6][1].getValue();
-	    this.gc = g.getBoardstate()[6][2].getValue();
-	    this.gd = g.getBoardstate()[6][3].getValue();
-	    this.ge = g.getBoardstate()[6][4].getValue();
-	    this.gf = g.getBoardstate()[6][5].getValue();
-	    this.gg = g.getBoardstate()[6][6].getValue();
-	    this.gh = g.getBoardstate()[6][7].getValue();
-	    this.ha = g.getBoardstate()[7][0].getValue();
-	    this.hb = g.getBoardstate()[7][1].getValue();
-	    this.hc = g.getBoardstate()[7][2].getValue();
-	    this.hd = g.getBoardstate()[7][3].getValue();
-	    this.he = g.getBoardstate()[7][4].getValue();
-	    this.hf = g.getBoardstate()[7][5].getValue();
-	    this.hg = g.getBoardstate()[7][6].getValue();
-	    this.hh = g.getBoardstate()[7][7].getValue();
-	    
-	    this.whoseTurn = g.getWhoseTurn();
+		this.updateGame(g);
 	}
 
 	public int getId() {
@@ -739,6 +673,76 @@ public class Game {
 
 	public void setWhoseTurn(Team whoseTurn) {
 		this.whoseTurn = whoseTurn;
+	}
+	
+	public void updateGame(WorkingGame g) {
+		this.id = g.getId();
+	    this.aa = g.getBoardstate()[0][0].getValue();
+	    this.ab = g.getBoardstate()[0][1].getValue();
+	    this.ac = g.getBoardstate()[0][2].getValue();
+	    this.ad = g.getBoardstate()[0][3].getValue();
+	    this.ae = g.getBoardstate()[0][4].getValue();
+	    this.af = g.getBoardstate()[0][5].getValue();
+	    this.ag = g.getBoardstate()[0][6].getValue();
+	    this.ah = g.getBoardstate()[0][7].getValue();
+	    this.ba = g.getBoardstate()[1][0].getValue();
+	    this.bb = g.getBoardstate()[1][1].getValue();
+	    this.bc = g.getBoardstate()[1][2].getValue();
+	    this.bd = g.getBoardstate()[1][3].getValue();
+	    this.be = g.getBoardstate()[1][4].getValue();
+	    this.bf = g.getBoardstate()[1][5].getValue();
+	    this.bg = g.getBoardstate()[1][6].getValue();
+	    this.bh = g.getBoardstate()[1][7].getValue();
+	    this.ca = g.getBoardstate()[2][0].getValue();
+	    this.cb = g.getBoardstate()[2][1].getValue();
+	    this.cc = g.getBoardstate()[2][2].getValue();
+	    this.cd = g.getBoardstate()[2][3].getValue();
+	    this.ce = g.getBoardstate()[2][4].getValue();
+	    this.cf = g.getBoardstate()[2][5].getValue();
+	    this.cg = g.getBoardstate()[2][6].getValue();
+	    this.ch = g.getBoardstate()[2][7].getValue();
+	    this.da = g.getBoardstate()[3][0].getValue();
+	    this.db = g.getBoardstate()[3][1].getValue();
+	    this.dc = g.getBoardstate()[3][2].getValue();
+	    this.dd = g.getBoardstate()[3][3].getValue();
+	    this.de = g.getBoardstate()[3][4].getValue();
+	    this.df = g.getBoardstate()[3][5].getValue();
+	    this.dg = g.getBoardstate()[3][6].getValue();
+	    this.dh = g.getBoardstate()[3][7].getValue();
+	    this.ea = g.getBoardstate()[4][0].getValue();
+	    this.eb = g.getBoardstate()[4][1].getValue();
+	    this.ec = g.getBoardstate()[4][2].getValue();
+	    this.ed = g.getBoardstate()[4][3].getValue();
+	    this.ee = g.getBoardstate()[4][4].getValue();
+	    this.ef = g.getBoardstate()[4][5].getValue();
+	    this.eg = g.getBoardstate()[4][6].getValue();
+	    this.eh = g.getBoardstate()[4][7].getValue();
+	    this.fa = g.getBoardstate()[5][0].getValue();
+	    this.fb = g.getBoardstate()[5][1].getValue();
+	    this.fc = g.getBoardstate()[5][2].getValue();
+	    this.fd = g.getBoardstate()[5][3].getValue();
+	    this.fe = g.getBoardstate()[5][4].getValue();
+	    this.ff = g.getBoardstate()[5][5].getValue();
+	    this.fg = g.getBoardstate()[5][6].getValue();
+	    this.fh = g.getBoardstate()[5][7].getValue();
+	    this.ga = g.getBoardstate()[6][0].getValue();
+	    this.gb = g.getBoardstate()[6][1].getValue();
+	    this.gc = g.getBoardstate()[6][2].getValue();
+	    this.gd = g.getBoardstate()[6][3].getValue();
+	    this.ge = g.getBoardstate()[6][4].getValue();
+	    this.gf = g.getBoardstate()[6][5].getValue();
+	    this.gg = g.getBoardstate()[6][6].getValue();
+	    this.gh = g.getBoardstate()[6][7].getValue();
+	    this.ha = g.getBoardstate()[7][0].getValue();
+	    this.hb = g.getBoardstate()[7][1].getValue();
+	    this.hc = g.getBoardstate()[7][2].getValue();
+	    this.hd = g.getBoardstate()[7][3].getValue();
+	    this.he = g.getBoardstate()[7][4].getValue();
+	    this.hf = g.getBoardstate()[7][5].getValue();
+	    this.hg = g.getBoardstate()[7][6].getValue();
+	    this.hh = g.getBoardstate()[7][7].getValue();
+	    
+	    this.whoseTurn = g.getWhoseTurn();
 	}
 
 	@Override
