@@ -6,9 +6,9 @@ import com.revature.beans.Game;
 import com.revature.beans.Team;
 
 public class WorkingGame implements Cloneable {
-	public int id;
-	public Square[][] boardstate = new Square[8][8]; 
-	public Team whoseTurn;
+	private int id;
+	private Square[][] boardstate = new Square[8][8]; 
+	private Team whoseTurn;
 	
 	public WorkingGame() {
 		super();
@@ -104,6 +104,30 @@ public class WorkingGame implements Cloneable {
 	
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Square[][] getBoardstate() {
+		return boardstate;
+	}
+
+	public void setBoardstate(Square[][] boardstate) {
+		this.boardstate = boardstate;
+	}
+
+	public Team getWhoseTurn() {
+		return whoseTurn;
+	}
+
+	public void setWhoseTurn(Team whoseTurn) {
+		this.whoseTurn = whoseTurn;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
