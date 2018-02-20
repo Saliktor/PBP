@@ -2,12 +2,9 @@ package com.revature.dao;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
