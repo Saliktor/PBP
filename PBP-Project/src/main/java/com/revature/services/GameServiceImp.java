@@ -7,18 +7,29 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import com.revature.beans.Game;
-import com.revature.beans.Move;
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.revature.beans.Message;
 import com.revature.beans.Player;
 import com.revature.beans.Team;
 import com.revature.beans.UserAccount;
-import com.revature.dao.GameDAOImp;
+import com.revature.dao.GameDAO;
+import com.revature.dao.MessageDAO;
+import com.revature.dao.MessageDAOImp;
 import com.revature.gamelogic.Square;
 import com.revature.gamelogic.WorkingGame;
 
 @Component
 public class GameServiceImp implements GameService {
+	private static ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+	private static GameDAO gameDAO = ac.getBean(GameDAO.class);
+	private static MessageDAO mDAO = new MessageDAOImp();
+
 	private static boolean noMoreMoves = false;
-	private static GameDAOImp gameDAO = new GameDAOImp();
 	
 	/* Only two teams are needed for all players
 	 * Person who creates the game will be assigned white team
@@ -56,9 +67,19 @@ public class GameServiceImp implements GameService {
 		gameDAO.updateGame(player);		
 	}
 
+	public List<Message> getNewMessages(Game game, Timestamp timestamp) {
+		return mDAO.getNewMessages(game, timestamp);
+	}
+
+	public boolean saveMessage(Message message) {
+		if (mDAO.saveMessage(message))
+			return true;
+		
+		return false;
+	}
+
 	
 	public Set<Square> findValidMoves(Player player){
-		//TODO
 		int team = player.getTeam().getId();
 		//Call dao to retrieve game
 		//game = GameDao.getGame(player.gameid);
@@ -348,7 +369,6 @@ public class GameServiceImp implements GameService {
 		}
 
 		public boolean updateGame(Game game) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -389,6 +409,7 @@ public class GameServiceImp implements GameService {
 			//return the new player
 			return player;
 		}
+		
 		
 		public Player joinGameAsNewUser(UserAccount user, int gameID) {
 			Game game = gameDAO.getGame(gameID);
@@ -432,9 +453,21 @@ public class GameServiceImp implements GameService {
 			
 			return player;
 		}
-
-		public Game getGame(Player player) {
-			// TODO Auto-generated method stub
+		
+		public Game updateGame(Player player) {
+			if(gameDAO.updateGame(player))
+				return player.getGame();
+			
 			return null;
 		}
+
+
+		public Game getGame(Player player) {
+			return null;
+		}
+
+		public Set<Player> getUserPlayers(UserAccount user) {
+			return gameDAO.getUserPlayersAndGames(user);
+		}
+
 }

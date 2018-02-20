@@ -95,10 +95,5 @@ public class UserServiceImp implements UserService {
 		Set<Player> players = gameDAO.getUserPlayersAndGames(user);
 		return players;
 	}
-	
-	
-	/* Update the user account to the database */
-	public UserAccount editUser(UserAccount user) {
-		return userDAO.updateUser(user);
-	}
+
 }
