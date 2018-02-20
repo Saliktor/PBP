@@ -104,6 +104,30 @@ public class WorkingGame implements Cloneable {
 	
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Square[][] getBoardstate() {
+		return boardstate;
+	}
+
+	public void setBoardstate(Square[][] boardstate) {
+		this.boardstate = boardstate;
+	}
+
+	public Team getWhoseTurn() {
+		return whoseTurn;
+	}
+
+	public void setWhoseTurn(Team whoseTurn) {
+		this.whoseTurn = whoseTurn;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
