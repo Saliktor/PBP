@@ -47,7 +47,7 @@ export class UserService {
   login(username: string, password: string) {
     if (username && password) {
       const body = `username=${username}&password=${password}`;
-      console.log("before POST");
+      // console.log("before POST");
       return this.http.post(this.loginUrl, body, { headers: this.headers, withCredentials: true})
         .map(resp => {
           let user = resp.json();

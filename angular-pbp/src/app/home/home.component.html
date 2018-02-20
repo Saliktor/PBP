@@ -1,6 +1,10 @@
 <div class="container" *ngIf="loggedIn()">
-    <div class="chatform">
-        <message-list [messages]="messages"></message-list>
-        <message-form [message]="message" [messages]="messages"></message-form>
+    <div class="container">
+        Something goes here.
+    </div>
+    <div class="container">
+        <div class="card" *ngFor="let p of user.players" (click)="loadGame(p.game.id)">
+            {{p.game.id}}
+        </div>
     </div>
 </div>

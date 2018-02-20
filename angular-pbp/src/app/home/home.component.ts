@@ -3,6 +3,8 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { Message } from '../message';
 import { GetMessagesService } from '../get-messages.service';
+import { User } from '../user';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,6 +14,7 @@ export class HomeComponent implements OnInit {
   public message : Message;
   public messages : Message[];
   public timeStamp: Date;
+  public user: User;
 
   constructor(private userService: UserService, private router: Router, private GetMessagesService: GetMessagesService) {
     this.message = new Message('');
@@ -31,11 +34,18 @@ export class HomeComponent implements OnInit {
       );
       this.messages.push(this.message);
       this.message= new Message('');
+
+      this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
+      console.log(this.user);
   }
   loggedIn(): boolean{
     if (!this.userService.loggedIn()) {
       this.router.navigate(['./login']);
     }
     return true;
+  }
+
+  loadGame(gameid: number) {
+    console.log(gameid);
   }
 }
