@@ -45,10 +45,8 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 		criteria.add(Restrictions.eq("email", email));
 
 		newUser = (UserAccount) criteria.uniqueResult();
-		if (newUser == null)
-			return true;
-
-		return false;
+		
+		return newUser == null;
 	}
 
 	public boolean isUsernameAvailable(String username) {
@@ -58,10 +56,10 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 		criteria.add(Restrictions.eq("username", username));
 
 		newUser = (UserAccount) criteria.uniqueResult();
-		if (newUser == null)
-			return true;
+		
+		return newUser == null;
 
-		return false;
+		
 	}
 
 	public boolean deleteUser(int userId) {

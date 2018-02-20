@@ -2,12 +2,9 @@ package com.revature.dao;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
@@ -17,9 +14,12 @@ import org.springframework.stereotype.Repository;
 import com.revature.beans.Game;
 import com.revature.beans.Message;
 
+
 @Repository
 public class MessageDAOImp implements MessageDAO, HibernateSession {	
 	private Session session;
+	private static final String timePosted = "timePosted";
+
 	
 	public void setSession(Session session) {
 		this.session = session;
@@ -37,9 +37,9 @@ public class MessageDAOImp implements MessageDAO, HibernateSession {
 	public Message getLatestMessage() {
 		Message message = null;
 		DetachedCriteria maxTime = DetachedCriteria.forClass(Message.class);
-		maxTime.setProjection(Projections.max("timePosted"));
+		maxTime.setProjection(Projections.max(timePosted));
 		Criteria query = session.createCriteria(Message.class);
-		query.add(Property.forName("timePosted").eq(maxTime));
+		query.add(Property.forName(timePosted).eq(maxTime));
 		message = (Message) query.uniqueResult();
 		return message;
 	}
@@ -55,7 +55,7 @@ public class MessageDAOImp implements MessageDAO, HibernateSession {
 		List<Message> messages = null;
 		messages = session.createCriteria(Message.class)
 				.add(Restrictions.eq("game", game))
-				.add(Restrictions.ge("timePosted", timestamp)).list();
+				.add(Restrictions.ge(timePosted, timestamp)).list();
 		return messages;
 
 	}

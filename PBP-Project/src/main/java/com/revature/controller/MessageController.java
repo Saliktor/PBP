@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.Format;
 import java.text.SimpleDateFormat;
