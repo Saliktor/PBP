@@ -1,3 +1,20 @@
 .message {
-    background-color: black;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 400;
+    color: black;
+}
+
+.timeform {
+    float: left;
+    width: 100%;
+}
+
+i {
+    margin-left: 20px;
+}
+
+.timestamp {
+    font-size: 0.6em;
+    color: black;
 }
