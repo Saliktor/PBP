@@ -30,19 +30,28 @@ public class LoginController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
 		UserAccount user = uService.getUser(username, password);
+		UserAccount u = (UserAccount) session.getAttribute("user");
+		
+		log.trace(u);
 		if(user == null) {
 			return "null";
 		} else {
 			session.setAttribute("currentUser", user);
+			session.setAttribute("user", user);
+			log.trace(user);
 			return om.writeValueAsString(user);
 		}	
 	}
 	
+	/* Call to server that returns the set of all players attached to the current user of the session */
 	@RequestMapping(value="/login-getplayers", method=RequestMethod.GET)
 	public String getPlayers( HttpSession session) throws JsonProcessingException {
 		UserAccount user = (UserAccount)session.getAttribute("currentUser");
+		if(user == null)
+			return "null";
 		return om.writeValueAsString(user.getPlayers());
 	}
+	
 	
 	/* A simple call to invalidate the session on server side
 	 * Returns a null string cause nothing to be sent back

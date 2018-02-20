@@ -1,9 +1,7 @@
 package com.revature.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,10 +27,8 @@ public class UserController {
 		if (newAccount.getUsername().equals(currentUser.getUsername())
 				&& newAccount.getPassword().equals(currentUser.getPassword())) {
 			newAccount.setEmail(newEmail);
-			newAccount = uService.editUser(newAccount);
 			return om.writeValueAsString(newAccount);
 		}
-		
 		return null;
 	}
 }
