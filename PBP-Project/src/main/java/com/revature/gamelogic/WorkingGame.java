@@ -17,10 +17,10 @@ public class WorkingGame implements Cloneable {
 				this.boardstate[i][j] = new Square(i,j,0);
 			}
 		}
-		this.boardstate[3][3].value = 1;
-		this.boardstate[4][4].value = 1;
-		this.boardstate[3][4].value = 2;
-		this.boardstate[4][3].value = 2;
+		this.boardstate[3][3].setValue(1);
+		this.boardstate[4][4].setValue(1);
+		this.boardstate[3][4].setValue(2);
+		this.boardstate[4][3].setValue(2);
 	}
 	
 	public WorkingGame(Game g) {
@@ -147,7 +147,7 @@ public class WorkingGame implements Cloneable {
 		for (int i=0 ; i<8 ; i++){
 			System.out.print(" "+i+" ");
 			for (int j=0 ; j<8 ; j++) {
-				String val = this.boardstate[i][j].value == 0 ? " " : ""+this.boardstate[i][j].value;
+				String val = this.boardstate[i][j].getValue() == 0 ? " " : ""+this.boardstate[i][j].getValue();
 				System.out.print("["+val+"]");
 			}
 			System.out.print("\n");
