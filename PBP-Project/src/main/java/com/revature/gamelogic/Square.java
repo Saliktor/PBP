@@ -54,6 +54,8 @@ public class Square {
 		this.value = value;
 	}
 
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +66,8 @@ public class Square {
 		return result;
 	}
 
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,15 +76,19 @@ public class Square {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		Square other = (Square) obj;
 		if (idx != other.idx)
 			return false;
-		if (idy != other.idy)
+		else if (idy != other.idy)
 			return false;
-		if (value != other.value)
+		else if (value != other.value)
 			return false;
-		return true;
+		else
+			return true;
 	}
+
+
 
 	@Override
 	public String toString() {
