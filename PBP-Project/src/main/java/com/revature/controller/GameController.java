@@ -63,9 +63,7 @@ public class GameController {
 	public String joinGameSession(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
 		session.setAttribute("player", player);
 		Game game = player.getGame();
-		System.out.println(game);
 		WorkingGame wgame = new WorkingGame(game);
-		System.out.println(wgame);
 		return om.writeValueAsString(wgame);
 	}
 	
