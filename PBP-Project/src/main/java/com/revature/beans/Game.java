@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,16 +29,19 @@ public class Game {
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Move> moves = new HashSet<Move>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Player> players = new HashSet<Player>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	Set<Message> messages = new HashSet<Message>();
+	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "whose_turn")
 	Team whoseTurn;
-	
+
 	int aa;
     int ab;
     int ac;
@@ -631,14 +633,6 @@ public class Game {
 		this.gf = gf;
 	}
 
-	public Team getWhoseTurn() {
-		return whoseTurn;
-	}
-
-	public void setWhoseTurn(Team whoseTurn) {
-		this.whoseTurn = whoseTurn;
-	}
-
 	public int getGg() {
 		return gg;
 	}
@@ -739,7 +733,13 @@ public class Game {
 		this.messages = messages;
 	}
 	
-	
+	public Team getWhoseTurn() {
+		return whoseTurn;
+	}
+
+	public void setWhoseTurn(Team whoseTurn) {
+		this.whoseTurn = whoseTurn;
+	}
 
 	@Override
 	public int hashCode() {

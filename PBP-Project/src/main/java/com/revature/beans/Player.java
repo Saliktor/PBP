@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-//To be treated as an instance of user for a game
 
 @Entity
 @Table(name="Player")
@@ -24,6 +23,7 @@ public class Player{
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn (name = "USERID")
 	UserAccount user;
+	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "GAMEID")
 	Game game;
@@ -39,7 +39,6 @@ public class Player{
 	public Game getGame() {
 		return game;
 	}
-
 	
 	public int getId() {
 		return id;
@@ -74,17 +73,13 @@ public class Player{
 		StringBuilder builder = new StringBuilder();
 		builder.append("Player [id=");
 		builder.append(id);
-//		builder.append(", user=");
-//		builder.append(user);
-//		builder.append(", game=");
-//		builder.append(game);
+		builder.append(", userid=");
+		builder.append(user.getId());
+		builder.append(", gameid=");
+		builder.append(game.getId());
 		builder.append(", team=");
 		builder.append(team);
 		builder.append("]");
 		return builder.toString();
 	}
-
-	
-	
-	
 }

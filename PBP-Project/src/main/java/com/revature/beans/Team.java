@@ -9,9 +9,9 @@ public class Team {
 	@Id
 	int id;
 	String teamName;
-	
+
 	public Team() {
-		
+		super();
 	}
 
 	public int getId() {
@@ -62,6 +62,5 @@ public class Team {
 	public String toString() {
 		return "Team [id=" + id + ", teamName=" + teamName + "]";
 	}
-	
 	
 }
