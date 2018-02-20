@@ -22,13 +22,14 @@ export class GetMessagesService {
         let s = '18-FEB-18 03.16.23.520000000 PM';
        // date.now  1519067509050
        //Date I'm trying to pass: 
-       //Why does only Date.now work
       console.log("Date is: "+Date.parse('18 FEB 2018 03:16:23:520000000 PM'));
-        let t = Date.now;
+        let t = Date.now();
+        console.log(t);
+        
        
-        const body =  `timeStamp=${Date.parse('18 FEB 2018 03:16:23:520000000 PM')}`;
+        const body =  `timeStamp=${/*Date.parse( '18 FEB 2018 03:16:23:520000000 PM' )*/ t}`;
         console.log(body);
-    return this.http.post(this.messageUrl, body , { headers: this.headers, withCredentials: true })
+    return this.http.get(this.messageUrl+body , { headers: this.headers, withCredentials: true })
       .map(
           resp => {
             console.log('Get messages response:'+resp);

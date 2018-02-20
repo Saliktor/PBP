@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -68,21 +69,42 @@ public class MessageController {
 					
 	}
 	
-	@RequestMapping(value="/message/getnewmessages", method=RequestMethod.POST)
-	@ResponseBody
-	public String getNewMessages(String timeStamp, 
-			HttpSession session, HttpServletRequest request) throws JsonProcessingException {
-		log.debug("The timestamp is: "+timeStamp);
-		log.trace(request.getParameter("timeStamp"));
-		Timestamp timestamp = toTimestamp(timeStamp);
-		//Game currentGame = (Game) session.getAttribute("currentGame");
-		Game currentGame = new Game();
-		//matches above in save mes parameters
-		currentGame.setId(121);
-		List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
-		
-		return om.writeValueAsString(newMessages);
-	}
+	/*@RequestMapping(value="/message/getnewmessages")
+    public String getNewMessages(@RequestParam(value="timeStamp", required=false, defaultValue="1519067509050") String timeStamp, HttpSession session, HttpServletRequest request) throws JsonProcessingException {
+        log.debug("The timestamp is: "+timeStamp);
+        log.trace(request.getParameter("timeStamp"));
+        Timestamp timestamp = toTimestamp(timeStamp);
+        //Game currentGame = (Game) session.getAttribute("currentGame");
+        Game currentGame = new Game();
+        //matches above in save mes parameters
+        currentGame.setId(121);
+        List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
+
+        return "YoDawg";
+    }*/
+	
+	@RequestMapping(value="/message/getnewmessages", method=RequestMethod.GET)
+    @ResponseBody
+    public String getNewMessages() {
+        try {
+            String timeStamp = "1519067509050";
+            log.debug("The timestamp is: "+timeStamp);
+         //   log.trace(request.getParameter("timeStamp"));
+            Timestamp timestamp = toTimestamp(timeStamp);
+            //Game currentGame = (Game) session.getAttribute("currentGame");
+            Game currentGame = new Game();
+            //matches above in save mes parameters
+            currentGame.setId(121);
+            List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
+
+            return om.writeValueAsString(newMessages);
+        }
+        catch (Exception ex) {
+            return ex.toString();
+        }
+
+    }
+	
 	
 	private Timestamp toTimestamp(String s) {
 		long t = Long.parseLong(s);
