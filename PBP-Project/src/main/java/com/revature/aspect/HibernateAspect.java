@@ -20,7 +20,6 @@ public class HibernateAspect {
 	
 	@Around("Daos()")
 	public Object manageSession(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("Around DAO");
 		Object obj = null;
 		Session session = hu.getSession();
 		Transaction tx = session.beginTransaction();
