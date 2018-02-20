@@ -13,6 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GameComponent } from './game/game.component';
 import { GameService } from './game.service';
+import { MessageItemComponent } from './chatbox/message-item/message-item.component';
+import { MessageListComponent } from './chatbox/message-list/message-list.component';
+import { MessageFormComponent } from './chatbox/message-form/message-form.component';
+import { GetMessagesService } from './get-messages.service';
 
 
 
@@ -23,7 +27,10 @@ import { GameService } from './game.service';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    GameComponent
+    GameComponent,
+    MessageItemComponent,
+    MessageListComponent,
+    MessageFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,7 @@ import { GameService } from './game.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [UserService, GameService],
+  providers: [UserService, GameService, GetMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

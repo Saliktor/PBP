@@ -87,4 +87,26 @@ export class UserService {
   getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
+
+  saveMessage(message : Message){
+    if(message){
+      console.log(`messageContent is ${message.messageContent} and timeStamp is ${message.timePosted.getMilliseconds()}`);
+    const body = `messageContent=${message.messageContent}&timeStamp=${message.timePosted.getMilliseconds()  }`;
+    return this.http.post(this.messageUrl, body ,{ headers: this.headers, withCredentials: true})
+    //syntax error need to fix response
+    // not sure what needs to happen after I send data to the server and if i get a repsonse back
+      .map (resp => {
+        console.log(resp);
+        const message = resp.json() as Message;
+        if(message == null){
+            return null;
+        }else{
+            this.message = message
+            return message;
+        }
+      }
+    );
+  }
+  else{console.log("Invalid message recieved")}
+  }
 }
