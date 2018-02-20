@@ -14,13 +14,6 @@
 	<context:component-scan base-package="com.revature"></context:component-scan>
 	<!-- Allows us to use annotations to create aspects -->
 	<aop:aspectj-autoproxy/>
-<!-- 	<bean id = "HibernateAspect" class = "com.revature.game.aspect.HibernateAspect"/>
-	<aop:config>
-		<aop:aspect id = "HibernateData" ref = "HibernateAspect">
-			<aop:pointcut expression="execution(* com.revature.game.dao..*(..)) !execution(* com.revature.game.dao..setSession(..))" id="pointCutAround"/>
-			<aop:around method="allDaoObjections" pointcut-ref = "pointCutAround"/>
-		</aop:aspect>
-	</aop:config> -->
 	
 	 
 </beans>
