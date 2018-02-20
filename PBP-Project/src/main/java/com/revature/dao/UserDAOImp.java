@@ -45,10 +45,8 @@ public class UserDAOImp implements UserDAO, HibernateSession {
 		criteria.add(Restrictions.eq("email", email));
 
 		newUser = (UserAccount) criteria.uniqueResult();
-		if (newUser == null)
-			return true;
-
-		return false;
+		
+		return newUser == null;
 	}
 
 	public boolean isUsernameAvailable(String username) {
