@@ -17,8 +17,8 @@ export class GameComponent implements OnInit {
   constructor(private gameService: GameService ) {}
 
   ngOnInit() {
-    // const user = JSON.parse(localStorage.getItem('currentUser')) as User;
-    // this.joinGameSession(user.players[0]);
+    const user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    this.joinGameSession(user.players[0]);
 
     // const square = new Square();
     // square.idx = 5;
