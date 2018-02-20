@@ -30,15 +30,11 @@ public class LoginController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(String username, String password, HttpSession session) throws JsonProcessingException {
 		UserAccount user = uService.getUser(username, password);
-		UserAccount u = (UserAccount) session.getAttribute("user");
 		
-		log.trace(u);
 		if(user == null) {
 			return "null";
 		} else {
 			session.setAttribute("currentUser", user);
-			session.setAttribute("user", user);
-			log.trace(user);
 			return om.writeValueAsString(user);
 		}	
 	}
