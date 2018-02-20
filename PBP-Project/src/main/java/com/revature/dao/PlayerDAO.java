@@ -4,5 +4,5 @@ import com.revature.beans.Player;
 
 public interface PlayerDAO {
 
-	Player getPlayer(int PlayerId);
+	Player getPlayer(int playerId);
 }

@@ -10,9 +10,9 @@ public class PlayerDAOImp implements PlayerDAO, HibernateSession {
 
 	private Session session;
 	
-	public Player getPlayer(int PlayerId) {
+	public Player getPlayer(int playerId) {
 		Player player = null;
-		player = (Player) session.get(Player.class, PlayerId);
+		player = (Player) session.get(Player.class, playerId);
 		return player;
 	}
 	
