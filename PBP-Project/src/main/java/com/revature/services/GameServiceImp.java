@@ -51,13 +51,13 @@ public class GameServiceImp implements GameService {
 		//Call overloaded makeMove and retrieve the new WorkingGame
 		Game game = player.getGame();
 		WorkingGame wg = new WorkingGame(game);
-		wg = makeMove(wg, move, move.value);
+		wg = makeMove(wg, move, move.getValue());
 		
 		//Flip whose turn it is
-		if(wg.whoseTurn == white_team) 
-			wg.whoseTurn = black_team;
+		if(wg.getWhoseTurn() == white_team) 
+			wg.setWhoseTurn(black_team);
 		else
-			wg.whoseTurn = white_team;
+			wg.setWhoseTurn(white_team);
 		
 		//Create a new game based on the updated WorkingGame and update player
 		game = new Game(wg);
@@ -94,8 +94,8 @@ public class GameServiceImp implements GameService {
 			
 			for (int i = 0; i < 8 ; i++) {
 				for (int j=0 ; j < 8 ; j++) {
-					if (game.boardstate[i][j].value == 8) {
-						game.boardstate[i][j].value = 0;
+					if (game.getBoardstate()[i][j].getValue() == 8) {
+						game.getBoardstate()[i][j].setValue(0);
 					}
 				}
 			}
@@ -112,7 +112,7 @@ public class GameServiceImp implements GameService {
 			toFlip.addAll(toFlip(game,move, 0,-1,myTeam));
 			toFlip.addAll(toFlip(game,move,-1,-1,myTeam));
 			for (Square s : toFlip) {
-				game.boardstate[s.idx][s.idy].value = s.value;
+				game.getBoardstate()[s.getIdx()][s.getIdy()].setValue(s.getValue());
 			}
 			return game; 
 		}
@@ -121,26 +121,26 @@ public class GameServiceImp implements GameService {
 			Set<Square> flipped = new HashSet<Square>();
 			int otherTeam = (myTeam == 1 ? 2 : 1);
 			try {
-				Square temp = new Square(xplus+move.idx,yplus+move.idy,game.boardstate[xplus+move.idx][yplus+move.idy].value);
+				Square temp = new Square(xplus+move.getIdx(),yplus+move.getIdy(),game.getBoardstate()[xplus+move.getIdx()][yplus+move.getIdy()].getValue());
 
-				if (temp.value == myTeam) {
+				if (temp.getValue() == myTeam) {
 					return flipped;
 				}
 				
 				while (true) {
 					
-					if (temp.value == myTeam) {
+					if (temp.getValue() == myTeam) {
 						break;
 					}
-					if (temp.value == otherTeam) {
-						temp.value = myTeam;
+					if (temp.getValue() == otherTeam) {
+						temp.setValue(myTeam);
 						flipped.add(temp);
 					}
-					if (temp.value == 0) {
+					if (temp.getValue() == 0) {
 						flipped.clear();
 						return flipped;
 					}	
-					temp = new Square(xplus+temp.idx,yplus+temp.idy,game.boardstate[xplus+temp.idx][yplus+temp.idy].value);
+					temp = new Square(xplus+temp.getIdx(),yplus+temp.getIdy(),game.getBoardstate()[xplus+temp.getIdx()][yplus+temp.getIdy()].getValue());
 				}
 				return flipped;
 			}
@@ -156,10 +156,10 @@ public class GameServiceImp implements GameService {
 			int teamTwoScore = 0;
 			for (int i=0 ; i < 8 ; i++) {
 				for (int j = 0 ; j < 8 ; j++) {
-					if (game.boardstate[i][j].value == 1) {
+					if (game.getBoardstate()[i][j].getValue() == 1) {
 						teamOneScore++;
 					}
-					else if (game.boardstate[i][j].value == 2) {
+					else if (game.getBoardstate()[i][j].getValue() == 2) {
 						teamTwoScore++;
 					}
 				}
@@ -183,7 +183,7 @@ public class GameServiceImp implements GameService {
 				System.out.println("Turn "+ i++ +" : (8 indicates available moves for Team "+myTeam+")");
 				
 				for (Square s : findValidMoves(game, myTeam)) {
-					game.boardstate[s.idx][s.idy].value = 8;
+					game.getBoardstate()[s.getIdx()][s.getIdy()].setValue(8);
 				}
 				game.printBoard();
 				System.out.println("===========================");
@@ -210,90 +210,90 @@ public class GameServiceImp implements GameService {
 			int x,y;
 			for (int i=0 ; i<8 ; i++){
 				for (int j=0 ; j<8 ; j++) {
-					current = game.boardstate[i][j];
-					if (current.value == 1 || current.value == 2) {
+					current = game.getBoardstate()[i][j];
+					if (current.getValue() == 1 || current.getValue() == 2) {
 						continue;
 					}
 //					System.out.println("Looking at ["+i+"]["+j+"]");
 					try {
 						if (isValidMove(game,current,1,1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx+1;
-						y = current.idy+1;
+						x = current.getIdx()+1;
+						y = current.getIdy()+1;
 					}
 					try {
 						if (isValidMove(game,current,1,0,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx+1;
-						y = current.idy+0;
+						x = current.getIdx()+1;
+						y = current.getIdy()+0;
 					}
 					try {
 						if (isValidMove(game,current,1,-1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx+1;
-						y = current.idy-1;
+						x = current.getIdx()+1;
+						y = current.getIdy()-1;
 					}
 					try {
 						if (isValidMove(game,current,0,1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx+0;
-						y = current.idy+1;
+						x = current.getIdx()+0;
+						y = current.getIdy()+1;
 					}
 					try {
 						if (isValidMove(game,current,-1,1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx-1;
-						y = current.idy+1;
+						x = current.getIdx()-1;
+						y = current.getIdy()+1;
 					}
 					try {
 						if (isValidMove(game,current,0,-1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx+0;
-						y = current.idy-1;
+						x = current.getIdx()+0;
+						y = current.getIdy()-1;
 					}
 					try {
 						if (isValidMove(game,current,-1,0,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx-1;
-						y = current.idy+0;
+						x = current.getIdx()-1;
+						y = current.getIdy()+0;
 					}
 					try {
 						if (isValidMove(game,current,-1,-1,myTeam)) {
-							validMoves.add( game.boardstate[current.idx][current.idy] );
+							validMoves.add( game.getBoardstate()[current.getIdx()][current.getIdy()] );
 							continue;
 						}
 					}
 					catch (ArrayIndexOutOfBoundsException e) {
-						x = current.idx-1;
-						y = current.idy-1;
+						x = current.getIdx()-1;
+						y = current.getIdy()-1;
 					}
 				}
 			}
@@ -321,25 +321,25 @@ public class GameServiceImp implements GameService {
 		
 		public boolean isValidMove(WorkingGame game, Square current, int xplus, int yplus, int myTeam) {
 			try {
-				Square adjacent = game.boardstate[current.idx+xplus][current.idy+yplus];
-				int x = current.idx+xplus;
-				int y = current.idy+yplus;
+				Square adjacent = game.getBoardstate()[current.getIdx()+xplus][current.getIdy()+yplus];
+				int x = current.getIdx()+xplus;
+				int y = current.getIdy()+yplus;
 				int otherTeam = (myTeam == 1 ? 2 : 1);
-				if (current.value == 0) {
-					if (adjacent.value == myTeam) {
+				if (current.getValue() == 0) {
+					if (adjacent.getValue() == myTeam) {
 						return false;
 					}
 					else {
-						if (adjacent.value == 0) {
+						if (adjacent.getValue() == 0) {
 							return false;
 						}
 						else {
 							do {
-								adjacent = game.boardstate[adjacent.idx+xplus][adjacent.idy+yplus];
-								if (adjacent.value == myTeam) {
+								adjacent = game.getBoardstate()[adjacent.getIdx()+xplus][adjacent.getIdy()+yplus];
+								if (adjacent.getValue() == myTeam) {
 									return true;
 								}
-							} while (adjacent.value != 0 && adjacent.value != 8);
+							} while (adjacent.getValue() != 0 && adjacent.getValue() != 8);
 							return false;
 						}
 					}
