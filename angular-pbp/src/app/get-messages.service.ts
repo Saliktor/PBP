@@ -21,15 +21,13 @@ export class GetMessagesService {
         //time stamp for messages i want to recieve
         let s = '18-FEB-18 03.16.23.520000000 PM';
        // date.now  1519067509050
+      
          let t : number = 1519067509050;
-         timestamp.setDate( 1519067509050);
-        console.log(`2: The timestamp date is ${timestamp}`);
-       //Date I'm trying to pass: 
-      console.log("Date is: "+Date.parse('18 FEB 2018 03:16:23:520000000 PM'));
-     
-        
+         //timestamp.setDate( 1519067509050);
+         
+        console.log(`2: The timestamp date valueOf is ${timestamp.valueOf()}`);
        
-        const body =  `?timeStamp=${/*Date.parse( '18 FEB 2018 03:16:23:520000000 PM' )*/ timestamp.getMilliseconds()}`;
+        const body =  `?timeStamp=${ timestamp.valueOf()}`;
         console.log(body);
     return this.http.get(this.messageUrl+body , { headers: this.headers, withCredentials: true })
       .map(

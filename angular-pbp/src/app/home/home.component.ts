@@ -24,20 +24,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timeStamp = new Date();
+    this.timeStamp = new Date('18 FEB 2018 03:16:23:520000000 PM');
+    console.log(this.timeStamp.toDateString());
     //I think that if I want the chatbox to get recent messages when first seen, I do it here
       this.GetMessagesService.getNewMessages(this.timeStamp)
       // it should return an array of Messages so I need to push, concat the items into my messages array
       //Also I don't think
       .subscribe(messages => this.messages = messages
         
-          /* id :message['id'], 
-          user : message['user'],
-          gameId: message['game'],
-          timePosted : message['timeStamp'],
-           messageContent: message['messageContent'] */
-
-
       );
       this.messages.push(this.message);
       this.message= new Message('');

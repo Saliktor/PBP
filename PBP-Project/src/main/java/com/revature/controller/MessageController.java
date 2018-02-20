@@ -81,6 +81,7 @@ public class MessageController {
             //Game currentGame = (Game) session.getAttribute("currentGame");
             Game currentGame = new Game();
             //matches above in save mes parameters
+            log.debug("The timestamp converted is: "+timestamp);
             currentGame.setId(121);
             List<Message> newMessages = gService.getNewMessages(currentGame, timestamp);
 
