@@ -162,3 +162,26 @@ li a:hover {
 #logout {
     float:right;
 }
+
+tr {
+    font-size: 30px;
+}
+
+#end-game-card {
+    position: absolute;
+    top: 40vh;
+
+    left: 25vw;
+    right: 40vw;
+    width: 31vw;
+    background-color: grey;
+    box-shadow: 100px 50px 50px -1px rgba(0,0,0,0.3);
+    padding: 10px;
+    text-align: center;
+}
+
+.score {
+    text-align: left;
+    padding-left: 200px;
+    padding-right: 200px;
+}

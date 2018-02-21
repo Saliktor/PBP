@@ -26,6 +26,7 @@ export class GameComponent implements OnInit {
   public timeStamp: Date;
   public gameid: number;
 
+//window.setTimeout(this.updateGameInUser(),100);
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService, private userService: UserService, private router: Router ) {
     this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
@@ -49,11 +50,13 @@ export class GameComponent implements OnInit {
       }
     });
 
-
+    this.updateGameInUser();
+    // setInterval(this.updateGameInUser(),1000);
     this.message = new Message('');
     this.messages = [
       new Message("This is a test message.",new Date(Date.now()))
     ];
+
   }
 
   ngOnInit() {
@@ -64,10 +67,10 @@ export class GameComponent implements OnInit {
     // // find player.game.id from url:id. if not found -> joinGameSessionNewPlayer
     // this.joinGameSession(this.user.players[0]);
 
-    this.timeStamp = new Date(Date.now());
+    this.timeStamp = new Date("18 Jan 1970");
     console.log("First Print: "+this.timeStamp.toDateString());
     //I think that if I want the chatbox to get recent messages when first seen, I do it here
-      this.GetMessagesService.getNewMessages(this.timeStamp)
+      this.GetMessagesService.getNewMessages(this.timeStamp, this.gameid)
       // it should return an array of Messages so I need to push, concat the items into my messages array
       //Also I don't think
       .subscribe(messages => this.messages = messages
@@ -141,6 +144,9 @@ export class GameComponent implements OnInit {
   updateBoardState(game: WorkingGame) {
     console.log("Updating Game");
     console.log(game);
+    let validMoveExists = false;
+    let blackpiece = 0;
+    let whitepiece = 0;
     for (let i = 0; i < 64 ; i++) {
       // console.log(document.getElementById(""+i));
       let pieces = <HTMLScriptElement[]><any>document.getElementById(""+i).childNodes;
@@ -156,21 +162,29 @@ export class GameComponent implements OnInit {
               pieces[0].style.display = "block";
               pieces[1].style.display = "none";
               pieces[2].style.display = "none";
+              whitepiece++;
               break;
           case 2:
               pieces[0].style.display = "none";
               pieces[1].style.display = "block";
               pieces[2].style.display = "none";
+              blackpiece++;
               break;
           case 8:
               pieces[0].style.display = "none";
               pieces[1].style.display = "none";
               pieces[2].style.display = "block";
+              validMoveExists = true;
               break;
           default:
               console.log("Received invalid value in WorkingGame["+(i/8)+"]["+(i%8)+"]");
               break;
       }
+    }
+    if (!validMoveExists) {
+      document.getElementById("end-game-card").style.display = "block";
+      document.getElementById("white-score").innerText = ""+whitepiece;
+      document.getElementById("black-score").innerText = ""+blackpiece;
     }
   }
 
@@ -194,7 +208,14 @@ export class GameComponent implements OnInit {
     return true;
   }
 
-
+  updateGameInUser() {
+    this.gameService.getWorkingGame().subscribe( workingGame => {
+      // this.workingGame = workingGame;
+      console.log("Called updateGameInUser");
+      this.updateBoardState(workingGame);
+      //setTimeout(this.updateGameInUser(),100);
+    });
+  }
 }
 
 

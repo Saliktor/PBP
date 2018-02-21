@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: HomeComponent
   },
   {
     path: 'game/:id',

@@ -1,4 +1,23 @@
-<!-- Need to add interpolation for gameID -->
+<div id="end-game-card" class="end-game-card" style="display: none">
+    <h1><em>Game over, man! Game over!</em></h1>
+    <hr>
+    <h2><strong>Final Score</strong></h2>
+    <table style="margin: auto">
+        <tbody>
+            <tr>
+                <td>White:</td>
+                <td id="white-score" style="text-align: right"></td>
+            </tr>
+            <tr>
+                <td>Black:</td>
+                <td id="black-score" style="text-align: right"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
 <h1 class="reversi" id="reversi" *ngIf="loggedIn()">Game #{{gameid}}</h1>
   <div class="container">
       <div class="gameboard">
@@ -142,11 +161,20 @@ Thus, the value of the element needs to be assigned. This needs to be figured ou
               <div class="square" id="63"><div class="whitepiece"></div><div class="blackpiece"></div><div class="valid-move" (click)="clickMove(63)"></div></div>
           </div>
       </div>
-      <div class="chatbox">
-            <div class="chatform">
+      <div class="chatbox" style="background-color: #aeaeae">
+            <div class="chatheader" style="margin-bottom: 10px">
+                <h1 style="text-align: center;">Messages</h1>
+            </div>
+            <div class="message-window">
+                <div class="messages-or-something">
+                        <message-list [messages]="messages"></message-list>
+                </div>
+            </div>
+            <message-form [message]="message" [messages]="messages"></message-form>
+            <!-- <div class="chatform">
                 <message-list [messages]="messages"></message-list>
                 <message-form [message]="message" [messages]="messages"></message-form>
-            </div>
+            </div> -->
       </div>
 <!--
       <div class="chatbox">

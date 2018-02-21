@@ -61,13 +61,17 @@ public class GameController {
 	 */
 	@RequestMapping(value="/game-join", method=RequestMethod.POST)
 	public String joinGameSession(@RequestBody Player player, HttpSession session) throws JsonProcessingException {
+//        WorkingGame wg = gameService.updateGameInPlayer(player);
+//        session.setAttribute("player", player);
+//        
+//        return om.writeValueAsString(wg);
+        
+
 		session.setAttribute("player", player);
-		Game game = player.getGame();
-		System.out.println(game);
-		WorkingGame wgame = new WorkingGame(game);
-		System.out.println(wgame);
-		return om.writeValueAsString(wgame);
-	}
+        Game game = player.getGame();
+        WorkingGame wg = new WorkingGame(game);
+        return om.writeValueAsString(wg);
+    }
 	
 	
 	@RequestMapping(value="/game-join-new", method=RequestMethod.POST)

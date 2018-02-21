@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -52,12 +53,18 @@ public class MessageDAOImp implements MessageDAO, HibernateSession {
 	}
 
 	public List<Message> getNewMessages(Game game, Timestamp timestamp) {
-		List<Message> messages = null;
-		messages = session.createCriteria(Message.class)
-				.add(Restrictions.eq("game", game))
-				.add(Restrictions.ge("timePosted", timestamp)).list();
-		return messages;
+	        
+	        List<Message> messages = null;
+	        
+	        messages = session.createCriteria(Message.class)
+	                .add(Restrictions.eq("game", game))
+	                .add(Restrictions.ge("timePosted", timestamp))
+	                .addOrder(Order.asc("id"))
+	                .list();
+	        
+	        return messages;
+	    }
 
-	}
+	
 
 }

@@ -10,6 +10,7 @@ import com.revature.beans.Message;
 import com.revature.beans.Player;
 import com.revature.beans.UserAccount;
 import com.revature.gamelogic.Square;
+import com.revature.gamelogic.WorkingGame;
 
 public interface GameService {
 	//Service to DAO methods
@@ -22,6 +23,7 @@ public interface GameService {
 	
 	Game updateGame(Player player);
 	boolean updateGame(Game game);
+	public WorkingGame updateGameInPlayer(Player player);
 	
 	
 	//Game Logic

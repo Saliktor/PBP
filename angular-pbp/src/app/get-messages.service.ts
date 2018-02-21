@@ -11,7 +11,7 @@ export class GetMessagesService {
   private messageUrl = 'http://localhost:8080/PBP/message/getnewmessages'
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': true});
   constructor(private http: Http) { }
-  getNewMessages(timestamp : Date): Observable<Message[]>{
+  getNewMessages(timestamp : Date, gameId : number): Observable<Message[]>{
     if(timestamp){
         console.log(`The timestamp date is ${timestamp}`);
         //time stamp for messages i want to recieve
@@ -23,7 +23,7 @@ export class GetMessagesService {
 
         console.log(`2: The timestamp date valueOf is ${timestamp.valueOf()}`);
 
-        const body =  `?timeStamp=${ timestamp.valueOf()}`;
+        const body =  `?timeStamp=${ timestamp.valueOf()}&gameId=${gameId}`;
         console.log(body);
     return this.http.get(this.messageUrl+body , { headers: this.headers, withCredentials: true })
       .map(

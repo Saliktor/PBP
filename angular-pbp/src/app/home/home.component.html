@@ -1,19 +1,18 @@
 <div class="container" *ngIf="loggedIn()">
-    <div class="container">
-       Player information here.
-    </div>
-    <div class="join-game card">
-        <input type="text" id="join-game-id" [(ngModel)]="newGameID">
-        <button class="btn-primary" name="join-button" (click)="joinAGame()">Join Game</button>
-        Should be on the same line.
+
+    <div class="join-game card container" style="margin-top: 30px; display: table; width: 100%; text-align: center">
+        <h2>Join a Game with the Game ID</h2>
+        <br>
+        <input type="text" id="join-game-id" [(ngModel)]="newGameID" style="display: inline-block; width: 45%; display: table-cell">
+        <button class="btn-primary" name="join-button" (click)="joinAGame()" style="display: inline-block; width: 45%; display: table-cell; margin:auto">Join Game</button>
     </div>
     <div class="new-game container" >
-        <button class="new-game" (click)="createNewGameFromHome()">CREATE NEW GAME</button>
+        <button class="new-game btn btn-secondary" style="width:100%; margin-top:20px; margin-bottom: 20px" (click)="createNewGameFromHome()">CREATE NEW GAME</button>
     </div>
     <div class="container">
         <div class="card" *ngFor="let p of user.players" (click)="loadGame(p.game.id)">
-            <a routerLink="../game/{{p.game.id}}">Game #{{p.game.id}}</a>
-            Is it your turn?
+            <a routerLink="../game/{{p.game.id}}" style="color:white; text-align:center">Game #{{p.game.id}}</a>
+
         </div>
     </div>
 </div>

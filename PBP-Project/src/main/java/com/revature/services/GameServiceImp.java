@@ -477,7 +477,6 @@ public class GameServiceImp implements GameService {
 			
 			//
 			game.addPlayer(player);
-			game.setWhoseTurn(black_team);
 			
 			user.addPlayer(player);
 			
@@ -502,5 +501,16 @@ public class GameServiceImp implements GameService {
 		public Set<Player> getUserPlayers(UserAccount user) {
 			return gameDAO.getUserPlayersAndGames(user);
 		}
-
+		
+		public WorkingGame updateGameInPlayer(Player player) {
+            //Grab game from player and from the database
+            Game game = player.getGame();
+            Game db_game = this.getGame(player);
+            
+            //Update the game in player to the game from db by utilizing WorkingGame
+            WorkingGame wg = new WorkingGame(db_game);
+            game.updateGame(wg);
+            
+            return wg;
+        }
 }

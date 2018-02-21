@@ -80,7 +80,9 @@ export class GameService {
     const body = `gameID=${gameID}`;
     return this.http.post(this.joinGameAsNewUserURL, body, {headers: this.nonObjectHeaders, withCredentials: true})
       .map(resp => {
-        return resp.json() as Player;
+        let player = resp.json() as Player;
+        this.addNewPlayerToUser(player);
+        return player;
       });
   }
 
