@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { Player } from '../player';
 import { User } from '../user';
+import { Game } from '../game';
 import { Square } from '../square';
 import { WorkingGame } from '../WorkingGame';
 import { Message } from "../message";
@@ -9,6 +10,7 @@ import { Headers, Http } from '@angular/http';
 import { GetMessagesService } from '../get-messages.service';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -18,24 +20,49 @@ import { Router } from '@angular/router';
 export class GameComponent implements OnInit {
   public workingGame: WorkingGame;
   public player: Player;
+  public user: User;
   public message : Message;
   public messages : Message[];
   public timeStamp: Date;
-  public gameid: String = "";
+  public gameid: number;
 
-  constructor(private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService, private userService: UserService, private router: Router ) {
+
+  constructor(private route: ActivatedRoute, private gameService: GameService, private http: Http, private GetMessagesService: GetMessagesService, private userService: UserService, private router: Router ) {
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    console.log(this.user);
+    this.route.params.subscribe(res => {
+      console.log("In the lamba");
+      this.gameid = res.id;
+      let foundGame = false;
+      for ( let p of this.user.players ) {
+        console.log(p.game.id + " : " + res.id);
+        if (p.game.id == res.id) {
+          this.player = p;
+          console.log("Found the game.");
+          this.joinGameSession(p);
+          foundGame = true;
+        }
+      }
+      if (!foundGame) {
+        console.log("Game not found");
+        this.joinGameSessionNewPlayer(res.id);
+      }
+    });
+
+
     this.message = new Message('');
     this.messages = [
-      new Message("Shit's broke, yo.",new Date(Date.now()))
+      new Message("This is a test message.",new Date(Date.now()))
     ];
   }
 
   ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('currentUser')) as User;
-    console.log(user.players[0]);
-    this.player = user.players[0];
-    this.gameid = ""+user.players[0].game.id;
-    this.joinGameSession(user.players[0]);
+
+    // console.log(this.user.players[0]);
+    // this.player = this.user.players[0];
+    // this.gameid = this.user.players[0].game.id;
+    // // find player.game.id from url:id. if not found -> joinGameSessionNewPlayer
+    // this.joinGameSession(this.user.players[0]);
 
     this.timeStamp = new Date(Date.now());
     console.log("First Print: "+this.timeStamp.toDateString());
@@ -65,7 +92,7 @@ export class GameComponent implements OnInit {
       this.player = player;
       return this.gameService.getWorkingGame().subscribe( workingGame => {
         console.log(workingGame);
-        // Update board here
+        this.updateBoardState(workingGame);
       });
     });
   }
@@ -84,8 +111,10 @@ export class GameComponent implements OnInit {
   * This is used for players only, not new users to game session
   */
   joinGameSessionNewPlayer(gameID: Number) {
+
     this.gameService.joinGameSessionNewPlayer(gameID).subscribe( player => {
       this.player = player;
+      console.log(player);
       this.gameService.getWorkingGame().subscribe( workingGame => {
         this.workingGame = workingGame;
         this.updateBoardState(workingGame);
@@ -110,7 +139,8 @@ export class GameComponent implements OnInit {
   }
 
   updateBoardState(game: WorkingGame) {
-
+    console.log("Updating Game");
+    console.log(game);
     for (let i = 0; i < 64 ; i++) {
       // console.log(document.getElementById(""+i));
       let pieces = <HTMLScriptElement[]><any>document.getElementById(""+i).childNodes;
@@ -149,6 +179,7 @@ export class GameComponent implements OnInit {
     if (this.player.team.id === this.player.game.whoseTurn.id) {
       const newSquare = new Square(Math.floor(i/8),i%8,this.player.team.id);
       this.makeMove(newSquare);
+      this.player = JSON.parse(localStorage.getItem('currentUser')) as Player;
     }
     else {
       console.log("IT'S NOT YOUR TURN.");

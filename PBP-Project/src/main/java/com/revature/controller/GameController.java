@@ -74,6 +74,7 @@ public class GameController {
 	public String joinGameSessionNewUser(int gameID, HttpSession session) throws JsonProcessingException {
 		UserAccount user = (UserAccount)session.getAttribute("currentUser");
 		Player player = gameService.joinGameAsNewUser(user, gameID);
+		session.setAttribute("player", player);
 		return om.writeValueAsString(player);
 	}
 	

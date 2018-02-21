@@ -95,7 +95,23 @@ export class GameService {
       .map(resp => {
         const player = resp.json() as Player;
         localStorage.setItem('player', JSON.stringify(player));
+        this.updatePlayerInUser(player);
         return player;
       });
+  }
+  updatePlayerInUser(p:Player) {
+    let u = JSON.parse(localStorage.getItem('currentUser')) as User;
+    let i = 0;
+    console.log(u);
+    for (let a of u.players) {
+      if (a.id === p.id) {
+        console.log("Player overwritten");
+        u.players[i] = p;
+        break;
+      }
+      i++;
+    }
+    localStorage.setItem('currentUser',JSON.stringify(u));
+    console.log(u);
   }
 }

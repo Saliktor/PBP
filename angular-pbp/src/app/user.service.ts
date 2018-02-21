@@ -58,7 +58,10 @@ export class UserService {
             console.log(user);
             user = resp.json() as User;
             localStorage.setItem('currentUser', JSON.stringify(user));
+            let hi: User;
+            //hi = (JSON.parse(localStorage.getItem('currentUser')) as User);
             return user;
+
           }
         });
     }

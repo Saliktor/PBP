@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Message } from '../message';
 import { GetMessagesService } from '../get-messages.service';
 import { User } from '../user';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-home',
@@ -15,28 +16,17 @@ export class HomeComponent implements OnInit {
   public messages : Message[];
   public timeStamp: Date;
   public user: User;
+  public newGameID: string;
 
-  constructor(private userService: UserService, private router: Router, private GetMessagesService: GetMessagesService) {
+  constructor(private userService: UserService, private router: Router, private GetMessagesService: GetMessagesService, private GameService: GameService) {
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    console.log(this.user);
     this.message = new Message('');
     this.messages = [
       new Message('Welcome to Reversi Simulator', new Date())
     ];
   }
   ngOnInit() {
-    this.timeStamp = new Date('18 FEB 2018 03:16:23:520000000 PM');
-    console.log(this.timeStamp.toDateString());
-    //I think that if I want the chatbox to get recent messages when first seen, I do it here
-      this.GetMessagesService.getNewMessages(this.timeStamp)
-      // it should return an array of Messages so I need to push, concat the items into my messages array
-      //Also I don't think
-      .subscribe(messages => this.messages = messages
-
-      );
-      this.messages.push(this.message);
-      this.message= new Message('');
-
-      this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
-      console.log(this.user);
   }
   loggedIn(): boolean{
     if (!this.userService.loggedIn()) {
@@ -47,5 +37,16 @@ export class HomeComponent implements OnInit {
 
   loadGame(gameid: number) {
     console.log(gameid);
+  }
+
+  createNewGameFromHome() {
+    this.GameService.createNewGame().subscribe( player => {
+      let game = player.game;
+      this.router.navigate(['./game/'+game.id]);
+    });
+  }
+
+  joinAGame() {
+    this.router.navigate(['./game/'+this.newGameID]);
   }
 }

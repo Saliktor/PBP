@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect
+
 public class LoggingAspect {
 	private Logger log = Logger.getRootLogger();
 	

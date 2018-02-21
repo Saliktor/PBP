@@ -28,7 +28,7 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'game',
+    path: 'game/:id',
     component: GameComponent
   }
 ];

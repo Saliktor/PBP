@@ -113,6 +113,10 @@ public class Game {
 		this.de = 2;
 		this.ed = 2;
 		this.ee = 1;
+		this.ce = 8;
+		this.ec = 8;
+		this.df = 8;
+		this.fd = 8;
 	}
 	
 	public Game (WorkingGame g) {
